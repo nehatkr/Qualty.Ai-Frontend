@@ -36,7 +36,7 @@
 
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { routes } from "./components/routes/index";
+import { routes } from "./components/AppRouter/index";
 
 function App() {
   return (
