@@ -612,14 +612,12 @@ const CustomerSignup = () => {
               </div>
             </div>
           )}
-
           {/* Error Display */}
           {error && (
             <div className="bg-red-900/20 border border-red-500 text-red-400 px-4 py-3 rounded-md text-sm">
               {error}
             </div>
           )}
-
           {/* Submit Button */}
           <div className="pt-6">
             <button
@@ -647,5 +645,4 @@ const CustomerSignup = () => {
     </div>
   );
 };
-
 export default CustomerSignup;
