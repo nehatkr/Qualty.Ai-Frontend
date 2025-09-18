@@ -103,7 +103,7 @@ const CustomerSignup = () => {
      
 
       if (!data.success) {
-        setError(data.message || data.errors?.[0]?.msg || "Signup failed");
+        setError(data.message || data.errors?.[0]?.msg );
       } else {
         setError(""); // ✅ Clear old error
         setFormError(""); // ✅ Clear password error

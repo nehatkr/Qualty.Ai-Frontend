@@ -5,6 +5,8 @@ import Signup from "../auth/Signup";
 import CustomerSignup from "../auth/CustomerSignup";
 import InspectorSignup from "../auth/InspectorSignup";
 import CompanySignup from "../auth/CompanySignup";
+import CustomerDashboard from "../dashboard/CustomerDashboard/CustomerDashboard"
+
 
 export const routes = [
   { path: "/", element: <LandingPage /> },
@@ -13,4 +15,5 @@ export const routes = [
   { path: "/signup/customer", element: <CustomerSignup /> },
   { path: "/signup/inspector", element: <InspectorSignup /> },
   { path: "/signup/company", element: <CompanySignup /> },
+  {path: "/customer/dashboard", element: <CustomerDashboard />},
 ];
