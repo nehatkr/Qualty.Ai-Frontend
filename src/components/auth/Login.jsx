@@ -1,14 +1,17 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../utils/constants";
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+    role: ""
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -17,8 +20,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      // Replace this with your actual login API call
-      const response = await fetch('/api/login', {
+      const response = await fetch(`${BASE_URL}/auth/signin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -27,14 +29,22 @@ const Login = () => {
       });
 
       const result = await response.json();
+      console.log(result);
 
-      if (response.ok && result.success) {
-        // Handle successful login
-        const userRole = (result.data.user && result.data.user.role) || result.data.role;
-        navigate(`/dashboard/${userRole}`);
-      } else {
-        setError(result.message || 'Login failed');
+
+      if(result.user){
+        navigate(`/${result.user.role}/dashboard`);
+      }else{
+        navigate(`/login`);
       }
+
+      if (!result.success) {
+        setError( result.errors?.[0]?.msg || result.message);
+      } else {
+        setError(""); 
+      }
+
+
     } catch (err) {
       setError('An error occurred. Please try again.');
     } finally {
@@ -42,12 +52,13 @@ const Login = () => {
     }
   };
 
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
-    setError(""); // Clear error when user types
+    setError("");
   };
 
   return (
@@ -84,6 +95,23 @@ const Login = () => {
         <div className="bg-gray-800/50 backdrop-blur-xl rounded-2xl p-8 border border-gray-700/50 shadow-2xl">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-4">
+
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">Role</label>
+                <select
+                  name="role"
+                  value={formData.role}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 placeholder-gray-400 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 transition-all duration-200"
+                  required
+                >
+                  <option value="">-- Select Role --</option>
+                  <option value="customer">Customer</option>
+                  <option value="inspector">Inspector</option>
+                </select>
+              </div>
+
+
               <div>
                 <label
                   htmlFor="email"

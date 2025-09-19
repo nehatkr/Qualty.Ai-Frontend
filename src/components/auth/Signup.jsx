@@ -4,17 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const navigate = useNavigate();
-
-  // Handle card clicks - prevent event bubbling from inner button
   const handleCardClick = (route, e) => {
-    // Prevent the event if it came from the button
     if (e.target.tagName === 'BUTTON') {
       return;
     }
     navigate(route);
   };
 
-  // Handle button clicks
   const handleButtonClick = (route, e) => {
     e.preventDefault();
     e.stopPropagation();
