@@ -26,10 +26,10 @@ const Login = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
+        credentials: 'include',
       });
 
       const result = await response.json();
-      console.log(result);
 
 
       if(result.user){
