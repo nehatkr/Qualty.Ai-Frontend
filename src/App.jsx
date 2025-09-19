@@ -13,7 +13,6 @@
 // import InspectorSignup from "./components/auth/InspectorSignup";
 // import CompanySignup from "./components/auth/CompanySignup";
 
-
 // function App() {
 //   return (
 //       <Router>
