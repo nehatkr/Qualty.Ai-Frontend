@@ -117,6 +117,8 @@ const RaiseEnquiry = () => {
     chemical: "",
   });
 
+  const [error, setError] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -260,6 +262,11 @@ const RaiseEnquiry = () => {
         credentials: "include",
       });
       const data = await response.json();
+
+      if(!data.success){
+        setError(data.message || "Failed to submit enquiry");
+      }
+
       console.log("Response:", data);
     } catch (error) {
       console.error("Error submitting enquiry:", error);
@@ -772,6 +779,8 @@ const RaiseEnquiry = () => {
             rows={4}
             className={inputClass}
           />
+
+           {error && <p className="text-red-500 text-sm text-center mt-2">{error}</p>}
 
           {/* Submit */}
           <div className="text-center pt-4">

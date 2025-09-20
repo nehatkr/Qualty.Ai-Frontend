@@ -15,8 +15,8 @@ const CustomerSignup = () => {
     address: "",
     publishRequirements: false,
     role: "",
-    tradeLicense: null,
-    importExportCertificate: null,
+    tradeLicense: "",
+    importExportCertificate: "",
   });
 
   const [showPassword, setShowPassword] = useState(false);

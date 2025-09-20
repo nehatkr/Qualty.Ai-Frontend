@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { User, Mail, Phone, MapPin, FileText, Camera } from "lucide-react";
 import { useUser } from "../../../context/userContext";
+import { BASE_URL } from "../../../utils/constants";
 
 const Account = () => {
   const { user } = useUser();
+  const [tradeLicenseFile, setTradeLicenseFile] = useState(null);
+  const [importExportFile, setImportExportFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
 
   if (!user) {
     return (
@@ -18,6 +22,29 @@ const Account = () => {
 
   const { name, email, mobileNumber, address, profilePhoto, documents } = user;
 
+  const handleUpload = async () => {
+    if (!tradeLicenseFile && !importExportFile) return;
+
+    const formData = new FormData();
+    if (tradeLicenseFile) formData.append("tradeLicense", tradeLicenseFile);
+    if (importExportFile) formData.append("importExportCertificate", importExportFile);
+
+    try {
+      setUploading(true);
+      const response = await fetch(`${BASE_URL}/customer/profile/updateDocuments`, {
+        method: "PATCH",
+        credentials: "include",
+        body: formData,
+      });
+
+      const result = await response.json();
+    } catch (error) {
+      console.error("Upload error:", error);
+    } finally {
+      setUploading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-8 px-4">
       <div className="max-w-4xl mx-auto">
@@ -29,10 +56,9 @@ const Account = () => {
           <p className="text-slate-400">Manage your profile information</p>
         </div>
 
-        {/* Main Profile Card */}
+        {/* Profile Card */}
         <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-2xl p-8 mb-8 shadow-2xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            
             {/* Profile Photo */}
             <div className="flex flex-col items-center space-y-4">
               <div className="relative group">
@@ -53,37 +79,10 @@ const Account = () => {
 
             {/* Basic Info */}
             <div className="space-y-6">
-              <div className="bg-slate-700/30 rounded-xl p-4 border border-slate-600/30 hover:border-blue-500/50 transition-all duration-200">
-                <div className="flex items-center space-x-3 mb-2">
-                  <User className="text-blue-400" size={20} />
-                  <label className="block text-sm text-slate-400 font-medium">Name</label>
-                </div>
-                <p className="text-white font-semibold text-lg ml-8">{name}</p>
-              </div>
-
-              <div className="bg-slate-700/30 rounded-xl p-4 border border-slate-600/30 hover:border-green-500/50 transition-all duration-200">
-                <div className="flex items-center space-x-3 mb-2">
-                  <Mail className="text-green-400" size={20} />
-                  <label className="block text-sm text-slate-400 font-medium">Email</label>
-                </div>
-                <p className="text-white font-semibold text-lg ml-8 break-all">{email}</p>
-              </div>
-
-              <div className="bg-slate-700/30 rounded-xl p-4 border border-slate-600/30 hover:border-purple-500/50 transition-all duration-200">
-                <div className="flex items-center space-x-3 mb-2">
-                  <Phone className="text-purple-400" size={20} />
-                  <label className="block text-sm text-slate-400 font-medium">Phone Number</label>
-                </div>
-                <p className="text-white font-semibold text-lg ml-8">{mobileNumber}</p>
-              </div>
-
-              <div className="bg-slate-700/30 rounded-xl p-4 border border-slate-600/30 hover:border-orange-500/50 transition-all duration-200">
-                <div className="flex items-center space-x-3 mb-2">
-                  <MapPin className="text-orange-400" size={20} />
-                  <label className="block text-sm text-slate-400 font-medium">Address</label>
-                </div>
-                <p className="text-white font-semibold text-lg ml-8 whitespace-pre-line leading-relaxed">{address}</p>
-              </div>
+              <InfoBlock icon={<User className="text-blue-400" size={20} />} label="Name" value={name} />
+              <InfoBlock icon={<Mail className="text-green-400" size={20} />} label="Email" value={email} />
+              <InfoBlock icon={<Phone className="text-purple-400" size={20} />} label="Phone Number" value={mobileNumber} />
+              <InfoBlock icon={<MapPin className="text-orange-400" size={20} />} label="Address" value={address} multiline />
             </div>
           </div>
         </div>
@@ -98,52 +97,78 @@ const Account = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="group">
-              <label className="block text-lg font-semibold text-white mb-4 flex items-center space-x-2">
-                <FileText className="text-blue-400" size={20} />
-                <span>Trade License</span>
-              </label>
-              <div className="bg-slate-700/30 rounded-xl border border-slate-600/30 overflow-hidden hover:border-blue-500/50 transition-all duration-300">
-                {documents?.tradeLicense ? (
-                  <img
-                    src={documents.tradeLicense}
-                    alt="Trade License"
-                    className="w-full h-64 object-contain hover:scale-105 transition-transform duration-500"
-                  />
-                ) : (
-                  <div className="h-64 flex flex-col items-center justify-center text-slate-500 space-y-3">
-                    <FileText size={48} className="text-slate-600" />
-                    <p className="font-medium">No trade license uploaded</p>
-                  </div>
-                )}
-              </div>
-            </div>
+            {/* Trade License */}
+            <CertificateBlock
+              label="Trade License"
+              iconColor="text-blue-400"
+              image={documents?.tradeLicense}
+              onFileChange={(file) => setTradeLicenseFile(file)}
+            />
 
-            <div className="group">
-              <label className="block text-lg font-semibold text-white mb-4 flex items-center space-x-2">
-                <FileText className="text-green-400" size={20} />
-                <span>Import/Export Certificate</span>
-              </label>
-              <div className="bg-slate-700/30 rounded-xl border border-slate-600/30 overflow-hidden hover:border-green-500/50 transition-all duration-300">
-                {documents?.importExportCertificate ? (
-                  <img
-                    src={documents.importExportCertificate}
-                    alt="Import/Export Certificate"
-                    className="w-full h-64 object-contain hover:scale-105 transition-transform duration-500"
-                  />
-                ) : (
-                  <div className="h-64 flex flex-col items-center justify-center text-slate-500 space-y-3">
-                    <FileText size={48} className="text-slate-600" />
-                    <p className="font-medium">No import/export certificate uploaded</p>
-                  </div>
-                )}
-              </div>
-            </div>
+            {/* Import/Export Certificate */}
+            <CertificateBlock
+              label="Import/Export Certificate"
+              iconColor="text-green-400"
+              image={documents?.importExportCertificate}
+              onFileChange={(file) => setImportExportFile(file)}
+            />
+          </div>
+
+          {/* Upload Button */}
+          <div className="mt-8 text-center">
+            <button
+              onClick={handleUpload}
+              disabled={uploading}
+              className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-all disabled:opacity-50"
+            >
+              {uploading ? "Uploading..." : "Update Certificates"}
+            </button>
           </div>
         </div>
       </div>
     </div>
   );
 };
+
+// Reusable Info Block
+const InfoBlock = ({ icon, label, value, multiline }) => (
+  <div className="bg-slate-700/30 rounded-xl p-4 border border-slate-600/30 hover:border-blue-500/50 transition-all duration-200">
+    <div className="flex items-center space-x-3 mb-2">
+      {icon}
+      <label className="block text-sm text-slate-400 font-medium">{label}</label>
+    </div>
+    <p className={`text-white font-semibold text-lg ml-8 ${multiline ? "whitespace-pre-line leading-relaxed" : ""}`}>
+      {value}
+    </p>
+  </div>
+);
+
+// Reusable Certificate Block
+const CertificateBlock = ({ label, iconColor, image, onFileChange }) => (
+  <div className="group">
+    <label className="block text-lg font-semibold text-white mb-4 flex items-center space-x-2">
+      <FileText className={iconColor} size={20} />
+      <span>{label}</span>
+    </label>
+    <div className={`bg-slate-700/30 rounded-xl border border-slate-600/30 overflow-hidden hover:border-blue-500/50 transition-all duration-300`}>
+      {image ? (
+        <img src={image} alt={label} className="w-full h-64 object-contain hover:scale-105 transition-transform duration-500" />
+      ) : (
+        <div className="h-64 flex flex-col items-center justify-center text-slate-500 space-y-3">
+          <FileText size={48} className="text-slate-600" />
+          <p className="font-medium">No {label.toLowerCase()} uploaded</p>
+        </div>
+      )}
+    </div>
+    <div className="mt-4">
+      <input
+        type="file"
+        accept="image/*"
+        onChange={(e) => onFileChange(e.target.files[0])}
+        className="text-sm text-slate-300 file:bg-blue-600 file:text-white file:px-4 file:py-1 file:rounded file:border-none file:cursor-pointer"
+      />
+    </div>
+  </div>
+);
 
 export default Account;
