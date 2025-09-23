@@ -8,7 +8,9 @@ import CustomerSignup from "../src/components/auth/CustomerSignup";
 import InspectorSignup from "../src/components/auth/InspectorSignup";
 import CompanySignup from "../src/components/auth/CompanySignup";
 import CustomerDashboard from "../src/components/dashboard/CustomerDashboard/CustomerDashboard"
-
+import QuickInspection from "./components/QuickInspection"; 
+import LocationDetail from "./components/LocationDetail";
+import QuickInspectionForm from "./components/QuickInspectionForm";
 
 function App() {
   return (
@@ -21,6 +23,9 @@ function App() {
         <Route path="/signup/inspector" element={ <InspectorSignup/> }/>
         <Route path="/signup/company" element={ <CompanySignup/> }/>
         <Route path="/customer/dashboard" element={ <CustomerDashboard/> }/>
+        <Route path="/quickInspection" element={ <QuickInspection />} />
+        <Route path="/quickInspection/:regionName" element={ <LocationDetail />} />
+        <Route path="/quickInspection/form" element={ <QuickInspectionForm />} />
         <Route path="*" element={<Navigate to="/"  />} />
       </Routes>
     </Router>

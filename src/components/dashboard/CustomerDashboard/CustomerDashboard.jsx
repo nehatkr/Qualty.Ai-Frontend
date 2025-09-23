@@ -11,6 +11,8 @@ import MyHistory from "./MyHistory";
 import ParameterModal from "./ParametersModal";
 import Payments from "./Payments";
 import RaiseEnquiry from "./RaiseEnquiry";
+import {useUser} from '../../../context/userContext'
+import useFetchUser from "../../../hooks/useFetchUser";
 // Sidebar icons
 const DashboardIcon = () => (
   <svg
@@ -227,6 +229,10 @@ const CloseIcon = () => (
 );
 
 const CustomerDashboard = () => {
+
+  useFetchUser()
+
+  const {user}=useUser()
   // const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -326,6 +332,12 @@ const CustomerDashboard = () => {
     }
   };
 
+  if(!user){
+    return <div className="text-center py-10 text-gray-400">
+    Loading user details...
+  </div>
+  }
+
   return (
     <div className="min-h-screen bg-gray-900 flex">
       {/* Sidebar - DARK THEME */}
@@ -354,9 +366,9 @@ const CustomerDashboard = () => {
             </div>
             <div>
               <p className="text-gray-50 font-semibold text-sm">
-                "name"
+                {user.name}
               </p>
-              <p className="text-gray-50 text-xs">Customer</p>
+              <p className="text-gray-50 text-xs">{user.role}</p>
             </div>
           </div>
           <button
@@ -453,3 +465,40 @@ const CustomerDashboard = () => {
 };
 
 export default CustomerDashboard;
+
+
+
+// import React from "react";
+// import useFetchUser from "../../../hooks/useFetchUser";
+// import { useUser } from "../../../context/userContext";
+
+// const Dashboard = () => {
+//   useFetchUser();
+//   const { user } = useUser();
+
+//   if (!user) {
+//     return (
+//       <div className="text-center py-10 text-gray-400">
+//         Loading user details...
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <div className="max-w-xl mx-auto mt-10 p-6 bg-gray-900 text-white rounded-lg shadow-lg">
+//       <h2 className="text-2xl font-bold mb-4">Welcome, {user.name} 👋</h2>
+//       <div className="space-y-2 text-sm">
+//         <p><span className="font-semibold">Email:</span> {user.email}</p>
+//         <p><span className="font-semibold">Role:</span> {user.role}</p>
+//         <p><span className="font-semibold">Mobile:</span> {user.mobileNumber}</p>
+//         <p><span className="font-semibold">Country Code:</span> {user.countryCode}</p>
+//         {user.address && (
+//           <p><span className="font-semibold">Address:</span> {user.address}</p>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Dashboard;
+

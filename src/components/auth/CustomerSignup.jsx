@@ -15,8 +15,8 @@ const CustomerSignup = () => {
     address: "",
     publishRequirements: false,
     role: "",
-    tradeLicense: null,
-    importExportCertificate: null,
+    tradeLicense: "",
+    importExportCertificate: "",
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -103,7 +103,8 @@ const CustomerSignup = () => {
      
 
       if (!data.success) {
-        setError(data.errors?.[0]?.msg  || data.message);
+
+        setError(data.errors?.[0]?.msg || data.message);
       } else {
         setError(""); 
         setFormError(""); 

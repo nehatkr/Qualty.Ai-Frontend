@@ -1,6 +1,6 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { Leaf, BarChart3, Shield, Zap, Package, MapPin, ChevronDown, ChevronUp } from 'lucide-react';
+import QuickInspection from './QuickInspection';
 
 const Services = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -129,7 +129,7 @@ const Services = () => {
     },
     sectionHeader: {
       textAlign: 'center',
-      marginBottom: '4rem'
+      marginBottom: '2rem'
     },
     badge: {
       display: 'inline-flex',
@@ -149,7 +149,7 @@ const Services = () => {
       fontSize: isMobile ? '2.2rem' : '5rem',
       fontWeight: '900',
       lineHeight: '1.1',
-      marginBottom: '2rem',
+      marginBottom: '1rem',
       color: '#FFFFFF',
       fontFamily: 'Jost, sans-serif',
       letterSpacing: '-0.03em',
@@ -165,26 +165,30 @@ const Services = () => {
       fontSize: isMobile ? '1.1rem' : '1.4rem',
       color: 'rgba(255, 255, 255, 0.8)',
       maxWidth: '800px',
-      margin: '0 auto',
+      margin: '2rem auto',
       lineHeight: '1.6',
       fontWeight: '500',
-      fontFamily: 'Jost, sans-serif'
+      fontFamily: 'Jost, sans-serif',
+      textAlign: 'center'
+    },
+    quickInspectionWrapper: {
+      margin: '0.5 rem 0'
     },
     featuredGrid: {
       display: 'grid',
       gridTemplateColumns: '1fr',
       gap: isMobile ? '1.5rem' : '2rem',
-      marginBottom: '5rem',
+      marginBottom: '3rem',
       maxWidth: isMobile ? '350px' : '1200px',
-      margin: isMobile ? '0 auto 3rem auto' : '0 auto 5rem auto'
+      margin: isMobile ? '0 auto 2rem auto' : '0 auto 3rem auto'
     },
     servicesGrid: {
       display: 'grid',
       gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
       gap: isMobile ? '1rem' : '2rem',
-      marginTop: '4rem',
+      marginTop: '2rem',
       maxWidth: isMobile ? '350px' : 'none',
-      margin: isMobile ? '4rem auto 0 auto' : '4rem 0 0 0'
+      margin: isMobile ? '2rem auto 0 auto' : '2rem 0 0 0'
     },
     additionalServicesGrid: {
       display: 'grid',
@@ -691,8 +695,16 @@ const Services = () => {
             Comprehensive Quality
             <span> Inspection Services</span>
           </h2>
-         
         </div>
+
+        <div style={servicesStyles.quickInspectionWrapper}>
+          {/* <QuickInspection /> */}
+        </div>
+
+        <p style={servicesStyles.description}>
+          We offer a complete suite of quality inspection services designed to ensure your cargo meets the highest standards 
+          and regulatory requirements across global markets.
+        </p>
 
         {/* Featured Services Section - Sourcing and Destination Inspection */}
         <div style={servicesStyles.featuredGrid}>
@@ -759,11 +771,6 @@ const Services = () => {
             </div>
           ))}
         </div>
-
-        <p style={servicesStyles.description}>
-          We offer a complete suite of quality inspection services designed to ensure your cargo meets the highest standards 
-          and regulatory requirements across global markets.
-        </p>
           
         {/* Initial Services Grid */}
         <div className="services-grid" style={servicesStyles.servicesGrid}>
