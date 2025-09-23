@@ -1,5 +1,5 @@
 
-import React, { use, useState } from "react";
+import React, {  useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { BASE_URL } from "../../utils/constants";
 import { useNavigate } from 'react-router-dom'
@@ -103,11 +103,10 @@ const CustomerSignup = () => {
      
 
       if (!data.success) {
-        setError(data.message || data.errors?.[0]?.msg );
+        setError(data.errors?.[0]?.msg  || data.message);
       } else {
-        setError(""); // ✅ Clear old error
-        setFormError(""); // ✅ Clear password error
-        // Optionally show success message or reset form
+        setError(""); 
+        setFormError(""); 
        
       }
 
