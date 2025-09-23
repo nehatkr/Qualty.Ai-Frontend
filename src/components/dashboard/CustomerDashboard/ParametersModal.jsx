@@ -120,7 +120,7 @@ const ParametersModal = ({
           selectedCommodity === "Food & Beverages" &&
           selectedSubCommodity === "Rice"
         ) {
-          apiEndpoint = "http://localhost:3214/v1/api/Phyinspectionparam/save";
+          
           dataToSave = {
             commodity: selectedCommodity,
             subCommodity: selectedSubCommodity,
@@ -151,8 +151,7 @@ const ParametersModal = ({
           };
         } else {
           // New API endpoint for non-rice commodities
-          apiEndpoint =
-            "http://localhost:3214/v1/api/GeneralPhyinspectionparam/save";
+          
           dataToSave = {
             commodity: selectedCommodity,
             otherCommodity: otherCommodity,
@@ -161,24 +160,24 @@ const ParametersModal = ({
           };
         }
 
-        const response = await fetch(apiEndpoint, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(dataToSave),
-        });
+        // const response = await fetch(apiEndpoint, {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify(dataToSave),
+        // });
 
-        if (!response.ok) {
-          const errorText = await response.text();
-          throw new Error(
-            `Physical API Error: ${response.status} - ${errorText}`
-          );
-        }
+        // if (!response.ok) {
+        //   const errorText = await response.text();
+        //   throw new Error(
+        //     `Physical API Error: ${response.status} - ${errorText}`
+        //   );
+        // }
 
         console.log("Physical inspection parameters saved successfully!");
-        const result = await response.json();
-        console.log("Response from physical API:", result);
+        // const result = await response.json();
+        // console.log("Response from physical API:", result);
       } catch (err) {
         console.error("Error saving physical inspection parameters:", err);
         setError(`Failed to save physical parameters: ${err.message}`);
@@ -189,7 +188,7 @@ const ParametersModal = ({
     // --- Save Chemical Inspection Parameters if selected ---
     if (hasChemicalInspection && allApiCallsSuccessful) {
       try {
-        const apiEndpoint = "http://localhost:3214/v1/api/Cheminspparam/save";
+       
 
         const formattedChemicalParameters = chemicalParameters.map(
           (paramName) => ({
@@ -205,20 +204,20 @@ const ParametersModal = ({
           chemicalParameters: formattedChemicalParameters,
         };
 
-        const response = await fetch(apiEndpoint, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(dataToSave),
-        });
+        // const response = await fetch(apiEndpoint, {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify(dataToSave),
+        // });
 
-        if (!response.ok) {
-          const errorText = await response.text();
-          throw new Error(
-            `Chemical API Error: ${response.status} - ${errorText}`
-          );
-        }
+        // if (!response.ok) {
+        //   const errorText = await response.text();
+        //   throw new Error(
+        //     `Chemical API Error: ${response.status} - ${errorText}`
+        //   );
+        // }
 
         console.log("Chemical inspection parameters saved successfully!");
         const result = await response.json();

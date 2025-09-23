@@ -698,7 +698,7 @@ const Services = () => {
         </div>
 
         <div style={servicesStyles.quickInspectionWrapper}>
-          <QuickInspection />
+          {/* <QuickInspection /> */}
         </div>
 
         <p style={servicesStyles.description}>
