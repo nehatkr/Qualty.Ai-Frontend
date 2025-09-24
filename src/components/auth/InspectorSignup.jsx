@@ -95,8 +95,6 @@ export default function InspectorSignup() {
     setFormData((prev) => ({ ...prev, commodities: updated }));
   };
 
-<<<<<<< HEAD
-=======
   // Submit handler
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
@@ -158,12 +156,10 @@ export default function InspectorSignup() {
   //   }
   // };
 
->>>>>>> upstream/main
   const handleSubmit = async (e) => {
   e.preventDefault();
   setError("");
 
-<<<<<<< HEAD
     if (
       formData.acceptsRequests &&
       (!formData.identityDocuments.aadhaarCard ||
@@ -173,7 +169,6 @@ export default function InspectorSignup() {
     ) {
       setError("Please fill all required fields to accept requests.");
       return;
-=======
   // Validation for required fields if accepting requests
   if (
     formData.acceptsRequests &&
@@ -231,7 +226,6 @@ export default function InspectorSignup() {
     } else {
       alert("Signup successful!");
       navigate("/login");
->>>>>>> upstream/main
     }
   } catch (err) {
     console.error("Signup error:", err);
@@ -239,7 +233,6 @@ export default function InspectorSignup() {
   }
 };
 
-<<<<<<< HEAD
     // Prepare FormData for submission
     const formdataToSend = new FormData();
     formdataToSend.append("role", formData.role);
@@ -299,8 +292,6 @@ export default function InspectorSignup() {
       setError("Something went wrong. Please try again.");
     }
   };
-=======
->>>>>>> upstream/main
 
   return (
     <div className="min-h-screen bg-black text-white flex items-center justify-center p-6">
