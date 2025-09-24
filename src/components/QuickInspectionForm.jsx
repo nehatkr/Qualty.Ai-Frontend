@@ -96,7 +96,7 @@ const InspectionForm = ({ closeForm, onSubmit }) => {
       <div>
         <label className="block mb-1 text-sm font-medium text-gray-300">Commodity Category</label>
         <select
-          name="category"
+          name="commodityCategory"
           value={formData.commodityCategory}
           onChange={handleFormChange}
           className="w-full p-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:border-green-500 focus:outline-none"
@@ -141,7 +141,7 @@ const InspectionForm = ({ closeForm, onSubmit }) => {
         <label className="block mb-1 text-sm font-medium text-gray-300">Inspection Date</label>
         <input
           type="date"
-          name="date"
+          name="inspectionDate"
           value={formData.inspectionDate}
           onChange={handleFormChange}
           className="w-full p-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:border-green-500 focus:outline-none"
@@ -157,9 +157,9 @@ const InspectionForm = ({ closeForm, onSubmit }) => {
             <label key={option} className="flex items-center text-sm text-gray-200">
               <input
                 type="radio"
-                name="type"
+                name="inspectionTypes"
                 value={option}
-                checked={formData.inspectionType === option}
+                checked={formData.inspectionTypes === option}
                 onChange={handleFormChange}
                 className="mr-2 accent-green-500"
               />
@@ -173,7 +173,7 @@ const InspectionForm = ({ closeForm, onSubmit }) => {
       <div>
         <label className="block mb-1 text-sm font-medium text-gray-300">Inspection Service</label>
         <select
-          name="service"
+          name="inspectionService"
           value={formData.inspectionService}
           onChange={handleFormChange}
           className="w-full p-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:border-green-500 focus:outline-none"
