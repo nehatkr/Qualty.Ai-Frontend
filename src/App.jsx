@@ -11,6 +11,7 @@ import CustomerDashboard from "../src/components/dashboard/CustomerDashboard/Cus
 import QuickInspection from "./components/QuickInspection"; 
 import LocationDetail from "./components/LocationDetail";
 import QuickInspectionForm from "./components/QuickInspectionForm";
+import InspectorDashboard from "./components/dashboard/InspectorDashboard/InspectorDashboard";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/signup/inspector" element={ <InspectorSignup/> }/>
         <Route path="/signup/company" element={ <CompanySignup/> }/>
         <Route path="/customer/dashboard" element={ <CustomerDashboard/> }/>
+        <Route path="/inspector/dashboard" element={ <InspectorDashboard/> }/>
         <Route path="/quickInspection" element={ <QuickInspection />} />
         <Route path="/quickInspection/:regionName" element={ <LocationDetail />} />
         <Route path="/quickInspection/form" element={ <QuickInspectionForm />} />

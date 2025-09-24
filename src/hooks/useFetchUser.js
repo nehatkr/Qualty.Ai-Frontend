@@ -1,11 +1,12 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , useLocation} from "react-router-dom";
 import { useUser } from "../context/userContext";
 import { BASE_URL } from "../utils/constants";
 
 const useFetchUser = () => {
   const { setUser } = useUser();
   const navigate = useNavigate();
+    const location = useLocation();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -20,18 +21,17 @@ const useFetchUser = () => {
         if (data.userInfo) {
           setUser(data.userInfo);
         } else {
-          navigate("/login");
+          navigate("/login", { state: { from: location.pathname } });
         }
       } catch (error) {
         console.error("Error fetching user:", error);
-        navigate("/login");
+        navigate("/login", { state: { from: location.pathname } });
       }
     };
 
     fetchUser();
-  }, [ navigate]);
+  }, [ navigate,location]);
 
-  return null;
 };
 
 export default useFetchUser;

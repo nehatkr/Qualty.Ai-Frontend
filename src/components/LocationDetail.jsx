@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useUser } from '../context/userContext';
 
 const LocationDetail = () => {
@@ -12,6 +12,7 @@ const LocationDetail = () => {
 
   const handleConfirmClick = (payload) => {
     console.log("Confirmed:", payload);
+    navigate("/quickInspection/form")
   };
 
   if (!regionData) {

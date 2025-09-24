@@ -87,11 +87,9 @@ const Services = () => {
     }
   ];
 
-  // Split services: show 3 initially (1 row × 3 boxes), then show all 6 (2 rows × 3 boxes each)
   const initialServices = services.slice(0, 3);
   const additionalServices = services.slice(3);
 
-  // Mobile detection
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -698,7 +696,7 @@ const Services = () => {
         </div>
 
         <div style={servicesStyles.quickInspectionWrapper}>
-          {/* <QuickInspection /> */}
+          <QuickInspection />
         </div>
 
         <p style={servicesStyles.description}>

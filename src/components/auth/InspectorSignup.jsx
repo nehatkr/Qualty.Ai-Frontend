@@ -3,10 +3,22 @@ import { BASE_URL } from "../../utils/constants";
 import { useNavigate } from "react-router-dom"; // if using React Router
 
 const allowedCommodities = [
-  "Textiles & Garments", "Electronics & Electrical", "Automotive Parts", "Food & Beverages",
-  "Pharmaceuticals", "Chemicals", "Machinery & Equipment", "Furniture & Wood Products",
-  "Metals & Alloys", "Plastics & Rubber", "Agricultural Products", "Jewelry & Accessories",
-  "Toys & Games", "Cosmetics & Personal Care", "Sports Equipment", "Other",
+  "Textiles & Garments",
+  "Electronics & Electrical",
+  "Automotive Parts",
+  "Food & Beverages",
+  "Pharmaceuticals",
+  "Chemicals",
+  "Machinery & Equipment",
+  "Furniture & Wood Products",
+  "Metals & Alloys",
+  "Plastics & Rubber",
+  "Agricultural Products",
+  "Jewelry & Accessories",
+  "Toys & Games",
+  "Cosmetics & Personal Care",
+  "Sports Equipment",
+  "Other",
 ];
 
 export default function InspectorSignup() {
@@ -22,7 +34,7 @@ export default function InspectorSignup() {
     address: "",
     acceptsRequests: false,
     identityDocuments: {
-      aadhaarCard: null, // file
+      aadhaarCard: null,
     },
     billingDetails: {
       accountNumber: "",
@@ -34,7 +46,6 @@ export default function InspectorSignup() {
 
   const [error, setError] = useState("");
 
-  // General change handler
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
 
@@ -64,7 +75,6 @@ export default function InspectorSignup() {
     }
   };
 
-  // Commodities handlers
   const handleCommodityChange = (index, field, value) => {
     const updated = [...formData.commodities];
     updated[index][field] = field === "experienceYears" ? Number(value) : value;
@@ -84,20 +94,16 @@ export default function InspectorSignup() {
     setFormData((prev) => ({ ...prev, commodities: updated }));
   };
 
-  // Submit handler
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
-    // Validation for required fields if acceptsRequests is true
     if (
       formData.acceptsRequests &&
-      (
-        !formData.identityDocuments.aadhaarCard ||
+      (!formData.identityDocuments.aadhaarCard ||
         !formData.billingDetails.accountNumber ||
         !formData.billingDetails.bankName ||
-        !formData.billingDetails.ifscCode
-      )
+        !formData.billingDetails.ifscCode)
     ) {
       setError("Please fill all required fields to accept requests.");
       return;
@@ -116,18 +122,36 @@ export default function InspectorSignup() {
     formdataToSend.append("acceptsRequests", formData.acceptsRequests);
 
     if (formData.identityDocuments.aadhaarCard)
-      formdataToSend.append("identityDocuments.aadhaarCard", formData.identityDocuments.aadhaarCard);
+      formdataToSend.append(
+        "identityDocuments.aadhaarCard",
+        formData.identityDocuments.aadhaarCard
+      );
 
-    formdataToSend.append("billingDetails.accountNumber", formData.billingDetails.accountNumber);
-    formdataToSend.append("billingDetails.bankName", formData.billingDetails.bankName);
-    formdataToSend.append("billingDetails.ifscCode", formData.billingDetails.ifscCode);
+    formdataToSend.append(
+      "billingDetails.accountNumber",
+      formData.billingDetails.accountNumber
+    );
+    formdataToSend.append(
+      "billingDetails.bankName",
+      formData.billingDetails.bankName
+    );
+    formdataToSend.append(
+      "billingDetails.ifscCode",
+      formData.billingDetails.ifscCode
+    );
 
-    formdataToSend.append("commodities", JSON.stringify(formData.commodities));
+    formData.commodities.forEach((item, index) => {
+      formdataToSend.append(`commodities[${index}][commodity]`, item.commodity);
+      formdataToSend.append(
+        `commodities[${index}][experienceYears]`,
+        item.experienceYears
+      );
+    });
 
     try {
       const response = await fetch(`${BASE_URL}/auth/signup/inspector`, {
         method: "POST",
-        body: formdataToSend, // ✅ FormData submission
+        body: formdataToSend,
         credentials: "include",
       });
 
@@ -137,7 +161,7 @@ export default function InspectorSignup() {
         setError(data.errors?.[0]?.msg || data.message);
       } else {
         alert("Signup successful!");
-        navigate("/login"); // redirect
+        navigate("/login");
       }
     } catch (err) {
       console.error("Signup error:", err);
@@ -147,12 +171,20 @@ export default function InspectorSignup() {
 
   return (
     <div className="min-h-screen bg-black text-white flex items-center justify-center p-6">
-      <form onSubmit={handleSubmit} className="w-full max-w-2xl bg-gray-900 p-6 rounded-lg shadow-lg space-y-4">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-2xl bg-gray-900 p-6 rounded-lg shadow-lg space-y-4"
+      >
         <h2 className="text-2xl font-bold mb-4">Inspector Signup</h2>
 
         <div>
           <label>Role</label>
-          <select name="role" value={formData.role} onChange={handleChange} className="w-full p-2 bg-gray-800 text-white rounded">
+          <select
+            name="role"
+            value={formData.role}
+            onChange={handleChange}
+            className="w-full p-2 bg-gray-800 text-white rounded"
+          >
             <option value="customer">Customer</option>
             <option value="inspector">Inspector</option>
           </select>
@@ -160,21 +192,73 @@ export default function InspectorSignup() {
 
         <div>
           <label>Inspector Type</label>
-          <select name="inspectorType" value={formData.inspectorType} onChange={handleChange} className="w-full p-2 bg-gray-800 text-white rounded">
+          <select
+            name="inspectorType"
+            value={formData.inspectorType}
+            onChange={handleChange}
+            className="w-full p-2 bg-gray-800 text-white rounded"
+          >
             <option value="indian">Indian</option>
             <option value="international">International</option>
           </select>
         </div>
 
-        <input name="name" placeholder="Name" value={formData.name} onChange={handleChange} className="w-full p-2 bg-gray-800 text-white rounded" required />
-        <input name="email" placeholder="Email" value={formData.email} onChange={handleChange} className="w-full p-2 bg-gray-800 text-white rounded" required />
-        <input name="password" type="password" placeholder="Password" value={formData.password} onChange={handleChange} className="w-full p-2 bg-gray-800 text-white rounded" required />
-        <input name="countryCode" placeholder="Country Code" value={formData.countryCode} onChange={handleChange} className="w-full p-2 bg-gray-800 text-white rounded" required />
-        <input name="mobileNumber" placeholder="Mobile Number" value={formData.mobileNumber} onChange={handleChange} className="w-full p-2 bg-gray-800 text-white rounded" required />
-        <input name="address" placeholder="Address" value={formData.address} onChange={handleChange} className="w-full p-2 bg-gray-800 text-white rounded" />
+        <input
+          name="name"
+          placeholder="Name"
+          value={formData.name}
+          onChange={handleChange}
+          className="w-full p-2 bg-gray-800 text-white rounded"
+          required
+        />
+        <input
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+          className="w-full p-2 bg-gray-800 text-white rounded"
+          required
+        />
+        <input
+          name="password"
+          type="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={handleChange}
+          className="w-full p-2 bg-gray-800 text-white rounded"
+          required
+        />
+        <input
+          name="countryCode"
+          placeholder="Country Code"
+          value={formData.countryCode}
+          onChange={handleChange}
+          className="w-full p-2 bg-gray-800 text-white rounded"
+          required
+        />
+        <input
+          name="mobileNumber"
+          placeholder="Mobile Number"
+          value={formData.mobileNumber}
+          onChange={handleChange}
+          className="w-full p-2 bg-gray-800 text-white rounded"
+          required
+        />
+        <input
+          name="address"
+          placeholder="Address"
+          value={formData.address}
+          onChange={handleChange}
+          className="w-full p-2 bg-gray-800 text-white rounded"
+        />
 
         <div className="flex items-center space-x-2">
-          <input type="checkbox" name="acceptsRequests" checked={formData.acceptsRequests} onChange={handleChange} />
+          <input
+            type="checkbox"
+            name="acceptsRequests"
+            checked={formData.acceptsRequests}
+            onChange={handleChange}
+          />
           <label>Accepts Requests</label>
         </div>
 
@@ -215,22 +299,64 @@ export default function InspectorSignup() {
           <h3 className="font-semibold">Commodities</h3>
           {formData.commodities.map((item, index) => (
             <div key={index} className="space-y-2 mb-4">
-              <select value={item.commodity} onChange={(e) => handleCommodityChange(index, "commodity", e.target.value)} className="w-full p-2 bg-gray-800 text-white rounded">
+              <select
+                value={item.commodity}
+                onChange={(e) =>
+                  handleCommodityChange(index, "commodity", e.target.value)
+                }
+                className="w-full p-2 bg-gray-800 text-white rounded"
+              >
                 <option value="">Select Commodity</option>
                 {allowedCommodities.map((c) => (
-                  <option key={c} value={c}>{c}</option>
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
                 ))}
               </select>
-              <input type="number" min="0" max="50" value={item.experienceYears} onChange={(e) => handleCommodityChange(index, "experienceYears", e.target.value)} placeholder="Years of Experience" className="w-full p-2 bg-gray-800 text-white rounded" required />
-              {formData.commodities.length > 1 && <button type="button" onClick={() => removeCommodity(index)} className="bg-red-600 px-2 py-1 rounded">Remove</button>}
+              <input
+                type="number"
+                min="0"
+                max="50"
+                value={item.experienceYears}
+                onChange={(e) =>
+                  handleCommodityChange(
+                    index,
+                    "experienceYears",
+                    e.target.value
+                  )
+                }
+                placeholder="Years of Experience"
+                className="w-full p-2 bg-gray-800 text-white rounded"
+                required
+              />
+              {formData.commodities.length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => removeCommodity(index)}
+                  className="bg-red-600 px-2 py-1 rounded"
+                >
+                  Remove
+                </button>
+              )}
             </div>
           ))}
-          <button type="button" onClick={addCommodity} className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-700">Add Commodity</button>
+          <button
+            type="button"
+            onClick={addCommodity}
+            className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-700"
+          >
+            Add Commodity
+          </button>
         </div>
 
         {error && <div className="text-red-500">{error}</div>}
 
-        <button type="submit" className="w-full bg-green-600 py-2 rounded hover:bg-green-700 font-bold">Submit</button>
+        <button
+          type="submit"
+          className="w-full bg-green-600 py-2 rounded hover:bg-green-700 font-bold"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );

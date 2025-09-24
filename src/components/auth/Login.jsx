@@ -30,8 +30,7 @@ const Login = () => {
       });
 
       const result = await response.json();
-
-
+      
       if(result.user){
         navigate(`/${result.user.role}/dashboard`);
       }else{

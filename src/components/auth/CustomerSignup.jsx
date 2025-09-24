@@ -108,19 +108,11 @@ const CustomerSignup = () => {
       } else {
         setError(""); 
         setFormError(""); 
+         setTimeout(() => {
+          navigate("/login");
+        }, 1000); 
        
       }
-
-      if (data.success) {
-        setError("");
-        setFormError("");
-
-        // ✅ Redirect to login after short delay
-        setTimeout(() => {
-          navigate("/login");
-        }, 1000); // 1.5 seconds delay to show message
-      }
-
 
     } catch (error) {
       setError(error.message || "Something went wrong");
