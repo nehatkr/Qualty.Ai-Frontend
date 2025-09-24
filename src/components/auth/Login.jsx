@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../utils/constants";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -30,17 +31,14 @@ const Login = () => {
       });
 
       const result = await response.json();
-      
-      if(result.user){
-        navigate(`/${result.user.role}/dashboard`);
-      }else{
-        navigate(`/login`);
-      }
-
       if (!result.success) {
-        setError( result.errors?.[0]?.msg || result.message);
+        setError(result.errors?.[0]?.msg || result.message);
       } else {
-        setError(""); 
+        setError("");
+        toast.success('Login successful!');
+        setTimeout(() => {
+          navigate(`/${result.user.role}/dashboard`);
+        }, 500);
       }
 
 

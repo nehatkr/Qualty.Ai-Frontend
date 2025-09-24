@@ -1,4 +1,6 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import LandingPage from "../src/components/LandingPage"
@@ -16,7 +18,8 @@ import InspectorDashboard from "./components/dashboard/InspectorDashboard/Inspec
 function App() {
   return (
     <Router>
-      <Routes>
+        <ToastContainer position="top-right" autoClose={3000} />
+      <Routes>      
         <Route path="/" element={ <LandingPage/> }/>
         <Route path="/login" element={ <Login/> }/>
         <Route path="/signup" element={ <Signup/> }/>
@@ -28,6 +31,7 @@ function App() {
         <Route path="/quickInspection" element={ <QuickInspection />} />
         <Route path="/quickInspection/:regionName" element={ <LocationDetail />} />
         <Route path="/quickInspection/form" element={ <QuickInspectionForm />} />
+        <Route path="/inspector/dashboard" element={ <InspectorDashboard/> }/>
         <Route path="*" element={<Navigate to="/"  />} />
       </Routes>
     </Router>

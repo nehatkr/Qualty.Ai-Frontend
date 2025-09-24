@@ -76,6 +76,7 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
           Inspection Request
         </h2>
 
+        {/* Location */}
         <div>
           <label className="block mb-1 text-sm font-medium text-gray-300">
             Location
@@ -91,12 +92,13 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
           />
         </div>
 
+        {/* Commodity Category */}
         <div>
           <label className="block mb-1 text-sm font-medium text-gray-300">
             Commodity Category
           </label>
           <select
-            name="category"
+            name="commodityCategory"
             value={formData.commodityCategory}
             onChange={handleFormChange}
             className="w-full p-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:border-green-500 focus:outline-none"
@@ -111,6 +113,7 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
           </select>
         </div>
 
+        {/* Description */}
         <div>
           <label className="block mb-1 text-sm font-medium text-gray-300">
             Description
@@ -125,6 +128,7 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
           />
         </div>
 
+        {/* Volume */}
         <div>
           <label className="block mb-1 text-sm font-medium text-gray-300">
             Volume
@@ -138,13 +142,14 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
           />
         </div>
 
+        {/* Inspection Date */}
         <div>
           <label className="block mb-1 text-sm font-medium text-gray-300">
             Inspection Date
           </label>
           <input
             type="date"
-            name="date"
+            name="inspectionDate"
             value={formData.inspectionDate}
             onChange={handleFormChange}
             className="w-full p-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:border-green-500 focus:outline-none"
@@ -152,6 +157,7 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
           />
         </div>
 
+        {/* Inspection Type */}
         <div>
           <label className="block mb-2 text-sm font-medium text-gray-300">
             Inspection Type
@@ -164,9 +170,9 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
               >
                 <input
                   type="radio"
-                  name="type"
+                  name="inspectionTypes"
                   value={option}
-                  checked={formData.inspectionType === option}
+                  checked={formData.inspectionTypes === option}
                   onChange={handleFormChange}
                   className="mr-2 accent-green-500"
                 />
@@ -176,12 +182,13 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
           </div>
         </div>
 
+        {/* Inspection Service */}
         <div>
           <label className="block mb-1 text-sm font-medium text-gray-300">
             Inspection Service
           </label>
           <select
-            name="service"
+            name="inspectionService"
             value={formData.inspectionService}
             onChange={handleFormChange}
             className="w-full p-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:border-green-500 focus:outline-none"
@@ -194,6 +201,7 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
           </select>
         </div>
 
+        {/* Contact */}
         <div>
           <label className="block mb-1 text-sm font-medium text-gray-300">
             Contact
