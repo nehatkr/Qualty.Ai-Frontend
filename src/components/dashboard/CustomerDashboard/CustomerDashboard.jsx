@@ -8,11 +8,11 @@ import DetailAnalysis from "./DetailAnalysis";
 import LiveChat from "./LiveChat";
 import MyAccount from "./MyAccount";
 import MyHistory from "./MyHistory";
-import ParameterModal from "./ParametersModal";
 import Payments from "./Payments";
 import RaiseEnquiry from "./RaiseEnquiry";
 import {useUser} from '../../../context/userContext'
 import useFetchUser from "../../../hooks/useFetchUser";
+import { BASE_URL } from "../../../utils/constants";
 // Sidebar icons
 const DashboardIcon = () => (
   <svg
@@ -238,16 +238,21 @@ const CustomerDashboard = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const handleLogout = () => {
+  const handleLogout = async() => {
     const confirmLogout = window.confirm("Are you sure you want to logout?");
 
     if (confirmLogout) {
-      localStorage.removeItem("userToken");
-      localStorage.removeItem("userData");
-      sessionStorage.clear();
-
-      if (logout) {
-        logout();
+      try {
+        const response = await fetch(`${BASE_URL}/auth/logout`, {
+                method: "POST",
+                credentials: "include",
+              });
+              
+              console.log(response)
+        
+      } catch (error) {
+        console.error("Error during logout:", error);
+        
       }
 
       navigate("/login");
@@ -466,39 +471,4 @@ const CustomerDashboard = () => {
 
 export default CustomerDashboard;
 
-
-
-// import React from "react";
-// import useFetchUser from "../../../hooks/useFetchUser";
-// import { useUser } from "../../../context/userContext";
-
-// const Dashboard = () => {
-//   useFetchUser();
-//   const { user } = useUser();
-
-//   if (!user) {
-//     return (
-//       <div className="text-center py-10 text-gray-400">
-//         Loading user details...
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <div className="max-w-xl mx-auto mt-10 p-6 bg-gray-900 text-white rounded-lg shadow-lg">
-//       <h2 className="text-2xl font-bold mb-4">Welcome, {user.name} 👋</h2>
-//       <div className="space-y-2 text-sm">
-//         <p><span className="font-semibold">Email:</span> {user.email}</p>
-//         <p><span className="font-semibold">Role:</span> {user.role}</p>
-//         <p><span className="font-semibold">Mobile:</span> {user.mobileNumber}</p>
-//         <p><span className="font-semibold">Country Code:</span> {user.countryCode}</p>
-//         {user.address && (
-//           <p><span className="font-semibold">Address:</span> {user.address}</p>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Dashboard;
 
