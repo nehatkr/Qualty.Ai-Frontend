@@ -3,7 +3,8 @@ import { X, FileText, CheckCircle } from 'lucide-react';
 import { BASE_URL } from "../../../utils/constants";
 import useFetchUser from "../../../hooks/useFetchUser"
 import { useUser } from "../../../context/userContext";
-
+import { toast } from "react-toastify"
+import { useNavigate } from "react-router";
 
 const commodityData = {
   "Food & Beverages": {
@@ -66,6 +67,8 @@ const RaiseEnquiry = () => {
 
   useFetchUser()
   const { user } = useUser()
+
+  const navigate=useNavigate()
   const inputClass =
     "w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500";
 
@@ -176,33 +179,7 @@ const RaiseEnquiry = () => {
     setModalState(prev => ({ ...prev, [type]: false }));
   };
 
-  // const handleSubmit = async(e) => {
-  //   e.preventDefault();
-  //   const submissionData = {
-  //     ...formData,
-  //     ricePhysicalParams: formData.subCommodity === "Rice" ? ricePhysicalParams : null
-  //   };
-  //   console.log("Submitted Enquiry:", submissionData);
-
-  //   try {
-  //     const response = await fetch(`${BASE_URL}/customer/raise-enquiry`,{
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //     },
-  //       body: JSON.stringify(submissionData),
-  //       credentials: "include",
-  //     });
-
-  //     console.log(response);
-
-  //   } catch (error) {
-  //     console.error("Error submitting enquiry:", error);
-  //     console.log(error.message);
-  //   }
-
-  // };
-
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -250,7 +227,7 @@ const RaiseEnquiry = () => {
       description: formData.description,
     };
 
-    console.log("Final Submission:", submissionData);
+   
 
     try {
       const response = await fetch(`${BASE_URL}/customer/raise-enquiry`, {
@@ -262,12 +239,41 @@ const RaiseEnquiry = () => {
         credentials: "include",
       });
       const data = await response.json();
+ 
 
-      if(!data.success){
+      if (!data.success) {
         setError(data.message || "Failed to submit enquiry");
+      } else {
+        toast.success("Enquiry submitted successfully");
+        setError("");
+        setFormData({
+          inspectionLocation: "",
+          country: "",
+          urgencyLevel: "",
+          commodityCategory: "",
+          subCommodity: "",
+          specificCommodity: "",
+          volume: "",
+          unit: "",
+          inspectionDateFrom: "",
+          inspectionDateTo: "",
+          inspectionTypes: [],
+          physicalParameters: "",
+          chemicalParameters: "",
+          additionalServices: "",
+          certifications: "",
+          companyEmail: "",
+          companyPhoneNumber: "",
+          specialRequirements: "",
+          description: "",
+          inspectionBudget: "",
+          role: user?.role,
+        });
+
+        navigate("/bidding")
+        
       }
 
-      console.log("Response:", data);
     } catch (error) {
       console.error("Error submitting enquiry:", error);
     }
@@ -780,7 +786,7 @@ const RaiseEnquiry = () => {
             className={inputClass}
           />
 
-           {error && <p className="text-red-500 text-sm text-center mt-2">{error}</p>}
+          {error && <p className="text-red-500 text-sm text-center mt-2">{error}</p>}
 
           {/* Submit */}
           <div className="text-center pt-4">

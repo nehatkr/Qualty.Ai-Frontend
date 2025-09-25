@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { BASE_URL } from "../../utils/constants";
 import { useNavigate } from "react-router-dom"; // if using React Router
+import { toast } from 'react-toastify';
 
 const allowedCommodities = [
   "Textiles & Garments",
@@ -224,9 +225,15 @@ export default function InspectorSignup() {
     if (!data.success) {
       setError(data.errors?.[0]?.msg || data.message);
     } else {
-      alert("Signup successful!");
+      setError("");
+    }
+
+
+    if(data.success){
+      toast.success('Registration successful!');
       navigate("/login");
     }
+    
   } catch (err) {
     console.error("Signup error:", err);
     setError("Something went wrong. Please try again.");

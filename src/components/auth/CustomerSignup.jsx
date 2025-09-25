@@ -3,6 +3,7 @@ import React, {  useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { BASE_URL } from "../../utils/constants";
 import { useNavigate } from 'react-router-dom'
+import { toast } from "react-toastify";
 
 const CustomerSignup = () => {
   const [formData, setFormData] = useState({
@@ -108,13 +109,17 @@ const CustomerSignup = () => {
       } else {
         setError(""); 
         setFormError(""); 
+        toast.success('Registration successful!');
          setTimeout(() => {
           navigate("/login");
         }, 1000); 
        
       }
+        setFormError("");
+       
+      }
 
-    } catch (error) {
+     catch (error) {
       setError(error.message || "Something went wrong");
       console.error("Customer signup error:", error.message);
     }

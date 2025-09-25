@@ -1,9 +1,22 @@
-const Dashboard = () => {
-  return (
-    <>
-      <h1>This is Dashboard</h1>
-    </>
-  );
-};
+import TotalInspectionsCard from "./TotalInspectionsCard"
+import ActiveOrdersCard from "./ActiveOrdersCard";
+import CompletedTasksCard from "./CompletedTasksCard";
+import TotalValueCard from "./TotalValueCard";
+import QuickActions from "./QuickActions";
 
-export default Dashboard;
+export default function Dashboard() {
+  return (
+    <div>
+      <div className="flex justify-around gap-2 p-6">
+        <TotalInspectionsCard />
+        <ActiveOrdersCard />
+        <CompletedTasksCard />
+        <TotalValueCard />
+      </div>
+      <div>
+        <QuickActions/>
+      </div>
+    </div>
+
+  );
+}
