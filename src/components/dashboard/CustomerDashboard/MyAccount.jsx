@@ -3,7 +3,7 @@ import { User, Mail, Phone, MapPin, FileText, Camera } from "lucide-react";
 import { useUser } from "../../../context/userContext";
 import { BASE_URL } from "../../../utils/constants";
 
-const Account = () => {
+const MyAccount = () => {
   const { user } = useUser();
   const [tradeLicenseFile, setTradeLicenseFile] = useState(null);
   const [importExportFile, setImportExportFile] = useState(null);
@@ -50,7 +50,7 @@ const Account = () => {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h2 className="text-4xl font-bold text-white mb-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold text-white mb-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text ">
             My Account
           </h2>
           <p className="text-slate-400">Manage your profile information</p>
@@ -91,7 +91,7 @@ const Account = () => {
         <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-2xl p-8 shadow-2xl">
           <div className="flex items-center space-x-3 mb-8">
             <FileText className="text-blue-400" size={28} />
-            <h3 className="text-2xl font-bold text-white bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <h3 className="text-2xl font-bold text-white bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text">
               Certificates
             </h3>
           </div>
@@ -171,4 +171,4 @@ const CertificateBlock = ({ label, iconColor, image, onFileChange }) => (
   </div>
 );
 
-export default Account;
+export default MyAccount;

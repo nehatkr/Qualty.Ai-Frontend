@@ -6,17 +6,16 @@ import QuickActions from "./QuickActions";
 
 export default function Dashboard() {
   return (
-    <div>
-      <div className="flex justify-around gap-2 p-6">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-6">
         <TotalInspectionsCard />
         <ActiveOrdersCard />
         <CompletedTasksCard />
         <TotalValueCard />
       </div>
-      <div>
-        <QuickActions/>
+      <div className="mt-8">
+        <QuickActions />
       </div>
     </div>
-
   );
 }

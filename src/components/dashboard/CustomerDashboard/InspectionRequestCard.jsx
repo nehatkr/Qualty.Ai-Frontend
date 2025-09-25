@@ -1,6 +1,4 @@
-
 import { FaMapMarkerAlt } from "react-icons/fa";
-
 
 export default function InspectionRequestCard({ request }) {
     console.log("request",request)
@@ -33,7 +31,7 @@ export default function InspectionRequestCard({ request }) {
         <p><strong>Budget:</strong> ${inspectionBudget}</p>
         <p><strong>Bids:</strong> {bids}</p>
         {lowestBid !== undefined && <p><strong>Lowest Bid:</strong> ${lowestBid}</p>}
-        <p><strong>Time Left:</strong> {formatted}</p>
+        <p><strong>Date of Enquiry: </strong> {formatted}</p>
       </div>
     </div>
   );

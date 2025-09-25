@@ -25,6 +25,7 @@ import {
   ChevronRight,
   Award,
 } from "lucide-react";
+import { FiMenu } from "react-icons/fi";
 
 const MyHistory = ({ selectedCommodityFilter = null }) => {
   // State management
@@ -692,6 +693,7 @@ const MyHistory = ({ selectedCommodityFilter = null }) => {
     if (!selectedInspection) return null;
 
     return (
+      
       <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-all duration-300">
         <div className="bg-gray-900 border border-gray-700 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col transition-all duration-300 transform scale-100 hover:scale-[1.01]">
           {/* Header */}
@@ -961,6 +963,7 @@ const MyHistory = ({ selectedCommodityFilter = null }) => {
   };
 
   return (
+    
     <div className="min-h-screen bg-black text-white p-6 transition-all duration-300">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
