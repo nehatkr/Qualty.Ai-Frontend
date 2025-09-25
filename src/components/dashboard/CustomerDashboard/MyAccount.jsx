@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { User, Mail, Phone, MapPin, FileText, Camera } from "lucide-react";
-import { useUser } from "../../../context/userContext";
 import { BASE_URL } from "../../../utils/constants";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const MyAccount = () => {
-  const { user } = useUser();
   const [tradeLicenseFile, setTradeLicenseFile] = useState(null);
   const [importExportFile, setImportExportFile] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const user = useSelector(store=>store?.user.user)
+  const  navigate = useNavigate()
 
   if (!user) {
+     navigate("/login")
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
         <div className="text-center">
@@ -37,7 +41,12 @@ const MyAccount = () => {
         body: formData,
       });
 
-      const result = await response.json();
+      const data = await response.json();
+      if(data.success){
+        toast.success(data.message);
+
+      }
+      
     } catch (error) {
       console.error("Upload error:", error);
     } finally {

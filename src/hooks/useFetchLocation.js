@@ -11,7 +11,6 @@ const useFetchLocation=()=>{
                 const response = await fetch(`${BASE_URL}/quick-services/locations`);
                 const data = await response.json();
                 setLocation(data);
-                console.log("Locations fetched:", data);
             } catch (error) {
                 console.error("Error fetching locations:", error);
             }

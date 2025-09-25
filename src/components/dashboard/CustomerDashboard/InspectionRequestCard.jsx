@@ -1,7 +1,6 @@
 import { FaMapMarkerAlt } from "react-icons/fa";
 
 export default function InspectionRequestCard({ request }) {
-    console.log("request",request)
   const { commodityCategory, inspectionLocation, urgencyLevel, inspectionBudget, bids, lowestBid, createdAt } = request;
 
   const date=new Date(createdAt)
@@ -28,7 +27,7 @@ export default function InspectionRequestCard({ request }) {
       </p>
 
       <div className="text-sm text-gray-300 space-y-1">
-        <p><strong>Budget:</strong> ${inspectionBudget}</p>
+        <p><strong>Budget:</strong> ₹{inspectionBudget}/-</p>
         <p><strong>Bids:</strong> {bids}</p>
         {lowestBid !== undefined && <p><strong>Lowest Bid:</strong> ${lowestBid}</p>}
         <p><strong>Date of Enquiry: </strong> {formatted}</p>

@@ -11,7 +11,6 @@ const LocationDetail = () => {
   const regionData = location?.data?.[decodedRegion];
 
   const handleConfirmClick = (payload) => {
-    console.log("Confirmed:", payload);
     navigate("/quickInspection/form")
   };
 

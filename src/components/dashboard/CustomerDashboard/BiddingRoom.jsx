@@ -3,8 +3,8 @@ import ActiveInspectionRequests from "./ActiveInspectionRequests";
 import { BASE_URL } from "../../../utils/constants";
 
 const BiddingRoom = () => {
-  const [enquiryData,setEnquiryData]=useState("")
-console.log(enquiryData)
+  const [enquiryData,setEnquiryData]=useState("");
+
   useEffect(()=>{
       getMyQueries()
   },[])
@@ -16,7 +16,6 @@ console.log(enquiryData)
       })
       const data=await response.json()
       setEnquiryData(data.enquiries)
-      
   }
 
   return <div className="p-6 min-h-screen">

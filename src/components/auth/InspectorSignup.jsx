@@ -96,67 +96,6 @@ export default function InspectorSignup() {
     setFormData((prev) => ({ ...prev, commodities: updated }));
   };
 
-  // Submit handler
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setError("");
-
-  //   // Validation for required fields if acceptsRequests is true
-  //   if (
-  //     formData.acceptsRequests &&
-  //     (
-  //       !formData.identityDocuments.aadhaarCard ||
-  //       !formData.billingDetails.accountNumber ||
-  //       !formData.billingDetails.bankName ||
-  //       !formData.billingDetails.ifscCode
-  //     )
-  //   ) {
-  //     setError("Please fill all required fields to accept requests.");
-  //     return;
-  //   }
-
-  //   // Prepare FormData for submission
-  //   const formdataToSend = new FormData();
-  //   formdataToSend.append("role", formData.role);
-  //   formdataToSend.append("inspectorType", formData.inspectorType);
-  //   formdataToSend.append("name", formData.name);
-  //   formdataToSend.append("email", formData.email);
-  //   formdataToSend.append("password", formData.password);
-  //   formdataToSend.append("countryCode", formData.countryCode);
-  //   formdataToSend.append("mobileNumber", formData.mobileNumber);
-  //   formdataToSend.append("address", formData.address);
-  //   formdataToSend.append("acceptsRequests", formData.acceptsRequests);
-
-  //   if (formData.identityDocuments.aadhaarCard)
-  //     formdataToSend.append("identityDocuments.aadhaarCard", formData.identityDocuments.aadhaarCard);
-
-  //   formdataToSend.append("billingDetails.accountNumber", formData.billingDetails.accountNumber);
-  //   formdataToSend.append("billingDetails.bankName", formData.billingDetails.bankName);
-  //   formdataToSend.append("billingDetails.ifscCode", formData.billingDetails.ifscCode);
-
-  //   formdataToSend.append("commodities", JSON.stringify(formData.commodities));
-
-  //   try {
-  //     const response = await fetch(`${BASE_URL}/auth/signup/inspector`, {
-  //       method: "POST",
-  //       body: formdataToSend, // ✅ FormData submission
-  //       credentials: "include",
-  //     });
-
-  //     const data = await response.json();
-  //     console.log("Signup response:", data);
-  //     if (!data.success) {
-  //       setError(data.errors?.[0]?.msg || data.message);
-  //     } else {
-  //       alert("Signup successful!");
-  //       navigate("/login"); // redirect
-  //     }
-  //   } catch (err) {
-  //     console.error("Signup error:", err);
-  //     setError("Something went wrong. Please try again.");
-  //   }
-  // };
-
   const handleSubmit = async (e) => {
   e.preventDefault();
   setError("");
@@ -220,7 +159,6 @@ export default function InspectorSignup() {
     });
 
     const data = await response.json();
-    console.log("Signup response:", data);
 
     if (!data.success) {
       setError(data.errors?.[0]?.msg || data.message);

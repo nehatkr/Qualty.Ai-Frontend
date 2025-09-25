@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
-import { useUser } from "../../../context/userContext";
 import useFetchUser from "../../../hooks/useFetchUser";
 import {
     FaBars, FaTimes,
   FaTachometerAlt,
   FaGavel,
   FaComments,
-  FaUserShield,
+  FaUserCircle ,
   FaChartLine,
   FaHeadset,
   FaUser,
@@ -16,26 +15,26 @@ import {
   FaQuestionCircle,
 } from "react-icons/fa";
 import { BASE_URL } from "../../../utils/constants";
+import { useSelector } from "react-redux";
 
 const navItems = [
   { label: "Dashboard", icon: <FaTachometerAlt />, path: "/customer/dashboard" },
   { label: "Bidding Room", icon: <FaGavel />, path: "/customer/bidding" },
-  { label: "Chat with Us", icon: <FaComments />, path: "/customer/chat" },
-  { label: "Credit Profile", icon: <FaUserShield />, path: "/customer/credit-profile" },
-  { label: "Detail Analysis", icon: <FaChartLine />, path: "/customer/analysis" },
-  { label: "Live Chat", icon: <FaHeadset />, path: "/customer/live-chat" },
-  { label: "My Account", icon: <FaUser />, path: "/customer/account" },
-  { label: "My History", icon: <FaHistory />, path: "/customer/history" },
-  { label: "Payments", icon: <FaMoneyBillWave />, path: "/customer/payments" },
   { label: "Raise Enquiry", icon: <FaQuestionCircle />, path: "/customer/enquiry" },
+  { label: "Payments", icon: <FaMoneyBillWave />, path: "/customer/payments" },
+  { label: "Live Chat", icon: <FaHeadset />, path: "/customer/live-chat" },
+  { label: "Chat with Us", icon: <FaComments />, path: "/customer/chat" },
+  { label: "Detail Analysis", icon: <FaChartLine />, path: "/customer/analysis" },
+  { label: "My History", icon: <FaHistory />, path: "/customer/history" },
+  { label: "My Account", icon: <FaUser />, path: "/customer/account" },
 ];
 
 const CustomerLayout = () => {
   useFetchUser();
-  const { user } = useUser();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+const user = useSelector((state)=>state?.user?.user)
 
   const handleLogout = async () => {
     const confirmLogout = window.confirm("Are you sure you want to logout?");
@@ -45,10 +44,7 @@ const CustomerLayout = () => {
                 method: "POST",
                 credentials: "include",
               });
-              const data = await response.json()
-              
-          console.log(data)
-        
+              const data = await response.json()        
       } catch (error) {
         console.error("Error during logout:", error);       
       }
@@ -61,6 +57,7 @@ const CustomerLayout = () => {
   )?.label;
 
   if (!user) {
+    navigate("/login")
     return <div className="text-center py-10 text-gray-400">Loading user details...</div>;
   }
 
@@ -72,8 +69,11 @@ const CustomerLayout = () => {
         } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}
       >
         <div className="p-6 border-b border-gray-700">
+          <div className="flex gap-2 items-center">
+
+          <FaUserCircle  className="text-white text-2xl" />
           <h2 className="text-xl font-bold text-white">{user.name}</h2>
-          <p className="text-sm text-gray-400">{user.role}</p>
+          </div>
           <button
             onClick={() => setSidebarOpen(false)}
             className="lg:hidden absolute top-4 right-4 text-gray-400 hover:text-white"
@@ -90,7 +90,7 @@ const CustomerLayout = () => {
                 navigate(item.path);
                 setSidebarOpen(false);
               }}
-              className={`w-full flex items-center gap-3 px-4 py-2 rounded-lg transition-all ${
+              className={`w-full flex items-center gap-3 px-4 py-2 cursor-pointer rounded-lg transition-all ${
                 location.pathname.includes(item.path)
                   ? "bg-gray-700 text-white"
                   : "text-gray-300 hover:bg-gray-800 hover:text-white"
@@ -105,9 +105,9 @@ const CustomerLayout = () => {
         <div className="p-4 border-t border-gray-700">
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-4 py-2 rounded-lg text-left text-red-500 hover:bg-red-100 hover:text-red-700"
+            className="w-full cursor-pointer flex items-center gap-3 px-4 py-2 rounded-lg text-left text-red-500 hover:bg-red-100 hover:text-red-700"
           >
-            <span className="text-sm font-semibold">Logout</span>
+            <span className="text-sm font-semibold ">Logout</span>
           </button>
         </div>
       </aside>

@@ -24,6 +24,7 @@ const CustomerSignup = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState("");
   const [formError, setFormError] = useState("");
+    const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -56,9 +57,6 @@ const CustomerSignup = () => {
       [name]: file,
     }));
   };
-
-
-  const navigate = useNavigate();
 
 
   const handleSubmit = async (e) => {
@@ -101,10 +99,7 @@ const CustomerSignup = () => {
       });
 
       const data = await response.json();
-     
-
       if (!data.success) {
-
         setError(data.errors?.[0]?.msg || data.message);
       } else {
         setError(""); 

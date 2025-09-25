@@ -21,7 +21,6 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
 
   useFetchUser();
   const { user } = useUser();
-  console.log("Current User:", user);
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -52,7 +51,6 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
         credentials: "include",
       });
       const data = await response.json();
-      console.log("Server Response:", data);
 
       if (!data.success) {
         setError(data.errors?.[0]?.msg || data.message);
