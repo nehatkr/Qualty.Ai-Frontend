@@ -3,7 +3,7 @@ import { FaDollarSign } from "react-icons/fa";
 
 export default function TotalValueCard() {
   return (
-    <div className="bg-black rounded-lg shadow-md p-4 text-gray-300 w-sm">
+    <div className="bg-black rounded-lg shadow-md p-4 text-gray-300">
       <div className="flex justify-between items-center">
         <div>
           <h3 className="text-sm font-semibold text-gray-500">Total Value</h3>

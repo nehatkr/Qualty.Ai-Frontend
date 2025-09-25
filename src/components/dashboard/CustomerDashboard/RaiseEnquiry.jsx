@@ -177,9 +177,7 @@ const RaiseEnquiry = () => {
 
   const closeModal = (type) => {
     setModalState(prev => ({ ...prev, [type]: false }));
-  };
-
- 
+  }; 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -269,8 +267,7 @@ const RaiseEnquiry = () => {
           inspectionBudget: "",
           role: user?.role,
         });
-
-        navigate("/bidding")
+        navigate("/customer/bidding")
         
       }
 
@@ -292,7 +289,6 @@ const RaiseEnquiry = () => {
   const hasPhysicalParams = formData.physicalParameters;
   const hasChemicalParams = formData.chemicalParameters;
 
-  // Rice Parameters Modal
   const RiceParametersModal = () => (
     modalState.ricePhysical && (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -498,7 +494,6 @@ const RaiseEnquiry = () => {
     )
   );
 
-  // Generic Parameters Modal
   const GenericParametersModal = ({ type, title, placeholder }) => (
     modalState[type] && (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -675,7 +670,6 @@ const RaiseEnquiry = () => {
             />
           </div>
 
-          {/* Volume & Unit */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input
               name="volume"
@@ -697,7 +691,6 @@ const RaiseEnquiry = () => {
             </select>
           </div>
 
-          {/* Parameter Summary Display */}
           {(hasPhysicalParams || hasChemicalParams) && (
             <div className="bg-gray-700 p-4 rounded-lg">
               <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
@@ -721,7 +714,6 @@ const RaiseEnquiry = () => {
             </div>
           )}
 
-          {/* Additional Services & Certifications */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <select
               name="additionalServices"
