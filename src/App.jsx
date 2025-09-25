@@ -15,7 +15,8 @@ import QuickInspection from "./components/QuickInspection";
 import LocationDetail from "./components/LocationDetail";
 import QuickInspectionForm from "./components/QuickInspectionForm";
 import InspectorDashboard from "./components/dashboard/InspectorDashboard/InspectorDashboard";
-
+import RaiseEnquiry from "./components/dashboard/CustomerDashboard/RaiseEnquiry";
+import BiddingRoom from "./components/dashboard/CustomerDashboard/BiddingRoom";
 
 function App() {
   return (
@@ -33,6 +34,8 @@ function App() {
         <Route path="/quickInspection/:regionName" element={ <LocationDetail />} />
         <Route path="/quickInspection/form" element={ <QuickInspectionForm />} />
         <Route path="/inspector/dashboard" element={ <InspectorDashboard/> }/>
+        <Route path="/enquiry" element={<RaiseEnquiry/>}/>
+        <Route path="/bidding" element={<BiddingRoom/>}/>
         <Route path="*" element={<Navigate to="/"  />} />
       </Routes>
     </Router>
