@@ -340,13 +340,11 @@ const CustomerDashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 flex">
-      {/* Sidebar - DARK THEME */}
       <div
         className={`fixed inset-y-0 left-0 z-50 w-64 bg-gray-900 border-r border-gray-200 shadow-lg transform ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}
       >
-        {/* User Profile Section */}
         <div className="p-4 border-b border-gray-200">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
@@ -379,7 +377,6 @@ const CustomerDashboard = () => {
           </button>
         </div>
 
-        {/* Navigation Menu - DARK THEME */}
         <nav className="p-4">
           <div className="space-y-3">
             {menuItems.map((item) => {
@@ -405,7 +402,6 @@ const CustomerDashboard = () => {
           </div>
         </nav>
 
-        {/* Logout Section */}
         <div className="absolute bottom-0 w-64 p-4 border-t border-gray-200 bg-gray-200">
           <button
             onClick={handleLogout}
@@ -429,9 +425,7 @@ const CustomerDashboard = () => {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="flex-1 lg:ml-0">
-        {/* Top Navigation - DARK THEME */}
         <nav className="bg-gray-900 border-b border-gray-200 text-white p-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
@@ -449,11 +443,9 @@ const CustomerDashboard = () => {
           </div>
         </nav>
 
-        {/* Page Content - DARK THEME */}
         <div className="p-6 bg-gray-900 min-h-screen">{renderContent()}</div>
       </div>
 
-      {/* Overlay for mobile */}
       {sidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-75 z-40 lg:hidden"
@@ -465,40 +457,3 @@ const CustomerDashboard = () => {
 };
 
 export default CustomerDashboard;
-
-
-
-// import React from "react";
-// import useFetchUser from "../../../hooks/useFetchUser";
-// import { useUser } from "../../../context/userContext";
-
-// const Dashboard = () => {
-//   useFetchUser();
-//   const { user } = useUser();
-
-//   if (!user) {
-//     return (
-//       <div className="text-center py-10 text-gray-400">
-//         Loading user details...
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <div className="max-w-xl mx-auto mt-10 p-6 bg-gray-900 text-white rounded-lg shadow-lg">
-//       <h2 className="text-2xl font-bold mb-4">Welcome, {user.name} 👋</h2>
-//       <div className="space-y-2 text-sm">
-//         <p><span className="font-semibold">Email:</span> {user.email}</p>
-//         <p><span className="font-semibold">Role:</span> {user.role}</p>
-//         <p><span className="font-semibold">Mobile:</span> {user.mobileNumber}</p>
-//         <p><span className="font-semibold">Country Code:</span> {user.countryCode}</p>
-//         {user.address && (
-//           <p><span className="font-semibold">Address:</span> {user.address}</p>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Dashboard;
-

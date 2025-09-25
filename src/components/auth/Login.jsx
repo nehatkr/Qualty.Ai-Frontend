@@ -31,6 +31,7 @@ const Login = () => {
       });
 
       const result = await response.json();
+      console.log("result", result)
       if (!result.success) {
         setError(result.errors?.[0]?.msg || result.message);
       } else {

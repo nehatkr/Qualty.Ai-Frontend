@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import { useNavigate , useLocation} from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useUser } from "../context/userContext";
 import { BASE_URL } from "../utils/constants";
 
 const useFetchUser = () => {
   const { setUser } = useUser();
   const navigate = useNavigate();
-    const location = useLocation();
+  const location = useLocation();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -15,23 +15,20 @@ const useFetchUser = () => {
           method: "GET",
           credentials: "include",
         });
-
         const data = await response.json();
-
         if (data.userInfo) {
           setUser(data.userInfo);
         } else {
-          navigate("/login", { state: { from: location.pathname } });
+          navigate("/login");
         }
       } catch (error) {
         console.error("Error fetching user:", error);
-        navigate("/login", { state: { from: location.pathname } });
+        navigate("/login");
       }
     };
 
     fetchUser();
-  }, [ navigate,location]);
-
+  }, [navigate, location]);
 };
 
 export default useFetchUser;
