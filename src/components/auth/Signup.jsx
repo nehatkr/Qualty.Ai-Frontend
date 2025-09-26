@@ -42,7 +42,7 @@ const Signup = () => {
               </p>
               <button 
                 onClick={(e) => handleButtonClick("/signup/customer", e)}
-                className="w-full py-2 px-4 text-white rounded-md bg-green-600 hover:bg-green-700 transition-colors mt-auto"
+                className="cursor-pointer w-full py-2 px-4 text-white rounded-md bg-green-600 hover:bg-green-700 transition-colors mt-auto"
               >
                 Sign up as Customer
               </button>
@@ -63,7 +63,7 @@ const Signup = () => {
               </p>
               <button 
                 onClick={(e) => handleButtonClick("/signup/inspector", e)}
-                className="w-full py-2 px-4 text-white rounded-md bg-purple-600 hover:bg-purple-700 transition-colors mt-auto"
+                className="cursor-pointer w-full py-2 px-4 text-white rounded-md bg-purple-600 hover:bg-purple-700 transition-colors mt-auto"
               >
                 Sign up as Inspector
               </button>
@@ -84,7 +84,7 @@ const Signup = () => {
               </p>
               <button 
                 onClick={(e) => handleButtonClick("/signup/company", e)}
-                className="w-full py-2 px-4 text-white rounded-md bg-orange-600 hover:bg-orange-700 transition-colors mt-auto"
+                className="cursor-pointer w-full py-2 px-4 text-white rounded-md bg-orange-600 hover:bg-orange-700 transition-colors mt-auto"
               >
                 Sign up as Company
               </button>

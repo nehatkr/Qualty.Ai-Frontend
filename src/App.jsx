@@ -23,6 +23,14 @@ import MyAccount from "./components/dashboard/CustomerDashboard/MyAccount";
 import MyHistory from "./components/dashboard/CustomerDashboard/MyHistory";
 import Payments from "./components/dashboard/CustomerDashboard/Payments";
 import CustomerLayout from "./components/dashboard/CustomerDashboard/CustomerLayout";
+import InspectorLayout from "./components/dashboard/InspectorDashboard/InspectorLayout";
+import InspectorBidRoom from "./components/dashboard/InspectorDashboard/InspectorBidRoom";
+import InspectorChatWithUs from "./components/dashboard/InspectorDashboard/InspectorChatWithUs";
+import InspectorAnalysis from "./components/dashboard/InspectorDashboard/InspectorAnalysis";
+import InspectorLiveChat from "./components/dashboard/InspectorDashboard/InspectorLiveChat";
+import InspectorMyAccount from "./components/dashboard/InspectorDashboard/InspectorMyAccount";
+import InspectorMyHistory from "./components/dashboard/InspectorDashboard/InspectorMyHistory";
+import InspectorPayment from "./components/dashboard/InspectorDashboard/InspectorPayment";
 
 function App() {
   return (
@@ -50,12 +58,20 @@ function App() {
           <Route path="enquiry" element={<RaiseEnquiry />} />
         </Route>
 
-        <Route path="/inspector/dashboard" element={ <InspectorDashboard/> }/>
+        <Route path="/inspector" element={ <InspectorLayout/> }>
+         <Route path="dashboard" element={<InspectorDashboard />} />
+          <Route path="bidding" element={<InspectorBidRoom />} />
+          <Route path="chat" element={<InspectorChatWithUs />} />
+          <Route path="analysis" element={<InspectorAnalysis />} />
+          <Route path="live-chat" element={<InspectorLiveChat />} />
+          <Route path="account" element={<InspectorMyAccount />} />
+          <Route path="history" element={<InspectorMyHistory />} />
+          <Route path="payments" element={<InspectorPayment />} />
+        </Route>
 
         <Route path="/quickInspection" element={ <QuickInspection />} />
         <Route path="/quickInspection/:regionName" element={ <LocationDetail />} />
         <Route path="/quickInspection/form" element={ <QuickInspectionForm />} />
-
        
       </Routes>
     </Router>

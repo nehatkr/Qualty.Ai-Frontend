@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BASE_URL } from "../../utils/constants";
-import { useNavigate } from "react-router-dom"; // if using React Router
+import { useNavigate } from "react-router-dom"; 
 import { toast } from 'react-toastify';
 
 const allowedCommodities = [
@@ -23,7 +23,7 @@ const allowedCommodities = [
 ];
 
 export default function InspectorSignup() {
-  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     role: "inspector",
     inspectorType: "indian",
@@ -47,7 +47,8 @@ export default function InspectorSignup() {
   });
 
   const [error, setError] = useState("");
-
+  const navigate = useNavigate();
+  
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
 
@@ -229,7 +230,7 @@ export default function InspectorSignup() {
       if (!data.success) {
         setError(data.errors?.[0]?.msg || data.message);
       } else {
-        alert("Signup successful!");
+       toast.success(data.message || "Signup Successful")
         navigate("/login");
       }
     } catch (err) {
@@ -422,9 +423,9 @@ export default function InspectorSignup() {
 
         <button
           type="submit"
-          className="w-full bg-green-600 py-2 rounded hover:bg-green-700 font-bold"
+          className="w-full bg-green-600 py-2 rounded hover:bg-green-700 font-semibold cursor-pointer"
         >
-          Submit
+          Sign up
         </button>
       </form>
     </div>
