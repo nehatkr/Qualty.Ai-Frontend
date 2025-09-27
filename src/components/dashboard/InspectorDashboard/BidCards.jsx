@@ -41,7 +41,6 @@ const BidCard = ({ bid }) => {
       const data = await response.json();
       if (data.success) {
         dispatch(addPlaceBid(data.bid))
-        console.log("Bid response:", data.bid);
         toast.success(data.message)
       } else {
         toast.success(data.message)

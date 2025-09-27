@@ -17,7 +17,6 @@ const useFetchEnquiries = () => {
         });
         const data = await response.json();
         if (data.enquiries) {
-          console.log(data.enquiries);
           
           dispatch(addEnquiries(data.enquiries));
         } else {

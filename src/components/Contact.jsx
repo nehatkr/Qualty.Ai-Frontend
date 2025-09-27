@@ -50,7 +50,7 @@ const Contact = () => {
         message: submissionData.message,
         additional_details: submissionData.additionalDetails || 'None provided',
         submitted_date: new Date().toLocaleString(),
-        to_email: 'support@qualty.ai' // This should match your template
+        to_email: 'support@qualty.ai' 
       };
 
       const result = await emailjs.send(
@@ -59,7 +59,6 @@ const Contact = () => {
         emailParams
       );
 
-      console.log('Email sent successfully:', result.text);
       return { success: true };
     } catch (error) {
       console.error('Email sending failed:', error);
@@ -82,21 +81,15 @@ const Contact = () => {
         emailSent: false // We'll update this after email is sent
       });
 
-      console.log('Data saved to Firebase:', firebaseResult.key);
 
-      // 2. Send email notification
       const emailResult = await sendEmailNotification(formData);
       
       if (emailResult.success) {
-        // Update Firebase record to mark email as sent
         await push(ref(database, `contact_submissions/${firebaseResult.key}/emailSent`), true);
-        console.log('Email notification sent successfully');
       } else {
         console.warn('Email notification failed, but form was saved');
-        // Don't fail the entire process if email fails
       }
 
-      // 3. Reset form and show success
       setFormData({
         name: '', 
         email: '', 

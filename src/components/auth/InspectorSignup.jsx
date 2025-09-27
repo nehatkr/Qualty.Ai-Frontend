@@ -158,7 +158,6 @@ export default function InspectorSignup() {
       });
  
       const data = await response.json();
-      console.log("Signup response:", data);
       if (!data.success) {
         setError(data.errors?.[0]?.msg || data.message);
       } else {
