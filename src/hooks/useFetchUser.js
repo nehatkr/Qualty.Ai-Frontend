@@ -1,11 +1,12 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useUser } from "../context/userContext";
 import { BASE_URL } from "../utils/constants";
 
 const useFetchUser = () => {
   const { setUser } = useUser();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -14,9 +15,7 @@ const useFetchUser = () => {
           method: "GET",
           credentials: "include",
         });
-
         const data = await response.json();
-
         if (data.userInfo) {
           setUser(data.userInfo);
         } else {
@@ -29,9 +28,7 @@ const useFetchUser = () => {
     };
 
     fetchUser();
-  }, [ navigate]);
-
-  return null;
+  }, [navigate, location]);
 };
 
 export default useFetchUser;

@@ -1,10 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, {  useState } from "react";
 import { X, FileText, CheckCircle } from 'lucide-react';
 import { BASE_URL } from "../../../utils/constants";
 import useFetchUser from "../../../hooks/useFetchUser"
-import { useUser } from "../../../context/userContext";
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { addEnquiries } from "../../../redux/slice/enquirySlice";
 
 const commodityData = {
   "Food & Beverages": {
@@ -66,9 +67,10 @@ const certificationOptions = [
 const RaiseEnquiry = () => {
 
   useFetchUser()
-  const { user } = useUser()
-
+  const user = useSelector(store=>store?.user.user)  
   const navigate=useNavigate()
+  const dispatch = useDispatch()
+
   const inputClass =
     "w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500";
 
@@ -119,7 +121,6 @@ const RaiseEnquiry = () => {
     physical: "",
     chemical: "",
   });
-
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
@@ -225,8 +226,6 @@ const RaiseEnquiry = () => {
       description: formData.description,
     };
 
-   
-
     try {
       const response = await fetch(`${BASE_URL}/customer/raise-enquiry`, {
         method: "POST",
@@ -237,12 +236,15 @@ const RaiseEnquiry = () => {
         credentials: "include",
       });
       const data = await response.json();
+
+ console.log("raisedata",data);
  
 
       if (!data.success) {
         setError(data.message || "Failed to submit enquiry");
       } else {
-        toast.success("Enquiry submitted successfully");
+        dispatch(addEnquiries(data.enquiry))
+        toast.success(data.message || "Enquiry submitted successfully");
         setError("");
         setFormData({
           inspectionLocation: "",
@@ -267,10 +269,8 @@ const RaiseEnquiry = () => {
           inspectionBudget: "",
           role: user?.role,
         });
-        navigate("/customer/bidding")
-        
+        navigate("/customer/bidding")       
       }
-
     } catch (error) {
       console.error("Error submitting enquiry:", error);
     }
@@ -547,7 +547,6 @@ const RaiseEnquiry = () => {
     <div className="min-h-screen bg-gray-900 text-white py-10 px-6">
       <div className="max-w-4xl mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold mb-6 text-center">Raise Inspection Enquiry</h2>
-
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Location & Timing */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -792,7 +791,6 @@ const RaiseEnquiry = () => {
         </form>
       </div>
 
-      {/* Modals */}
       <RiceParametersModal />
       <GenericParametersModal
         type="genericPhysical"

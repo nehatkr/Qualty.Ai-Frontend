@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import LiveBids from "./LiveBids";
+import CompanyLiveBids from "./CompanyLiveBids";
 import { BASE_URL } from "../../../utils/constants";
 import { useDispatch } from "react-redux";
 import { addEnquiries } from "../../../redux/slice/enquirySlice";
 
-const InspectorDashboard = () => {
+const CompanyDashboard = () => {
   const [enquiryData, setEnquiryData] = useState("");
   console.log("enquiryData", enquiryData);
   const dispatch = useDispatch()
@@ -12,7 +12,7 @@ const InspectorDashboard = () => {
   useEffect(() => {
     const loadEnquiries = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/inspector/enquiries`, {
+        const response = await fetch(`${BASE_URL}/company/enquiries`, {
           method: "GET",
           credentials: "include",
         });
@@ -28,9 +28,9 @@ const InspectorDashboard = () => {
   }, []);
   return (
     <div className="min-h-screen bg-gray-950 py-10">
-     {enquiryData && <LiveBids bids={enquiryData} />}
+     {enquiryData && <CompanyLiveBids bids={enquiryData} />}
     </div>
   );
 };
 
-export default InspectorDashboard;
+export default CompanyDashboard;

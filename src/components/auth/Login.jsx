@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../utils/constants";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { addUser } from "../../redux/slice/userSlice";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +16,7 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,11 +34,10 @@ const Login = () => {
       });
 
       const result = await response.json();
-
-
       if (!result.success) {
         setError(result.errors?.[0]?.msg || result.message);
       } else {
+        dispatch(addUser(result.user))
         setError("");
         toast.success('Login successful!');
         setTimeout(() => {
@@ -176,7 +178,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full cursor-pointer py-3 px-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]"
             >
               {loading ? (
                 <div className="flex items-center justify-center">
@@ -216,7 +218,7 @@ const Login = () => {
             <button
               type="button"
               onClick={() => navigate("/signup")}
-              className="font-medium text-blue-400 hover:text-blue-300 transition-colors duration-200 underline underline-offset-4"
+              className="font-medium cursor-pointer text-blue-400 hover:text-blue-300 transition-colors duration-200 underline underline-offset-4"
               disabled={loading}
             >
               Sign up

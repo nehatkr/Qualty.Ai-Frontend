@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import useFetchUser from "../../../hooks/useFetchUser";
 import {
-    FaBars, FaTimes,
+  FaBars, FaTimes,
   FaTachometerAlt,
   FaGavel,
   FaComments,
-  FaUserCircle ,
+  FaUserCircle,
   FaChartLine,
   FaHeadset,
   FaUser,
@@ -18,18 +18,16 @@ import { BASE_URL } from "../../../utils/constants";
 import { useSelector } from "react-redux";
 
 const navItems = [
-  { label: "Dashboard", icon: <FaTachometerAlt />, path: "/customer/dashboard" },
-  { label: "Bidding Room", icon: <FaGavel />, path: "/customer/bidding" },
-  { label: "Raise Enquiry", icon: <FaQuestionCircle />, path: "/customer/enquiry" },
-  { label: "Payments", icon: <FaMoneyBillWave />, path: "/customer/payments" },
-  { label: "Live Chat", icon: <FaHeadset />, path: "/customer/live-chat" },
-  { label: "Chat with Us", icon: <FaComments />, path: "/customer/chat" },
-  { label: "Detail Analysis", icon: <FaChartLine />, path: "/customer/analysis" },
-  { label: "My History", icon: <FaHistory />, path: "/customer/history" },
-  { label: "My Account", icon: <FaUser />, path: "/customer/account" },
+  { label: "Dashboard", icon: <FaTachometerAlt />, path: "/inspector/dashboard" },
+  { label: "Bidding Room", icon: <FaGavel />, path: "/inspector/bidding" },
+  { label: "Bid History", icon: <FaHistory />, path: "/inspector/history" },
+  { label: "Payments", icon: <FaMoneyBillWave />, path: "/inspector/payments" },
+  { label: "Detail Analysis", icon: <FaChartLine />, path: "/inspector/analysis" },
+  { label: "My Account", icon: <FaUser />, path: "/inspector/account" },
+  { label: "Chat with Us", icon: <FaComments />, path: "/inspector/chat" },
 ];
 
-const CustomerLayout = () => {
+const InspectorLayout = () => {
   useFetchUser();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
@@ -140,4 +138,4 @@ const user = useSelector((state)=>state?.user?.user)
   );
 };
 
-export default CustomerLayout;
+export default InspectorLayout;
