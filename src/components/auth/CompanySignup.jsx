@@ -65,7 +65,7 @@ const CompanySignup = () => {
         }
       });
 
-      const res = await fetch(`${BASE_URL}/inspection-company/signup`, {
+      const res = await fetch(`${BASE_URL}/signup/inspectionCompany`, {
         method: "POST",
         body: payload,
       });

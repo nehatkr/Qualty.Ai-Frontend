@@ -1,9 +1,21 @@
-import React from 'react'
+import TotalBidsKPI from "./TotalBidsKPI";
+import RevenueEarnedKPI from "./RevenueEarnedKPI";
+import ActiveBidsKPI from "./ActiveBidsKPI";
+import LiveBidsKPI from "./LiveBidsKPI";
+import BidHistory from "./BidHistory";
 
-const CompanyAnalysis = () => {
+export default function CompanyAnalysis() {
   return (
-    <div>CompanyAnalysis</div>
-  )
+    <>
+    <div className="grid grid-cols-1 rounded-lg sm:grid-cols-2 lg:grid-cols-4 gap-4 p-6 bg-black">
+      <TotalBidsKPI />
+      <RevenueEarnedKPI />
+      <ActiveBidsKPI />
+      <LiveBidsKPI />
+    </div>
+    <div className="mt-8">
+      <BidHistory/>
+    </div>
+    </>
+  );
 }
-
-export default CompanyAnalysis
