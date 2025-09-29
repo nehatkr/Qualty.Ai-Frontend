@@ -31,6 +31,7 @@ import InspectorLiveChat from "./components/dashboard/InspectorDashboard/Inspect
 import InspectorMyAccount from "./components/dashboard/InspectorDashboard/InspectorMyAccount";
 import InspectorMyHistory from "./components/dashboard/InspectorDashboard/InspectorMyHistory";
 import InspectorPayment from "./components/dashboard/InspectorDashboard/InspectorPayment";
+import InspectionDetailsPage from "./components/dashboard/CustomerDashboard/InspectionDetailsPage";
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
           <Route path="history" element={<MyHistory />} />
           <Route path="payments" element={<Payments />} />
           <Route path="enquiry" element={<RaiseEnquiry />} />
+          <Route path="inspection/:id" element={<InspectionDetailsPage />} />
         </Route>
 
         <Route path="/inspector" element={ <InspectorLayout/> }>

@@ -1,8 +1,9 @@
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function InspectionRequestCard({ request }) {
-  const { commodityCategory, inspectionLocation, urgencyLevel, inspectionBudget, bids, lowestBid, createdAt } = request;
-
+  const { _id, commodityCategory, inspectionLocation, urgencyLevel, inspectionBudget, bids, lowestBid, createdAt } = request;
+  
   const date=new Date(createdAt)
   const formatted=date.toLocaleDateString("en-GB")
 
@@ -13,6 +14,7 @@ export default function InspectionRequestCard({ request }) {
   };
 
   return (
+    <Link to={`/customer/inspection/${_id}`}>
     <div className="bg-gray-900 rounded-lg shadow-md p-5 hover:shadow-xl transition">
       <div className="flex justify-between items-center mb-2">
         <h3 className="text-lg font-semibold text-gray-300">{commodityCategory}</h3>
@@ -33,5 +35,6 @@ export default function InspectionRequestCard({ request }) {
         <p><strong>Date of Enquiry: </strong> {formatted}</p>
       </div>
     </div>
+    </Link>
   );
 }
