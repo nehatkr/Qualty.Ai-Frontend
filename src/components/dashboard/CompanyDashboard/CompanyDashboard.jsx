@@ -1,36 +1,27 @@
-import React, { useEffect, useState } from "react";
-import CompanyLiveBids from "./CompanyLiveBids";
-import { BASE_URL } from "../../../utils/constants";
-import { useDispatch } from "react-redux";
-import { addEnquiries } from "../../../redux/slice/enquirySlice";
+import CompanyActiveInspection from "./CompanyActiveInspections"
+import CompanyBids from "./CompanyBids"
+import CompanyLiveBids from "./CompanyLiveBids"
+import CompanyQueries from "./CompanyQueries"
+import CompanyRevenue from "./CompanyRevenue"
+import CompanyTotalInspections from "./CompanyTotalInspections"
 
-const CompanyDashboard = () => {
-  const [enquiryData, setEnquiryData] = useState("");
-  console.log("enquiryData", enquiryData);
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    const loadEnquiries = async () => {
-      try {
-        const response = await fetch(`${BASE_URL}/company/enquiries`, {
-          method: "GET",
-          credentials: "include",
-        });
-        const data = await response.json();
-        setEnquiryData(data.enquiries)
-        dispatch(addEnquiries(data.enquiries))
-        console.log("fetchDataEnq", data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    loadEnquiries();
-  }, []);
-  return (
-    <div className="min-h-screen bg-gray-950 py-10">
-     {enquiryData && <CompanyLiveBids bids={enquiryData} />}
+const CompanyDashboard=()=>{
+  return(
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-6">
+        <CompanyTotalInspections/>
+        <CompanyRevenue/>
+        <CompanyQueries/>
+        <CompanyBids/>
+      </div>
+      <div className="mt-8">
+        <CompanyLiveBids/>
+      </div>
+      <div className="mt-8">
+        <CompanyActiveInspection/>
+      </div>
     </div>
-  );
-};
+  )
 
-export default CompanyDashboard;
+}
+export default CompanyDashboard

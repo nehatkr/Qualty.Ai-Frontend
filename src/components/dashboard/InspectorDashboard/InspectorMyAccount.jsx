@@ -1,9 +1,37 @@
-import { User, Mail, Phone, MapPin, Upload, CreditCard } from 'lucide-react';
-import { useSelector } from "react-redux"
+import { useState } from "react";
+import { User, Mail, Phone, MapPin, Upload, CreditCard, FileUp } from 'lucide-react';
+import { useSelector } from "react-redux";
+import { BASE_URL } from '../../../utils/constants';
+
 export default function InspectorMyAccount() {
-  const user =useSelector((store)=>store?.user.user)
-  console.log("user",user);
-  
+  const user = useSelector((store) => store?.user.user);
+  const [aadhaarUrl, setAadhaarUrl] = useState(user?.identityDocuments?.aadhaarCard || null);
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("aadhaarCard", file);
+
+    try {
+      const response = await fetch(`${BASE_URL}/inspector/profile/updateDocuments`, {
+        method: "PATCH",
+        credentials: "include",
+        body: formData,
+      });
+
+      const result = await response.json();
+      console.log("Upload success:", result);
+
+      if (result?.inspector?.identityDocuments?.aadhaarCard) {
+        setAadhaarUrl(result.inspector.identityDocuments.aadhaarCard);
+      }
+    } catch (error) {
+      console.error("Upload failed:", error);
+    }
+  };
+
   const InfoRow = ({ icon: Icon, label, value }) => (
     <div className="flex items-center justify-between p-3 rounded-lg bg-gray-800/50 hover:bg-gray-700/60 transition-all duration-300">
       <div className="flex items-center gap-3">
@@ -43,13 +71,34 @@ export default function InspectorMyAccount() {
             <InfoRow icon={MapPin} label="Address" value={user.address} />
           </div>
 
-          {/* Upload Section */}
+          {/* Update Documents Section */}
           <div className="mb-8">
+            <h3 className="flex items-center gap-2 text-lg font-semibold text-white mb-4">
+              <FileUp size={20} className="text-gray-400" />
+              Update Documents
+            </h3>
             <label className="flex items-center justify-center gap-3 p-4 border-2 border-dashed border-gray-700 rounded-xl hover:border-gray-500 transition-colors cursor-pointer group">
               <Upload size={20} className="text-gray-500 group-hover:text-gray-300" />
               <span className="text-gray-400 group-hover:text-gray-200">Upload Aadhaar Card</span>
-              <input type="file" className="hidden" />
+              <input
+                type="file"
+                className="hidden"
+                onChange={handleFileUpload}
+                accept="image/*,application/pdf"
+              />
             </label>
+
+            {/* Aadhaar Preview */}
+            {aadhaarUrl && (
+              <div className="mt-4 text-center">
+                <p className="text-gray-400 mb-2">Uploaded Aadhaar Card:</p>
+                <img
+                  src={aadhaarUrl}
+                  alt="Aadhaar Card"
+                  className="max-w-xs mx-auto rounded-lg border border-gray-700"
+                />
+              </div>
+            )}
           </div>
 
           {/* Billing Details */}
@@ -59,9 +108,9 @@ export default function InspectorMyAccount() {
               Billing Details
             </h3>
             <div className="space-y-3">
-              <InfoRow icon={() => <div className="w-4 h-4 bg-gray-500 rounded-full" />} label="Account" value={user.account} />
-              <InfoRow icon={() => <div className="w-4 h-4 bg-gray-600 rounded-full" />} label="Bank" value={user.bank} />
-              <InfoRow icon={() => <div className="w-4 h-4 bg-gray-400 rounded-full" />} label="IFSC" value={user.ifsc} />
+              <InfoRow icon={() => <div className="w-4 h-4 bg-gray-500 rounded-full" />} label="Account" value={user.billingDetails.accountNumber} />
+              <InfoRow icon={() => <div className="w-4 h-4 bg-gray-600 rounded-full" />} label="Bank" value={user.billingDetails.bankName} />
+              <InfoRow icon={() => <div className="w-4 h-4 bg-gray-400 rounded-full" />} label="IFSC" value={user.billingDetails.ifscCode} />
             </div>
           </div>
         </div>

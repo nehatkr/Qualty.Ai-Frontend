@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import LiveBids from "./LiveBids";
 import { BASE_URL } from "../../../utils/constants";
@@ -6,7 +7,6 @@ import { addEnquiries } from "../../../redux/slice/enquirySlice";
 
 const InspectorDashboard = () => {
   const [enquiryData, setEnquiryData] = useState("");
-  console.log("enquiryData", enquiryData);
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -19,7 +19,6 @@ const InspectorDashboard = () => {
         const data = await response.json();
         setEnquiryData(data.enquiries)
         dispatch(addEnquiries(data.enquiries))
-        console.log("fetchDataEnq", data);
       } catch (err) {
         console.error(err);
       }

@@ -237,7 +237,6 @@ const RaiseEnquiry = () => {
       });
       const data = await response.json();
 
- console.log("raisedata",data);
  
 
       if (!data.success) {

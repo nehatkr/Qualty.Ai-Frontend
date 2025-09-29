@@ -32,7 +32,7 @@ const CompanyLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-const user = useSelector((state)=>state?.user?.user)
+// const user = useSelector((state)=>state?.user?.user)
 
   const handleLogout = async () => {
     const confirmLogout = window.confirm("Are you sure you want to logout?");
@@ -54,10 +54,10 @@ const user = useSelector((state)=>state?.user?.user)
     location.pathname.includes(item.path)
   )?.label;
 
-  if (!user) {
-    navigate("/login")
-    return <div className="text-center py-10 text-gray-400">Loading user details...</div>;
-  }
+  // if (!user) {
+  //   // navigate("/login")
+  //   return <div className="text-center py-10 text-gray-400">Loading user details...</div>;
+  // }
 
   return (
     <div className="min-h-screen bg-gray-900 flex">
@@ -70,7 +70,7 @@ const user = useSelector((state)=>state?.user?.user)
           <div className="flex gap-2 items-center">
 
           <FaUserCircle  className="text-white text-2xl" />
-          <h2 className="text-xl font-bold text-white">{user.name}</h2>
+          {/* <h2 className="text-xl font-bold text-white">{user.name}</h2> */}
           </div>
           <button
             onClick={() => setSidebarOpen(false)}

@@ -110,76 +110,8 @@ export default function InspectorSignup() {
     ) {
       setError("Please fill all required fields to accept requests.");
       return;
-  // Validation for required fields if accepting requests
-  if (
-    formData.acceptsRequests &&
-    (
-      !formData.identityDocuments.aadhaarCard ||
-      !formData.billingDetails.accountNumber ||
-      !formData.billingDetails.bankName ||
-      !formData.billingDetails.ifscCode
-    )
-  ) {
-    setError("Please fill all required fields to accept requests.");
-    return;
-  }
-
-  const formdataToSend = new FormData();
-
-  // Basic fields
-  formdataToSend.append("role", formData.role);
-  formdataToSend.append("inspectorType", formData.inspectorType);
-  formdataToSend.append("name", formData.name);
-  formdataToSend.append("email", formData.email);
-  formdataToSend.append("password", formData.password);
-  formdataToSend.append("countryCode", formData.countryCode);
-  formdataToSend.append("mobileNumber", formData.mobileNumber);
-  formdataToSend.append("address", formData.address);
-  formdataToSend.append("acceptsRequests", formData.acceptsRequests);
-
-  // File upload
-  if (formData.identityDocuments.aadhaarCard) {
-    formdataToSend.append("identityDocuments.aadhaarCard", formData.identityDocuments.aadhaarCard);
-  }
-
-  // Billing details
-  formdataToSend.append("billingDetails.accountNumber", formData.billingDetails.accountNumber);
-  formdataToSend.append("billingDetails.bankName", formData.billingDetails.bankName);
-  formdataToSend.append("billingDetails.ifscCode", formData.billingDetails.ifscCode);
-
-  formData.commodities.forEach((item,index)=>{
-    formdataToSend.append(`commodities[${index}][commodity]`, item.commodity);
-    formdataToSend.append(`commodities[${index}][experienceYears]`, item.experienceYears);
-  })
-
-  try {
-    const response = await fetch(`${BASE_URL}/auth/signup/inspector`, {
-      method: "POST",
-      body: formdataToSend,
-      credentials: "include",
-    });
-
-    const data = await response.json();
-
-    if (!data.success) {
-      setError(data.errors?.[0]?.msg || data.message);
-    } else {
-      setError("");
     }
 
-
-    if(data.success){
-      toast.success('Registration successful!');
-      navigate("/login");
-    }
-    
-  } catch (err) {
-    console.error("Signup error:", err);
-    setError("Something went wrong. Please try again.");
-  }
-};
-
-    // Prepare FormData for submission
     const formdataToSend = new FormData();
     formdataToSend.append("role", formData.role);
     formdataToSend.append("inspectorType", formData.inspectorType);
@@ -189,24 +121,24 @@ export default function InspectorSignup() {
     formdataToSend.append("countryCode", formData.countryCode);
     formdataToSend.append("mobileNumber", formData.mobileNumber);
     formdataToSend.append("address", formData.address);
-    formdataToSend.append("acceptsRequests", formData.acceptsRequests);
+    formdataToSend.append("acceptsRequests", formData.acceptsRequests ? "true" : "false");
 
     if (formData.identityDocuments.aadhaarCard)
       formdataToSend.append(
-        "identityDocuments.aadhaarCard",
+        "aadhaarCard",
         formData.identityDocuments.aadhaarCard
       );
 
     formdataToSend.append(
-      "billingDetails.accountNumber",
+      "accountNumber",
       formData.billingDetails.accountNumber
     );
     formdataToSend.append(
-      "billingDetails.bankName",
+      "bankName",
       formData.billingDetails.bankName
     );
     formdataToSend.append(
-      "billingDetails.ifscCode",
+      "ifscCode",
       formData.billingDetails.ifscCode
     );
 
@@ -224,9 +156,8 @@ export default function InspectorSignup() {
         body: formdataToSend,
         credentials: "include",
       });
-
+ 
       const data = await response.json();
-      console.log("Signup response:", data);
       if (!data.success) {
         setError(data.errors?.[0]?.msg || data.message);
       } else {
@@ -246,7 +177,6 @@ export default function InspectorSignup() {
         className="w-full max-w-2xl bg-gray-900 p-6 rounded-lg shadow-lg space-y-4"
       >
         <h2 className="text-2xl font-bold mb-4">Inspector Signup</h2>
-
         <div>
           <label>Role</label>
           <select

@@ -3,26 +3,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { addEnquiries } from "../../../redux/slice/enquirySlice";
 
 const CompanyBidRoom = () => {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
-  useEffect(() => {
-      const loadEnquiries = async () => {
-        try {
-          const response = await fetch(`${BASE_URL}/company/enquiries`, {
-            method: "GET",
-            credentials: "include",
-          });
-          const data = await response.json();
-          dispatch(addEnquiries(data.enquiries))
-          console.log("fetchDataEnq", data);
-        } catch (err) {
-          console.error(err);
-        }
-      };
-      loadEnquiries();
-    }, []);
+  // useEffect(() => {
+  //     const loadEnquiries = async () => {
+  //       try {
+  //         const response = await fetch(`${BASE_URL}/company/enquiries`, {
+  //           method: "GET",
+  //           credentials: "include",
+  //         });
+  //         const data = await response.json();
+  //         dispatch(addEnquiries(data.enquiries))
+  //         console.log("fetchDataEnq", data);
+  //       } catch (err) {
+  //         console.error(err);
+  //       }
+  //     };
+  //     loadEnquiries();
+  //   }, []);
 
-  const enquiries = useSelector((state) => state.enquiry.raisedEnquiry);
+  // const enquiries = useSelector((state) => state.enquiry.raisedEnquiry);
 
   return (
     <div className="min-h-screen bg-gray-950 py-10 px-6">

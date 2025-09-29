@@ -1,12 +1,13 @@
+
 import { useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { useUser } from "../context/userContext";
+import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
+import {useDispatch} from "react-redux"
+import {addUser} from "../redux/slice/userSlice"
 
 const useFetchUser = () => {
-  const { setUser } = useUser();
   const navigate = useNavigate();
-  const location = useLocation();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -17,7 +18,7 @@ const useFetchUser = () => {
         });
         const data = await response.json();
         if (data.userInfo) {
-          setUser(data.userInfo);
+          dispatch(addUser(data.userInfo))
         } else {
           navigate("/login");
         }
@@ -28,7 +29,7 @@ const useFetchUser = () => {
     };
 
     fetchUser();
-  }, [navigate, location]);
+  }, [navigate]);
 };
 
 export default useFetchUser;

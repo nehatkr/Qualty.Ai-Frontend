@@ -1,40 +1,71 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import CompanyBidCards from "./CompanyBidCards";
+import React, { useState } from "react";
+import { FileText } from "lucide-react";
 
 const CompanyLiveBids = () => {
-  const raisedEnquiries = useSelector((state) => state.enquiry.raisedEnquiry);
-  const navigate = useNavigate();
+  const [bidAmount, setBidAmount] = useState("");
 
-  const limitedEnquiries = raisedEnquiries?.slice(0, 2) || [];
+  const handleBid = () => {
+    console.log("Bid submitted:", bidAmount);
+    // Add your bid submission logic here
+  };
 
   return (
-    <section className="bg-gray-900 text-white p-6 rounded-xl shadow-lg max-w-4xl mx-auto">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">Live Bids</h2>
-        <span className="text-sm text-gray-400">{raisedEnquiries?.length || 0} Active Bids</span>
+    <div className="bg-gray-900/80 backdrop-blur-md border border-gray-700 rounded-xl p-6 shadow-xl w-full max-w-3xl mx-auto">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-xl font-semibold text-white">Live Bids</h2>
+        <span className="bg-green-600 text-white text-xs font-medium px-3 py-1 rounded-full">
+          2 Active Bids
+        </span>
       </div>
 
-      <section className="space-y-4">
-        {limitedEnquiries.length === 0 ? (
-          <p className="text-gray-400">No live enquiries available</p>
-        ) : (
-          limitedEnquiries.map((bid) => <CompanyBidCards key={bid._id} bid={bid} />)
-        )}
-      </section>
+      {/* Bid Card */}
+      <div className="bg-gray-800/60 border border-gray-700 rounded-lg p-5 shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        {/* Left Section */}
+        <div className="flex-1">
+          <h3 className="text-lg font-bold text-white">Inspection</h3>
+          <p className="text-sm text-gray-400">ID: SAMPLE-003</p>
 
-      {raisedEnquiries?.length > 2 && (
-        <div className="mt-6 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 text-sm text-gray-300">
+            <div>
+              <p className="font-medium">Location</p>
+              <p className="text-gray-400">—</p>
+            </div>
+            <div>
+              <p className="font-medium">Volume</p>
+              <p className="text-gray-400">—</p>
+            </div>
+            <div>
+              <p className="font-medium">Urgency</p>
+              <span className="inline-block bg-red-600 text-white text-xs px-2 py-1 rounded-full mt-1">
+                High
+              </span>
+            </div>
+            <div>
+              <p className="font-medium">Budget</p>
+              <p className="text-green-400 font-semibold mt-1">$800 - $1200</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Section */}
+        <div className="flex items-center gap-2">
+          <input
+            type="number"
+            placeholder="$ Enter"
+            value={bidAmount}
+            onChange={(e) => setBidAmount(e.target.value)}
+            className="bg-gray-700 text-white placeholder-gray-400 px-4 py-2 rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-teal-500"
+          />
           <button
-            onClick={() => navigate("/company/bidding")}
-            className="bg-gray-700 hover:bg-gray-600 px-6 py-2 rounded text-white font-medium cursor-pointer"
+            onClick={handleBid}
+            className="bg-teal-600 hover:bg-teal-700 text-white font-semibold px-4 py-2 rounded-lg transition"
           >
-            View All →
+            Bid
           </button>
         </div>
-      )}
-    </section>
+      </div>
+    </div>
   );
 };
 
