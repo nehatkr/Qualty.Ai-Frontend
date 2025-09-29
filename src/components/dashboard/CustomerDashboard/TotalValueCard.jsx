@@ -10,7 +10,6 @@ export default function TotalValueCard() {
           <p className="text-3xl font-bold">$245,000</p>
           <p className="text-green-600 text-sm mt-1">+8% revenue growth</p>
         </div>
-        {/* <FaDollarSign className="text-2xl text-purple-500" /> */}
       </div>
       <a href="#" className="text-blue-600 text-sm mt-2 inline-block">View Payments →</a>
     </div>

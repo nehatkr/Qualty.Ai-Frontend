@@ -14,6 +14,7 @@ const userSlice = createSlice({
         removeUser:(state,action)=>{
             state.user = null;
         },     
+       
     }
 })
 

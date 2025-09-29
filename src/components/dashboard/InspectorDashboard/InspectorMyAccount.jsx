@@ -98,7 +98,9 @@ export default function InspectorMyAccount() {
           <p className="text-gray-400">Manage your profile information</p>
         </div>
 
+
         <div className="bg-gray-900/90 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-gray-700/50">
+          {/* Profile Photo */}
           <div className="flex items-center gap-4 mb-8 p-4 rounded-xl bg-gray-800/60">
             <div className="w-16 h-16 rounded-full bg-gradient-to-r from-gray-600 to-gray-700 flex items-center justify-center">
               <User size={32} className="text-white" />
@@ -109,12 +111,14 @@ export default function InspectorMyAccount() {
             </div>
           </div>
 
+          {/* User Info */}
           <div className="space-y-3 mb-8">
             <InfoRow icon={Mail} label="Email" value={user.email} />
             <InfoRow icon={Phone} label="Phone" value={user.mobileNumber} />
             <InfoRow icon={MapPin} label="Address" value={user.address} />
           </div>
 
+          {/* Aadhaar Upload Section */}
           <div className="mb-8">
             <h3 className="flex items-center gap-2 text-lg font-semibold text-white mb-4">
               <FileUp size={20} className="text-gray-400" />

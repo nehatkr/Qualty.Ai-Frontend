@@ -16,7 +16,8 @@ const useFetchEnquiries = () => {
           credentials: "include",
         });
         const data = await response.json();
-        if (data.enquiries) {         
+        if (data.enquiries) {
+          
           dispatch(addEnquiries(data.enquiries));
         } else {
           navigate("/login");

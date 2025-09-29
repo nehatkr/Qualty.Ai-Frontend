@@ -2,7 +2,6 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-
 import LandingPage from "../src/components/LandingPage"
 import Login from "../src/components/auth/Login";
 import Signup from "../src/components/auth/Signup";
@@ -32,6 +31,16 @@ import InspectorMyAccount from "./components/dashboard/InspectorDashboard/Inspec
 import InspectorMyHistory from "./components/dashboard/InspectorDashboard/InspectorMyHistory";
 import InspectorPayment from "./components/dashboard/InspectorDashboard/InspectorPayment";
 import InspectionDetailsPage from "./components/dashboard/CustomerDashboard/InspectionDetailsPage";
+import CompanyLayout from './components/dashboard/CompanyDashboard/CompanyLayout'
+import CompanyDashboard from './components/dashboard/CompanyDashboard/CompanyDashboard'
+import CompanyBidRoom from './components/dashboard/CompanyDashboard/CompanyBidRoom'
+import CompanyChatWithUs from './components/dashboard/CompanyDashboard/CompanyChatWithUs'
+import CompanyAnalysis from './components/dashboard/CompanyDashboard/CompanyAnalysis'
+import CompanyLiveChat from './components/dashboard/CompanyDashboard/CompanyLiveChat'
+import CompanyAccount from './components/dashboard/CompanyDashboard/CompanyAccount'
+import CompanyHistory from './components/dashboard/CompanyDashboard/CompanyHistory'
+import CompanyPayment from './components/dashboard/CompanyDashboard/CompanyPayment'
+
 
 function App() {
   return (
@@ -69,6 +78,17 @@ function App() {
           <Route path="account" element={<InspectorMyAccount />} />
           <Route path="history" element={<InspectorMyHistory />} />
           <Route path="payments" element={<InspectorPayment />} />
+        </Route>
+
+        <Route path="/company" element={ <CompanyLayout/> }>
+         <Route path="dashboard" element={<CompanyDashboard />} />
+          <Route path="bidding" element={<CompanyBidRoom />} />
+          <Route path="chat" element={<CompanyChatWithUs />} />
+          <Route path="analysis" element={<CompanyAnalysis />} />
+          <Route path="live-chat" element={<CompanyLiveChat />} />
+          <Route path="account" element={<CompanyAccount />} />
+          <Route path="history" element={<CompanyHistory />} />
+          <Route path="payments" element={<CompanyPayment />} />
         </Route>
 
         <Route path="/quickInspection" element={ <QuickInspection />} />

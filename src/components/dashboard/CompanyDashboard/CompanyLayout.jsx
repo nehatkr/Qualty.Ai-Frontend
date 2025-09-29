@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import useFetchUser from "../../../hooks/useFetchUser";
 import {
-  FaBars, FaTimes,
+FaBars, FaTimes,
   FaTachometerAlt,
   FaGavel,
   FaComments,
@@ -18,21 +18,21 @@ import { BASE_URL } from "../../../utils/constants";
 import { useSelector } from "react-redux";
 
 const navItems = [
-  { label: "Dashboard", icon: <FaTachometerAlt />, path: "/inspector/dashboard" },
-  { label: "Bidding Room", icon: <FaGavel />, path: "/inspector/bidding" },
-  { label: "Bid History", icon: <FaHistory />, path: "/inspector/history" },
-  { label: "Payments", icon: <FaMoneyBillWave />, path: "/inspector/payments" },
-  { label: "Detail Analysis", icon: <FaChartLine />, path: "/inspector/analysis" },
-  { label: "My Account", icon: <FaUser />, path: "/inspector/account" },
-  { label: "Chat with Us", icon: <FaComments />, path: "/inspector/chat" },
+  { label: "Dashboard", icon: <FaTachometerAlt />, path: "/company/dashboard" },
+  { label: "Bidding Room", icon: <FaGavel />, path: "/company/bidding" },
+  { label: "Bid History", icon: <FaHistory />, path: "/company/history" },
+  { label: "Payments", icon: <FaMoneyBillWave />, path: "/company/payments" },
+  { label: "Detail Analysis", icon: <FaChartLine />, path: "/company/analysis" },
+  { label: "My Account", icon: <FaUser />, path: "/company/account" },
+  { label: "Chat with Us", icon: <FaComments />, path: "/company/chat" },
 ];
 
-const InspectorLayout = () => {
+const CompanyLayout = () => {
   useFetchUser();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-const user = useSelector((state)=>state?.user?.user)
+// const user = useSelector((state)=>state?.user?.user)
 
   const handleLogout = async () => {
     const confirmLogout = window.confirm("Are you sure you want to logout?");
@@ -54,10 +54,10 @@ const user = useSelector((state)=>state?.user?.user)
     location.pathname.includes(item.path)
   )?.label;
 
-  if (!user) {
-    navigate("/login")
-    return <div className="text-center py-10 text-gray-400">Loading user details...</div>;
-  }
+  // if (!user) {
+  //   // navigate("/login")
+  //   return <div className="text-center py-10 text-gray-400">Loading user details...</div>;
+  // }
 
   return (
     <div className="min-h-screen bg-gray-900 flex">
@@ -70,7 +70,7 @@ const user = useSelector((state)=>state?.user?.user)
           <div className="flex gap-2 items-center">
 
           <FaUserCircle  className="text-white text-2xl" />
-          <h2 className="text-xl font-bold text-white">{user.name}</h2>
+          {/* <h2 className="text-xl font-bold text-white">{user.name}</h2> */}
           </div>
           <button
             onClick={() => setSidebarOpen(false)}
@@ -138,4 +138,4 @@ const user = useSelector((state)=>state?.user?.user)
   );
 };
 
-export default InspectorLayout;
+export default CompanyLayout;

@@ -5,6 +5,7 @@ import BidPlacedReducer from "./slice/bidSlice"
 import enquiryBidReducer from "./slice/enquiryBidSlice"
 import customerEnquiryReducer from "./slice/customerEnquirySlice"
 
+
 const appStore = configureStore({
     reducer:{
         user:userReducer,
