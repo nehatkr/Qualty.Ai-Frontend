@@ -52,8 +52,6 @@ export default function QuickInspection() {
     "Vietnam": Vietnam,
   };
 
-
-
   return (
 
     <div>

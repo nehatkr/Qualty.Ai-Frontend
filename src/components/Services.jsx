@@ -516,9 +516,7 @@ const Services = () => {
     }
   };
 
-  // Add animations when component mounts and scroll detection
   useEffect(() => {
-    // Add CSS animations
     if (!document.querySelector('#service-animations')) {
       const style = document.createElement('style');
       style.id = 'service-animations';
@@ -595,7 +593,6 @@ const Services = () => {
     };
   }, [isMobile]);
 
-  // Fixed hover handlers for buttons
   const handleButtonHover = (e) => {
     e.target.style.transform = 'translateY(-2px)';
     e.target.style.background = 'rgba(255, 255, 255, 0.15)';
@@ -611,7 +608,6 @@ const Services = () => {
   const renderServiceCard = (service, index, isAdditional = false) => {
     const animationDelay = isAdditional ? (index * 0.15) : ((index % 4) * 0.15);
     
-    // For mobile, always show cards without complex animations
     const shouldShowCard = isMobile ? true : (isAdditional && showAllServices) || (!isAdditional && isVisible);
     
     return (
@@ -704,7 +700,6 @@ const Services = () => {
           and regulatory requirements across global markets.
         </p>
 
-        {/* Featured Services Section - Sourcing and Destination Inspection */}
         <div style={servicesStyles.featuredGrid}>
           {featuredServices.map((service, index) => (
             <div 
@@ -770,12 +765,10 @@ const Services = () => {
           ))}
         </div>
           
-        {/* Initial Services Grid */}
         <div className="services-grid" style={servicesStyles.servicesGrid}>
           {initialServices.map((service, index) => renderServiceCard(service, index, false))}
         </div>
 
-        {/* View All Button - Only show when services are hidden */}
         {!showAllServices && (
           <button
             style={servicesStyles.viewAllButton}
@@ -788,12 +781,10 @@ const Services = () => {
           </button>
         )}
 
-        {/* Additional Services Grid - Initially Hidden */}
         <div className="additional-services-grid" style={servicesStyles.additionalServicesGrid}>
           {additionalServices.map((service, index) => renderServiceCard(service, index, true))}
         </div>
 
-        {/* Show Less Button - Only show when additional services are visible */}
         {showAllServices && (
           <button
             style={{

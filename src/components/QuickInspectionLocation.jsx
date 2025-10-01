@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import useFetchLocation from "../hooks/useFetchLocation";
 import { useUser } from "../context/userContext";
