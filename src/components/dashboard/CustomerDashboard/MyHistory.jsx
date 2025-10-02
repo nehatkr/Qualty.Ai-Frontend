@@ -4,9 +4,7 @@ import CustomerHistoryCard from "./CustomerHistoryCard";
 
 export default function CustomerMyHistoryPage() {
   useFetchCustomerEnquiry();
-  const enquiries = useSelector((state) => state.customerEnquiry.customerEnquiry);
-  console.log("enquiriesssss", enquiries);
-  
+  const enquiries = useSelector((state) => state.customerEnquiry.customerEnquiry);  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1c1c1e] via-[#1a1a1c] to-[#121212] text-white px-6 py-10">
