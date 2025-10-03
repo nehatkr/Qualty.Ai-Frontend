@@ -24,7 +24,7 @@ const navItems = [
   { label: "Bidding Room", icon: <FaGavel />, path: "/customer/bidding" },
   { label: "Raise Enquiry", icon: <FaQuestionCircle />, path: "/customer/enquiry" },
   { label: "Payments", icon: <FaMoneyBillWave />, path: "/customer/payments" },
-  { label: "Chat", icon: <FaHeadset />, path: "/customer/live-chat" },
+  { label: "Inspection Chat Room", icon: <FaHeadset />, path: "/customer/live-chat" },
   { label: "Detail Analysis", icon: <FaChartLine />, path: "/customer/analysis" },
   { label: "My History", icon: <FaHistory />, path: "/customer/history" },
   { label: "My Account", icon: <FaUser />, path: "/customer/account" },

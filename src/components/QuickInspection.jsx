@@ -22,9 +22,6 @@ export default function QuickInspection() {
   useFetchLocation();
   const location = useSelector((state) => state.location?.data);
 
-  console.log("location", location);
-  
-
   const [formData, setFormData] = useState({
     location: "",
     category: "",

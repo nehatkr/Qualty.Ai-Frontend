@@ -14,7 +14,7 @@ export default function LiveChat() {
           <TypingBubble />
         </div>
 
-        <div className="mt-10 text-center bg-gradient-to-r from-blue-800 via-blue-500 to-blue-900 py-4 px-6 rounded-xl shadow-md animate-pulse">
+        <div className="mt-10 text-center bg-gradient-to-r from-blue-800 via-blue-500 to-blue-900 py-4 px-6 rounded-xl shadow-md animate-bounce">
           <p className="text-white text-lg font-semibold">
             🚀 Coming Soon: Real-time Chat with Inspectors
           </p>
