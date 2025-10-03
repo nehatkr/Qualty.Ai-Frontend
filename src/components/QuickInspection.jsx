@@ -8,7 +8,7 @@ import Telangana from "../assets/Telangana.jpg";
 import TamilNadu from "../assets/TamilNadu.jpg";
 import Chhattisgarh from "../assets/Chhattisgarh.jpg";
 import UP from "../assets/UP.jpg";
-import MP from "../assets/MP.webp";
+import MP from "../assets/MP.webp"; 
 import China from "../assets/China.jpg";
 import Dubai from "../assets/Dubai.jpg";
 import Qatar from "../assets/Qatar.jpg";
@@ -21,6 +21,9 @@ import { useSelector } from "react-redux";
 export default function QuickInspection() {
   useFetchLocation();
   const location = useSelector((state) => state.location?.data);
+
+  console.log("location", location);
+  
 
   const [formData, setFormData] = useState({
     location: "",
@@ -38,7 +41,7 @@ export default function QuickInspection() {
     Gujarat: Gujarat,
     Karnataka: Karnataka,
     Maharashtra: Maharashtra,
-    "Andhra & Telangana": AP,
+    "Andhra and Telangana": AP,
     Telangana: Telangana,
     "Tamil Nadu": TamilNadu,
     Chhattisgarh: Chhattisgarh,
@@ -84,6 +87,5 @@ export default function QuickInspection() {
     </div>
   </section>
 </div>
-
   );
 }
