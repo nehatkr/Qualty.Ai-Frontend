@@ -9,6 +9,9 @@ export default function DetailAnalysis() {
   const [animatedCompletion, setAnimatedCompletion] = useState(0);
   const [animatedPaymentSuccess, setAnimatedPaymentSuccess] = useState(0);
 
+  console.log(customer);
+  
+
   useEffect(() => {
     const fetchCustomerStats = async () => {
       try {
@@ -79,7 +82,6 @@ export default function DetailAnalysis() {
             Name: customer.name,
             Email: customer.email,
             Mobile: customer.mobileNumber,
-            Country: customer.country
           }} />
         </AnimatedCard>
 

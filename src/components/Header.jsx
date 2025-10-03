@@ -3,12 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import QualtyLogo from '../assets/QualtyLogo.png';
 import { useSelector } from "react-redux";
-import useFetchUser from '../hooks/useFetchUser';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  useFetchUser()
   const user = useSelector((state) => state?.user?.user);
   
   const handleAuthClick = () => navigate('/login');
@@ -52,7 +50,7 @@ const Header = () => {
             </button>
           ) : (
             <button
-              onClick={handleAuthClick}
+              onClick={() => navigate(`/login`)}
               className="px-4 py-2 bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-800 hover:to-blue-900 text-white rounded-md text-lg cursor-pointer font-semibold shadow-md transition-transform hover:scale-105"
             >
               Login
