@@ -1,4 +1,3 @@
-import React from "react";
 import NewInspectionRequestCard from "./NewInspectionRequestCard";
 import ViewAllReportsCard from "./ViewAllReportsCard";
 import LiveInspectionCard from "./LiveInspectionCard";

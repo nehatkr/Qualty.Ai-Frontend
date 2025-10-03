@@ -43,6 +43,8 @@ import CompanyPayment from './components/dashboard/CompanyDashboard/CompanyPayme
 import CustomerEnquiryDetailPage from "./components/dashboard/CustomerDashboard/CustomerEnquiryDetailPage";
 import QuickRequestsPage from "./components/dashboard/CustomerDashboard/QuickRequestPage";
 import QuickRequestDetailPage from "./components/dashboard/CustomerDashboard/QuickRequestDetailPage";
+import VerifyEmailPage from "./components/auth/VerifyEmailPage";
+import VerifyPendingPage from "./components/auth/VerifyPendingPage";
 
 
 function App() {
@@ -54,6 +56,8 @@ function App() {
         <Route path="/" element={ <LandingPage/> }/>
         <Route path="/login" element={ <Login/> }/>
         <Route path="/signup" element={ <Signup/> }/>
+        <Route path="/auth/verify-email" element={<VerifyEmailPage />} />
+        <Route path="/verify-pending" element={<VerifyPendingPage />} />
 
         <Route path="/signup/customer" element={ <CustomerSignup/> }/>
         <Route path="/signup/inspector" element={ <InspectorSignup/> }/>

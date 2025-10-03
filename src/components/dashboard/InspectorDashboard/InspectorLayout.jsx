@@ -14,14 +14,16 @@ import {
   FaHistory,
   FaMoneyBillWave,
   FaQuestionCircle,
+  FaClipboardCheck
 } from "react-icons/fa";
-import { BASE_URL } from "../../../utils/constants";
+import { BASE_URL } from "../../../utils/constants"; 
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 const navItems = [
   { label: "Dashboard", icon: <FaTachometerAlt />, path: "/inspector/dashboard" },
   { label: "Bidding Room", icon: <FaGavel />, path: "/inspector/bidding" },
+    { label: "Pending Inspections", icon: <FaClipboardCheck />, path: "/inspector/pending-inspections" },
   { label: "Bid History", icon: <FaHistory />, path: "/inspector/history" },
   { label: "Payments", icon: <FaMoneyBillWave />, path: "/inspector/payments" },
   { label: "Detail Analysis", icon: <FaChartLine />, path: "/inspector/analysis" },

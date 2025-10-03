@@ -104,14 +104,10 @@ const CustomerSignup = () => {
       } else {
         setError(""); 
         setFormError(""); 
-        toast.success('Registration successful!');
-         setTimeout(() => {
-          navigate("/login");
-        }, 1000); 
-       
+        toast.success(data.message || 'Registration successful!');
+          navigate("/verify-pending");     
       }
         setFormError("");
-       
       }
 
      catch (error) {
