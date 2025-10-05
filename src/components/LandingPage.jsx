@@ -1,19 +1,17 @@
 import Header from "./Header";
-import Hero from "./Hero";
-import Services from "./Services";
-import Contact from "./Contact";
-import Footer from "./Footer";
-import About from "./About";
+import NewFooter from "./newFooter";
+import ServicesSection from "./ServicesSection";
+import AboutSection from "./AboutSection";
+import HeroSection from "./HeroSection";
 
 const LandingPage = () => {
   return (
     <div className="min-h-screen bg-white">
       <Header/>
-      <Hero />
-      <Services />
-      <About />
-      <Contact />
-      <Footer />
+      <HeroSection/>
+      <ServicesSection/>
+      <AboutSection/>
+      <NewFooter/>
     </div>
   );
 };

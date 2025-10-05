@@ -28,7 +28,7 @@ const navItems = [
   { label: "Payments", icon: <FaMoneyBillWave />, path: "/inspector/payments" },
   { label: "Detail Analysis", icon: <FaChartLine />, path: "/inspector/analysis" },
   { label: "My Account", icon: <FaUser />, path: "/inspector/account" },
-  { label: "Chat with Us", icon: <FaComments />, path: "/inspector/chat" },
+  // { label: "Chat with Us", icon: <FaComments />, path: "/inspector/chat" },
 ];
 
 const InspectorLayout = () => {

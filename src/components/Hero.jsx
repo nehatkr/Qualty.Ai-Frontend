@@ -1,4 +1,3 @@
-
 import { CheckCircle, ArrowRight, Play } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import Scene from '../assets/Scene.mp4'
@@ -25,7 +24,6 @@ const Hero = () => {
     "Market analytics tool with AI based insights for your trade decisions"
   ];
 
-  // Handle scroll event and mobile detection
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -340,7 +338,6 @@ const Hero = () => {
     }
   };
 
-  // Add keyframes and responsive styles
   useEffect(() => {
     if (!document.querySelector('#hero-styles')) {
       const styles = `
@@ -432,7 +429,6 @@ const Hero = () => {
 
   return (
     <section style={heroStyles.hero} id="home">
-      {/* Fullscreen video that fades out on scroll - hidden on mobile */}
       {!isMobile && (
         <div style={heroStyles.fullscreenVideoContainer}>
           <video
@@ -449,7 +445,6 @@ const Hero = () => {
         </div>
       )}
 
-      {/* Mobile HomeVideo - shows at top on mobile only */}
       {isMobile && (
         <div style={heroStyles.mobileHomeVideo}>
           <video
@@ -466,7 +461,6 @@ const Hero = () => {
         </div>
       )}
 
-      {/* Hero content backgrounds */}
       <div 
         style={heroStyles.globeBackground}
         className="globe-background-enhanced"
@@ -538,7 +532,6 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Desktop Scene video */}
         <div style={heroStyles.visualContainer}>
           <div style={heroStyles.videoContainer}>
             <video
@@ -556,7 +549,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Mobile Scene video - shows after text content on mobile only */}
       {isMobile && (
         <div style={heroStyles.mobileSceneVideo}>
           <video

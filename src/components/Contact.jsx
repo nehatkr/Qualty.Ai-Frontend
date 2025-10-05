@@ -1,6 +1,4 @@
-
-
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { ref, push, serverTimestamp } from 'firebase/database';
 import { database } from '../firebase';
@@ -450,7 +448,6 @@ const Contact = () => {
       
       <div style={contactStyles.container}>
         <div style={contactStyles.sectionHeader}>
-          <div style={contactStyles.badge}>Get In Touch</div>
           <h2 style={contactStyles.title}>
             Ready to Start Your Quality Inspection Journey?
           </h2>

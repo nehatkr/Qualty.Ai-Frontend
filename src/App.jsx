@@ -1,4 +1,3 @@
-import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
@@ -45,7 +44,10 @@ import QuickRequestsPage from "./components/dashboard/CustomerDashboard/QuickReq
 import QuickRequestDetailPage from "./components/dashboard/CustomerDashboard/QuickRequestDetailPage";
 import VerifyEmailPage from "./components/auth/VerifyEmailPage";
 import VerifyPendingPage from "./components/auth/VerifyPendingPage";
-
+import WonBidsDashboard from "./components/dashboard/InspectorDashboard/WonBidsDashboard"
+import Services from "./components/Services";
+import Contact from "./components/Contact";
+import AboutSection from "./components/AboutSection";
 
 function App() {
   return (
@@ -56,6 +58,10 @@ function App() {
         <Route path="/" element={ <LandingPage/> }/>
         <Route path="/login" element={ <Login/> }/>
         <Route path="/signup" element={ <Signup/> }/>
+        <Route path="/services" element={ <Services/> }/>
+        <Route path="/about" element={ <AboutSection/> }/>
+        <Route path="/contact" element={ <Contact/> }/>
+
         <Route path="/auth/verify-email" element={<VerifyEmailPage />} />
         <Route path="/verify-pending" element={<VerifyPendingPage />} />
 
@@ -77,7 +83,6 @@ function App() {
           <Route path="enquiry/:id" element={<CustomerEnquiryDetailPage />} />
            <Route path="quick-requests" element={<QuickRequestsPage />} />
            <Route path="quick-requests/:id" element={<QuickRequestDetailPage />} />
-
         </Route>
 
         <Route path="/inspector" element={ <InspectorLayout/> }>
@@ -89,6 +94,7 @@ function App() {
           <Route path="account" element={<InspectorMyAccount />} />
           <Route path="history" element={<InspectorMyHistory />} />
           <Route path="payments" element={<InspectorPayment />} />
+          <Route path="pending-inspections" element={<WonBidsDashboard />} />
         </Route>
 
         <Route path="/company" element={ <CompanyLayout/> }>

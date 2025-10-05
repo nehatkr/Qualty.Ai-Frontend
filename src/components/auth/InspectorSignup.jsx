@@ -162,11 +162,11 @@ export default function InspectorSignup() {
         setError(data.errors?.[0]?.msg || data.message);
       } else {
        toast.success(data.message || "Signup Successful")
-        navigate("/login");
+        navigate("/verify-pending"); 
       }
     } catch (err) {
-      console.error("Signup error:", err);
-      setError("Something went wrong. Please try again.");
+      setError(err.message || "Something went wrong. Please try again.");
+      console.error("Signup error:",err);
     }
   };
 
