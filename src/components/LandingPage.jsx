@@ -1,5 +1,5 @@
 import Header from "./Header";
-import NewFooter from "./newFooter";
+import NewFooter from "./NewFooter";
 import ServicesSection from "./ServicesSection";
 import AboutSection from "./AboutSection";
 import HeroSection from "./HeroSection";
