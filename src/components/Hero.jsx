@@ -493,7 +493,7 @@ const Hero = () => {
                   <CheckCircle size={16} />
                 </div>
                 <span>{feature}</span>
-              </li>
+              </li> 
             ))}
           </ul>
 

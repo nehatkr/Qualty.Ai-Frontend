@@ -58,9 +58,12 @@ const values = [
 export default function AboutSection() {
   return (
     <section className="bg-black text-white py-20 px-6 sm:px-12 lg:px-20">
+           <span className="inline-block text-center bg-white text-black text-2xl font-bold px-4 py-4 rounded-full mb-4">
+          About
+        </span>
       <div className="max-w-7xl mx-auto">
-        <div className="flex gap-5 items-center">
-          <div className="text-start mb-16 rounded-lg ">
+        <div className="flex gap-5 items-center"> 
+          <div className="text-start mb-16 rounded-lg items-center my-6">
             <p className="text-gray-200 max-w-3xl mx-auto mb-6">
               Qualty.AI is a revolutionary B2B marketplace connecting global
               traders with certified inspection firms and freelancers. We

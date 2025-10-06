@@ -38,18 +38,18 @@ export default function HeroSection() {
           <h1 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight">
             Global <span className="text-white">Quality Inspections</span> for Global Trade
           </h1>
-          <p className="text-gray-300 mb-6">
-            Qualty.AI is a marketplace for global quality inspections bringing together global traders and inspectors worldwide.
+          <p className="text-white mb-6">
+            Qualty.ai is a marketplace for global quality inspections bringing together global traders and inspectors worldwide.
           </p>
 
-          <ul className="space-y-3 mb-8">
+          {/* <ul className="space-y-3 mb-8">
             {features.map((feature, index) => (
               <li key={index} className="flex items-center gap-2 text-gray-200">
                 <CheckCircle size={18} className="text-white" />
                 <span>{feature}</span>
               </li>
             ))}
-          </ul>
+          </ul> */}
 
           <div className="flex gap-4 flex-wrap items-center">
             <button className="px-6 py-3 bg-white text-black font-semibold cursor-pointer rounded hover:bg-gray-200 transition shadow hover:shadow-lg flex items-center gap-2">
