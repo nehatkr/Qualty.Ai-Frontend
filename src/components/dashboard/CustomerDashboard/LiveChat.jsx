@@ -72,12 +72,12 @@ const LiveChat = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const chatEndRef = useRef(null);
-
+  
   const sendMessage = () => {
     if (!input.trim()) return;
     setMessages((prev) => [...prev, { sender: "customer", text: input }]);
     setTimeout(() => {
-      setMessages((prev) => [...prev, { sender: "inspector", text: "🚧 Our teams are crafting a seamless live chat experience for you. Soon you'll be able to connect, clarify, and collaborate in real time — right from this space. Until then, feel free to explore and stay tuned for the magic we're building!" }]);
+      setMessages((prev) => [...prev, { sender: "inspector", text: "🚧 Our teams are crafting a seamless live chat experience for you. Soon you'll be able to connect, clarify, and collaborate in real time. Until then, feel free to explore and stay tuned for the magic we're building!" }]);
     }, 1000);
     setInput("");
   };

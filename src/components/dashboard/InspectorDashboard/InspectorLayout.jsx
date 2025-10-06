@@ -17,8 +17,9 @@ import {
   FaClipboardCheck
 } from "react-icons/fa";
 import { BASE_URL } from "../../../utils/constants"; 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { removeUser } from "../../../redux/slice/userSlice";
 
 const navItems = [
   { label: "Dashboard", icon: <FaTachometerAlt />, path: "/inspector/dashboard" },
@@ -37,6 +38,7 @@ const InspectorLayout = () => {
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch()
   const user = useSelector((state) => state?.user?.user);
 
   const currentTab = navItems.find((item) =>
@@ -51,6 +53,7 @@ const InspectorLayout = () => {
       });
       const data = await response.json();
       toast.success(data.message);
+      dispatch(removeUser())
     } catch (error) {
       toast.error("Logout failed");
     }
@@ -58,7 +61,7 @@ const InspectorLayout = () => {
   };
 
   if (!user) {
-    navigate("/login");
+    navigate("/");
     return <div className="text-center py-10 text-gray-400">Loading user details...</div>;
   }
 

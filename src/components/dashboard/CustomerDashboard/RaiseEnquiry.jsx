@@ -293,12 +293,12 @@ const RaiseEnquiry = () => {
   const hasPhysicalParams = formData.physicalParameters;
   const hasChemicalParams = formData.chemicalParameters;
 
-
   return (
     <div className="min-h-screen bg-gray-900 text-white py-10 px-6">
       <div className="max-w-4xl mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold mb-6 text-center">Raise Inspection Enquiry</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
+          
           {/* Location & Timing */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input
@@ -320,7 +320,7 @@ const RaiseEnquiry = () => {
               value={formData.urgencyLevel}
               onChange={handleChange}
               className={inputClass}
-            >
+            > 
               <option value="">Select Urgency Level</option>
               <option value="Low">Low</option>
               <option value="Medium">Medium</option>
@@ -780,7 +780,7 @@ const RaiseEnquiry = () => {
               </button>
               <button
                 onClick={() => saveGenericParameters('physical')}
-                className="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-medium transition-colors"
+                className="px-6 py-2 bg-blue-600 cursor-pointer hover:bg-blue-700 rounded-lg text-white font-medium transition-colors"
               >
                 Save Parameters
               </button>
@@ -825,7 +825,7 @@ const RaiseEnquiry = () => {
               </button>
               <button
                 onClick={() => saveGenericParameters('chemical')}
-                className="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-medium transition-colors"
+                className="px-6 py-2 bg-blue-600 cursor-pointer hover:bg-blue-700 rounded-lg text-white font-medium transition-colors"
               >
                 Save Parameters
               </button>

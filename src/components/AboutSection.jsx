@@ -56,12 +56,9 @@ const values = [
 ];
 
 export default function AboutSection() {
-  const navigate = useNavigate()
   return (
     <section className="bg-black text-white py-20 px-6 sm:px-12 lg:px-20">
-      <button onClick={()=>navigate("/")} className="bg-white text-black px-4 py-2 font-bold cursor-pointer rounded-lg">Home</button>
       <div className="max-w-7xl mx-auto">
-
         <div className="flex gap-5 items-center">
           <div className="text-start mb-16 rounded-lg ">
             <p className="text-gray-200 max-w-3xl mx-auto mb-6">
