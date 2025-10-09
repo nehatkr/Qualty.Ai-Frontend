@@ -35,7 +35,7 @@ export default function ServicesSection() {
   return (
     <section className="bg-black text-white py-10 px-6 sm:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto text-center mb-12">
-        <span className="inline-block bg-white text-black text-2xl font-bold px-4 py-4 rounded-full mb-4">
+        <span className="inline-block bg-white text-black text-2xl font-semibold px-3 py-1 rounded-full mb-4">
           Our Services
         </span>
         <h2 className="text-4xl font-bold mb-4">
@@ -52,7 +52,7 @@ export default function ServicesSection() {
         <QuickInspection/>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto my-15">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto ">
         {featuredServices.map((service, index) => (
           <div
             key={index}

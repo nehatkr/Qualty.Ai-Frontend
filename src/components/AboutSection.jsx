@@ -11,7 +11,6 @@ import {
 import Scene1 from "../assets/Scene1.mp4";
 import Scene2 from "../assets/Scene2.mp4";
 import CountUpOnView from "./CountUpOnView";
-import { useNavigate } from "react-router";
 
 const achievements = [
   { icon: <Award size={32} />, number: 250, label: "Global Inspectors" },
@@ -57,8 +56,9 @@ const values = [
 
 export default function AboutSection() {
   return (
+    <div>
     <section className="bg-black text-white py-20 px-6 sm:px-12 lg:px-20">
-           <span className="inline-block text-center bg-white text-black text-2xl font-bold px-4 py-4 rounded-full mb-4">
+           <span className="inline-block text-center bg-white text-black text-2xl font-semibold px-4 py-1 rounded-full mb-4">
           About
         </span>
       <div className="max-w-7xl mx-auto">
@@ -150,5 +150,6 @@ export default function AboutSection() {
         </div>
       </div>
     </section>
+     </div>
   );
 }

@@ -30,7 +30,7 @@ export default function WonBidsDashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 px-6 py-10 text-white">
-      <h2 className="text-4xl font-extrabold text-center mb-10 animate-fade-in">
+      <h2 className="text-4xl font-semibold text-center mb-10 animate-fade-in">
         🏆 Won Bids
       </h2>
 

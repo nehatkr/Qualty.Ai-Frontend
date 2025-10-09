@@ -7,7 +7,7 @@ export default function VerifyEmailPage() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [status, setStatus] = useState("Verifying...");
-  const hasRun = useRef(false); // ✅ Prevent double execution
+  const hasRun = useRef(false);
 
   useEffect(() => {
     if (hasRun.current) return;

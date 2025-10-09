@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BASE_URL } from "../../utils/constants";
-import { useNavigate } from "react-router-dom"; 
-import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const allowedCommodities = [
   "Textiles & Garments",
@@ -23,7 +23,6 @@ const allowedCommodities = [
 ];
 
 export default function InspectorSignup() {
-
   const [formData, setFormData] = useState({
     role: "inspector",
     inspectorType: "indian",
@@ -43,12 +42,11 @@ export default function InspectorSignup() {
       ifscCode: "",
     },
     commodities: [{ commodity: "", experienceYears: 0 }],
-
   });
 
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  
+
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
 
@@ -97,9 +95,27 @@ export default function InspectorSignup() {
     setFormData((prev) => ({ ...prev, commodities: updated }));
   };
 
+  const handleAadhaarChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        alert("Aadhaar card file size should not exceed 5MB.");
+        return;
+      }
+
+      setFormData((prev) => ({
+        ...prev,
+        identityDocuments: {
+          ...prev.identityDocuments,
+          aadhaarCard: file,
+        },
+      }));
+    }
+  };
+
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError("");
+    e.preventDefault();
+    setError("");
 
     if (
       formData.acceptsRequests &&
@@ -121,7 +137,10 @@ export default function InspectorSignup() {
     formdataToSend.append("countryCode", formData.countryCode);
     formdataToSend.append("mobileNumber", formData.mobileNumber);
     formdataToSend.append("address", formData.address);
-    formdataToSend.append("acceptsRequests", formData.acceptsRequests ? "true" : "false");
+    formdataToSend.append(
+      "acceptsRequests",
+      formData.acceptsRequests ? "true" : "false"
+    );
 
     if (formData.identityDocuments.aadhaarCard)
       formdataToSend.append(
@@ -133,14 +152,8 @@ export default function InspectorSignup() {
       "accountNumber",
       formData.billingDetails.accountNumber
     );
-    formdataToSend.append(
-      "bankName",
-      formData.billingDetails.bankName
-    );
-    formdataToSend.append(
-      "ifscCode",
-      formData.billingDetails.ifscCode
-    );
+    formdataToSend.append("bankName", formData.billingDetails.bankName);
+    formdataToSend.append("ifscCode", formData.billingDetails.ifscCode);
 
     formData.commodities.forEach((item, index) => {
       formdataToSend.append(`commodities[${index}][commodity]`, item.commodity);
@@ -156,155 +169,244 @@ export default function InspectorSignup() {
         body: formdataToSend,
         credentials: "include",
       });
- 
+
       const data = await response.json();
       if (!data.success) {
         setError(data.errors?.[0]?.msg || data.message);
       } else {
-       toast.success(data.message || "Signup Successful")
-        navigate("/verify-pending"); 
+        toast.success(data.message || "Signup Successful");
+        navigate("/verify-pending");
       }
     } catch (err) {
       setError(err.message || "Something went wrong. Please try again.");
-      console.error("Signup error:",err);
+      console.error("Signup error:", err);
     }
   };
 
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center p-6">
+    <div className="min-h-screen bg-white text-black flex items-center justify-center p-6">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-2xl bg-gray-900 p-6 rounded-lg shadow-lg space-y-4"
+        className="w-full max-w-2xl bg-white border border-gray-200 p-8 rounded-xl shadow-xl space-y-6"
       >
-        <h2 className="text-2xl font-bold mb-4">Inspector Signup</h2>
-        <div>
-          <label>Role</label>
+        <h2 className="text-3xl font-bold text-center mb-6">
+          Inspector Signup
+        </h2>
+
+        {/* Role Selection */}
+        <div className="space-y-2">
+          <label className="block text-sm font-semibold">Role</label>
           <select
             name="role"
             value={formData.role}
             onChange={handleChange}
-            className="w-full p-2 bg-gray-800 text-white rounded"
+            className="w-full p-3 bg-white border border-gray-300 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
           >
             <option value="customer">Customer</option>
             <option value="inspector">Inspector</option>
           </select>
         </div>
 
-        <div>
-          <label>Inspector Type</label>
+        {/* Inspector Type */}
+        <div className="space-y-2">
+          <label className="block text-sm font-semibold">Inspector Type</label>
           <select
             name="inspectorType"
             value={formData.inspectorType}
             onChange={handleChange}
-            className="w-full p-2 bg-gray-800 text-white rounded"
+            className="w-full p-3 bg-white border border-gray-300 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
           >
             <option value="indian">Indian</option>
             <option value="international">International</option>
           </select>
         </div>
 
-        <input
-          name="name"
-          placeholder="Name"
-          value={formData.name}
-          onChange={handleChange}
-          className="w-full p-2 bg-gray-800 text-white rounded"
-          required
-        />
-        <input
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          className="w-full p-2 bg-gray-800 text-white rounded"
-          required
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          className="w-full p-2 bg-gray-800 text-white rounded"
-          required
-        />
-        <input
-          name="countryCode"
-          placeholder="Country Code"
-          value={formData.countryCode}
-          onChange={handleChange}
-          className="w-full p-2 bg-gray-800 text-white rounded"
-          required
-        />
-        <input
-          name="mobileNumber"
-          placeholder="Mobile Number"
-          value={formData.mobileNumber}
-          onChange={handleChange}
-          className="w-full p-2 bg-gray-800 text-white rounded"
-          required
-        />
-        <input
-          name="address"
-          placeholder="Address"
-          value={formData.address}
-          onChange={handleChange}
-          className="w-full p-2 bg-gray-800 text-white rounded"
-        />
+        {/* Name */}
+        <div className="space-y-2">
+          <label htmlFor="name" className="block text-sm font-semibold">
+            Full Name
+          </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Enter your full name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="w-full p-3 bg-white border border-gray-300 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+          />
+        </div>
 
-        <div className="flex items-center space-x-2">
+        {/* Email */}
+        <div className="space-y-2">
+          <label htmlFor="email" className="block text-sm font-semibold">
+            Email Address
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Enter your email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="w-full p-3 bg-white border border-gray-300 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+          />
+        </div>
+
+        {/* Password */}
+        <div className="space-y-2">
+          <label htmlFor="password" className="block text-sm font-semibold">
+            Password
+          </label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Create a secure password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+            className="w-full p-3 bg-white border border-gray-300 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+          />
+        </div>
+
+        {/* Country Code */}
+        <div className="space-y-2">
+          <label htmlFor="countryCode" className="block text-sm font-semibold">
+            Country Code
+          </label>
+          <input
+            id="countryCode"
+            name="countryCode"
+            type="tel"
+            placeholder="+91"
+            value={formData.countryCode}
+            onChange={handleChange}
+            pattern="^\+\d{1,4}$"
+            inputMode="numeric"
+            maxLength={5}
+            required
+            className="w-full p-3 bg-white border border-gray-300 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+          />
+          <p className="text-xs text-gray-500">
+            Include "+" and country digits (e.g. +91)
+          </p>
+        </div>
+
+        {/* Mobile Number */}
+        <div className="space-y-2">
+          <label htmlFor="mobileNumber" className="block text-sm font-semibold">
+            Mobile Number
+          </label>
+          <input
+            id="mobileNumber"
+            name="mobileNumber"
+            type="tel"
+            placeholder="10-digit mobile number"
+            value={formData.mobileNumber}
+            onChange={handleChange}
+            pattern="\d{10}"
+            inputMode="numeric"
+            maxLength={10}
+            minLength={10}
+            required
+            className="w-full p-3 bg-white border border-gray-300 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+          />
+          <p className="text-xs text-gray-500">
+            Only digits allowed. No spaces or symbols.
+          </p>
+        </div>
+
+        {/* Address */}
+        <div className="space-y-2">
+          <label htmlFor="address" className="block text-sm font-semibold">
+            Address
+          </label>
+          <input
+            id="address"
+            name="address"
+            type="text"
+            placeholder="Enter your address"
+            value={formData.address}
+            onChange={handleChange}
+            className="w-full p-3 bg-white border border-gray-300 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+          />
+        </div>
+
+        {/* Accepts Requests */}
+        <div className="flex items-center space-x-3">
           <input
             type="checkbox"
             name="acceptsRequests"
             checked={formData.acceptsRequests}
             onChange={handleChange}
+            className="cursor-pointer"
           />
-          <label>Accepts Requests</label>
+          <label className="text-sm font-medium">I agree to accept inspection requests and participate in bidding</label>
         </div>
 
         {formData.acceptsRequests && (
-          <>
-            <input
-              type="file"
-              name="identityDocuments.aadhaarCard"
-              onChange={handleChange}
-              placeholder="Aadhaar Card"
-              required
-            />
-            <input
-              name="billingDetails.accountNumber"
-              value={formData.billingDetails.accountNumber}
-              onChange={handleChange}
-              placeholder="Account Number"
-              required
-            />
-            <input
-              name="billingDetails.bankName"
-              value={formData.billingDetails.bankName}
-              onChange={handleChange}
-              placeholder="Bank Name"
-              required
-            />
-            <input
-              name="billingDetails.ifscCode"
-              value={formData.billingDetails.ifscCode}
-              onChange={handleChange}
-              placeholder="IFSC Code"
-              required
-            />
-          </>
+          <div className="space-y-6 mt-6 border-t border-gray-300 pt-6">
+            <div className="space-y-2">
+              <label className="block text-sm font-semibold">
+                Aadhaar Card <span className="text-gray-500">(Max 5MB)</span>
+              </label>
+              <input
+                type="file"
+                name="aadhaarCard"
+                accept=".jpg,.jpeg,.png,.pdf"
+                onChange={handleAadhaarChange}
+                className="block w-full text-sm text-black p-2 bg-white border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-black"
+                required
+              />
+              <p className="text-xs text-gray-500">
+                Accepted formats: JPG, PNG, PDF
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {["accountNumber", "bankName", "ifscCode"].map((field, i) => (
+                <div
+                  key={field}
+                  className={`space-y-2 ${i === 2 ? "sm:col-span-2" : ""}`}
+                >
+                  <label className="block text-sm font-semibold">
+                    {field === "accountNumber"
+                      ? "Account Number"
+                      : field === "bankName"
+                      ? "Bank Name"
+                      : "IFSC Code"}
+                  </label>
+                  <input
+                    name={`billingDetails.${field}`}
+                    value={formData.billingDetails[field]}
+                    onChange={handleChange}
+                    placeholder={`Enter ${field.replace(/([A-Z])/g, " $1")}`}
+                    required
+                    className="w-full p-3 bg-white border border-gray-300 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         )}
 
-        <div>
-          <h3 className="font-semibold">Commodities</h3>
+        {/* Commodities Section */}
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold">Commodities</h3>
           {formData.commodities.map((item, index) => (
-            <div key={index} className="space-y-2 mb-4">
+            <div
+              key={index}
+              className="space-y-2 border border-gray-200 p-4 rounded-lg"
+            >
               <select
                 value={item.commodity}
                 onChange={(e) =>
                   handleCommodityChange(index, "commodity", e.target.value)
                 }
-                className="w-full p-2 bg-gray-800 text-white rounded"
+                className="w-full p-3 bg-white border border-gray-300 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
               >
                 <option value="">Select Commodity</option>
                 {allowedCommodities.map((c) => (
@@ -326,14 +428,14 @@ export default function InspectorSignup() {
                   )
                 }
                 placeholder="Years of Experience"
-                className="w-full p-2 bg-gray-800 text-white rounded"
                 required
+                className="w-full p-3 bg-white border border-gray-300 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
               />
               {formData.commodities.length > 1 && (
                 <button
                   type="button"
                   onClick={() => removeCommodity(index)}
-                  className="bg-red-600 px-2 py-1 rounded"
+                  className="bg-black text-white px-3 py-1 rounded hover:bg-gray-800 transition"
                 >
                   Remove
                 </button>
@@ -343,17 +445,19 @@ export default function InspectorSignup() {
           <button
             type="button"
             onClick={addCommodity}
-            className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-700"
+            className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition"
           >
             Add Commodity
           </button>
         </div>
 
-        {error && <div className="text-red-500">{error}</div>}
+        {/* Error Message */}
+        {error && <div className="text-red-600 font-medium">{error}</div>}
 
+        {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-green-600 py-2 rounded hover:bg-green-700 font-semibold cursor-pointer"
+          className="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 font-semibold cursor-pointer transition"
         >
           Sign up
         </button>

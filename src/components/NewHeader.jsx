@@ -3,12 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import QualtyLogo from "../assets/QualtyLogo.png";
 import { useSelector } from "react-redux";
-import useFetchUser from "../hooks/useFetchUser";
 
-const Header = () => {
+const NewHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  useFetchUser();
   const user = useSelector((state) => state?.user?.user);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -33,14 +31,13 @@ const Header = () => {
     { label: "Services", href: "/services" },
     { label: "About", href: "/about" },
   ];
-
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 text-white transition-all duration-300 font-sans ${
+      className={`fixed top-0 left-0 w-full z-50 bg-black text-white shadow-md transition-all duration-300 font-sans ${
         showHeader ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-2 py-1 flex items-center justify-between">
         <div
           className="flex items-center gap-2 cursor-pointer transition-transform hover:scale-105"
           onClick={() => navigate("/")}
@@ -48,7 +45,7 @@ const Header = () => {
           <img
             src={QualtyLogo}
             alt="Qualty.AI Logo"
-            className="h-15 w-15 rounded-full shadow-sm"
+            className="h-20 w-20 rounded-full shadow-sm"
           />
         </div>
 
@@ -155,4 +152,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default NewHeader;

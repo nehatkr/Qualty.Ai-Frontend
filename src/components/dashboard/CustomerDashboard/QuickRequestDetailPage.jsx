@@ -30,17 +30,17 @@ export default function QuickRequestDetailPage() {
     fetchDetails();
   }, [id]);
 
-  if (loading) return <p className="text-center text-gray-400">Loading...</p>;
-  if (error) return <p className="text-center text-red-400">{error}</p>;
+  if (loading) return <p className="text-center text-gray-500">Loading...</p>;
+  if (error) return <p className="text-center text-red-500">{error}</p>;
   if (!request) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 px-4 sm:px-6 lg:px-10 py-10 text-white">
-      <h2 className="text-4xl font-extrabold text-center mb-12 animate-fade-in tracking-wide">
+    <div className="min-h-screen bg-white text-black px-4 sm:px-6 lg:px-10 py-10">
+      <h2 className="text-4xl font-bold text-center mb-12 animate-fade-in tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-black via-gray-800 to-black">
         📄 Request Details
       </h2>
 
-      <div className="max-w-3xl mx-auto bg-gray-900/70 backdrop-blur-md border border-gray-800 rounded-2xl p-6 shadow-xl hover:shadow-[0_0_30px_#22c55e] transition-all duration-300 animate-fade-in space-y-6">
+      <div className="max-w-3xl mx-auto bg-white border border-gray-200 rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 animate-fade-in space-y-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <DetailItem label="📍 Location" value={request.location} />
           <DetailItem label="🗓️ Inspection Date" value={new Date(request.inspectionDate).toLocaleDateString()} />
@@ -54,15 +54,33 @@ export default function QuickRequestDetailPage() {
           {request.paymentId && <DetailItem label="💳 Payment ID" value={request.paymentId._id} />}
         </div>
       </div>
+
+      {/* Animations */}
+      <style jsx>{`
+        .animate-fade-in {
+          animation: fadeIn 0.8s ease-out forwards;
+        }
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+      `}</style>
     </div>
   );
 }
 
 function DetailItem({ label, value, highlight }) {
+  const highlightClass = highlight === "blue" ? "text-blue-600" : "text-black";
   return (
-    <p className="text-sm sm:text-base text-gray-300">
-      <span className="font-semibold text-gray-400">{label}:</span>{" "}
-      <span className={`font-medium ${highlight ? `text-${highlight}-400` : "text-white"}`}>
+    <p className="text-sm sm:text-base text-gray-700">
+      <span className="font-semibold text-gray-500">{label}:</span>{" "}
+      <span className={`font-medium ${highlightClass}`}>
         {value || "—"}
       </span>
     </p>

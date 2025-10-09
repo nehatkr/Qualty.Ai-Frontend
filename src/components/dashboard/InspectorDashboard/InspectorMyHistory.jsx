@@ -12,7 +12,6 @@ const InspectorHistory = () => {
           credentials: "include",
         });
         const data = await res.json();
-        console.log(data);
         if (data.success) {
           setBids(data.bids);
         } else {
@@ -43,7 +42,7 @@ const InspectorHistory = () => {
     <div className="min-h-screen bg-gradient-to-br from-[#0f0f11] via-[#1a1a1c] to-[#121212] text-white px-6 py-10">
       <div className="max-w-6xl mx-auto space-y-10 animate-fade-in">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 mb-2 tracking-wide">
+          <h1 className="text-4xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 mb-2 tracking-wide">
             My Bid History
           </h1>
           <p className="text-gray-400 text-sm">All bids placed by you as an inspector</p>

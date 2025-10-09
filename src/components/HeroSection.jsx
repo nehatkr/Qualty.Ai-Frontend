@@ -1,6 +1,7 @@
-import { ArrowRight, Play, CheckCircle } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 import HomeVideo from "../assets/HomeVideo.mp4";
 import Scene from "../assets/Scene.mp4";
+import { useNavigate } from "react-router";
 
 const stats = [
   { number: "1000+", label: "Global Inspectors" },
@@ -9,16 +10,8 @@ const stats = [
   { number: "24/7", label: "Platform Support" },
 ];
 
-const features = [
-  "Raise Inspection query",
-  "Choose the best quote",
-  "Better transparency and reporting of cargo",
-  "Reach out to global inspectors",
-  "AI based suggestions for quality of cargo",
-  "Market analytics tool with AI based insights for your trade decisions",
-];
-
 export default function HeroSection() {
+  const navigate = useNavigate()
   return (
     <section className="bg-black text-white relative overflow-hidden" id="home">
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -42,27 +35,14 @@ export default function HeroSection() {
             Qualty.ai is a marketplace for global quality inspections bringing together global traders and inspectors worldwide.
           </p>
 
-          {/* <ul className="space-y-3 mb-8">
-            {features.map((feature, index) => (
-              <li key={index} className="flex items-center gap-2 text-gray-200">
-                <CheckCircle size={18} className="text-white" />
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul> */}
-
           <div className="flex gap-4 flex-wrap items-center">
-            <button className="px-6 py-3 bg-white text-black font-semibold cursor-pointer rounded hover:bg-gray-200 transition shadow hover:shadow-lg flex items-center gap-2">
+            <button onClick={()=>navigate("/login")} className="px-6 py-3 bg-white text-black font-semibold cursor-pointer rounded hover:bg-gray-200 transition shadow hover:shadow-lg flex items-center gap-2">
               Get Started Today <ArrowRight size={20} />
             </button>
             <button className="px-6 py-3 border cursor-pointer border-white text-white rounded hover:bg-white hover:text-black transition flex items-center gap-2">
               <Play size={20} />
               Watch Demo
             </button>
-          </div>
-
-          <div className="mt-6 text-sm text-gray-400 font-medium">
-             Global Quality Inspections Marketplace
           </div>
         </div>
 

@@ -5,7 +5,7 @@ import LiveInspectionCard from "./LiveInspectionCard";
 export default function QuickActions() {
   return (
     <section className="p-6 bg-black rounded-xl shadow-xl">
-      <h2 className="text-3xl font-extrabold text-gray-300 mb-6 text-center tracking-tight">
+      <h2 className="text-3xl font-semibold text-gray-300 mb-6 text-center tracking-tight">
          Quick Actions
       </h2>
 

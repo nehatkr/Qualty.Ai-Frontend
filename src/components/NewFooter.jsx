@@ -10,16 +10,6 @@ export default function NewFooter() {
           <ul className="space-y-2 text-gray-400">
             <li><Link to="/about" className="hover:text-white">Company</Link></li>
             <li><Link to="/team" className="hover:text-white">Team</Link></li>
-            <li><Link to="/careers" className="hover:text-white">Careers</Link></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="text-xl font-semibold mb-4">Services</h3>
-          <ul className="space-y-2 text-gray-400">
-            <li><Link to="/inspections" className="hover:text-white">Inspections</Link></li>
-            <li><Link to="/marketplace" className="hover:text-white">Marketplace</Link></li>
-            <li><Link to="/pricing" className="hover:text-white">Pricing</Link></li>
           </ul>
         </div>
 
@@ -27,7 +17,6 @@ export default function NewFooter() {
           <h3 className="text-xl font-semibold mb-4">Support</h3>
           <ul className="space-y-2 text-gray-400">
             <li><Link to="/contact" className="hover:text-white">Contact Us</Link></li>
-            <li><Link to="/faq" className="hover:text-white">FAQs</Link></li>
             <li><Link to="/help" className="hover:text-white">Help Center</Link></li>
           </ul>
         </div>
@@ -36,10 +25,47 @@ export default function NewFooter() {
           <h3 className="text-xl font-semibold mb-4">Legal</h3>
           <ul className="space-y-2 text-gray-400">
             <li><Link to="/terms" className="hover:text-white">Terms of Service</Link></li>
-            <li><Link to="/privacy" className="hover:text-white">Privacy Policy</Link></li>
-            <li><Link to="/cookies" className="hover:text-white">Cookie Policy</Link></li>
+            <li><Link to="/privacy-policy" className="hover:text-white">Privacy Policy</Link></li>
           </ul>
         </div>
+
+         <div>
+          <h3 className="text-xl font-semibold mb-4">Social Media</h3>
+          <ul className="space-y-3 text-gray-400">
+            <li>
+              <a
+                href="https://www.linkedin.com/company/qualty-ai-inspection"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-white"
+              >
+                <FaLinkedin className="text-xl" /> LinkedIn
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.instagram.com/qualty.ai?igsh=d2ppcmRzY2U0dzl5&utm_source=qr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-white"
+              >
+                <FaInstagram className="text-xl" /> Instagram
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-white"
+              >
+                <FaYoutube className="text-xl" /> YouTube
+              </a>
+            </li>
+          </ul>
+        </div>
+
+
       </div>
 
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center pt-6">

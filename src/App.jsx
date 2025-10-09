@@ -1,66 +1,71 @@
+import { lazy, Suspense } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import LandingPage from "../src/components/LandingPage"
-import Login from "../src/components/auth/Login";
-import Signup from "../src/components/auth/Signup";
-import CustomerSignup from "../src/components/auth/CustomerSignup";
-import InspectorSignup from "../src/components/auth/InspectorSignup";
-import CompanySignup from "../src/components/auth/CompanySignup";
-import QuickInspection from "./components/QuickInspection"; 
-import LocationDetail from "./components/LocationDetail";
-import QuickInspectionForm from "./components/QuickInspectionForm";
-import InspectorDashboard from "./components/dashboard/InspectorDashboard/InspectorDashboard";
-import RaiseEnquiry from "./components/dashboard/CustomerDashboard/RaiseEnquiry";
-import BiddingRoom from "./components/dashboard/CustomerDashboard/BiddingRoom";
-import Dashboard from "./components/dashboard/CustomerDashboard/Dashboard";
-import ChatWithUs from "./components/dashboard/CustomerDashboard/ChatWithUs";
-import DetailAnalysis from "./components/dashboard/CustomerDashboard/DetailAnalysis";
-import LiveChat from "./components/dashboard/CustomerDashboard/LiveChat";
-import MyAccount from "./components/dashboard/CustomerDashboard/MyAccount";
-import MyHistory from "./components/dashboard/CustomerDashboard/MyHistory";
-import Payments from "./components/dashboard/CustomerDashboard/Payments";
-import CustomerLayout from "./components/dashboard/CustomerDashboard/CustomerLayout";
-import InspectorLayout from "./components/dashboard/InspectorDashboard/InspectorLayout";
-import InspectorBidRoom from "./components/dashboard/InspectorDashboard/InspectorBidRoom";
-import InspectorChatWithUs from "./components/dashboard/InspectorDashboard/InspectorChatWithUs";
-import InspectorAnalysis from "./components/dashboard/InspectorDashboard/InspectorAnalysis";
-import InspectorLiveChat from "./components/dashboard/InspectorDashboard/InspectorLiveChat";
-import InspectorMyAccount from "./components/dashboard/InspectorDashboard/InspectorMyAccount";
-import InspectorMyHistory from "./components/dashboard/InspectorDashboard/InspectorMyHistory";
-import InspectorPayment from "./components/dashboard/InspectorDashboard/InspectorPayment";
-import InspectionDetailsPage from "./components/dashboard/CustomerDashboard/InspectionDetailsPage";
-import CompanyLayout from './components/dashboard/CompanyDashboard/CompanyLayout'
-import CompanyDashboard from './components/dashboard/CompanyDashboard/CompanyDashboard'
-import CompanyBidRoom from './components/dashboard/CompanyDashboard/CompanyBidRoom'
-import CompanyChatWithUs from './components/dashboard/CompanyDashboard/CompanyChatWithUs'
-import CompanyAnalysis from './components/dashboard/CompanyDashboard/CompanyAnalysis'
-import CompanyLiveChat from './components/dashboard/CompanyDashboard/CompanyLiveChat'
-import CompanyAccount from './components/dashboard/CompanyDashboard/CompanyAccount'
-import CompanyHistory from './components/dashboard/CompanyDashboard/CompanyHistory'
-import CompanyPayment from './components/dashboard/CompanyDashboard/CompanyPayment'
-import CustomerEnquiryDetailPage from "./components/dashboard/CustomerDashboard/CustomerEnquiryDetailPage";
-import QuickRequestsPage from "./components/dashboard/CustomerDashboard/QuickRequestPage";
-import QuickRequestDetailPage from "./components/dashboard/CustomerDashboard/QuickRequestDetailPage";
-import VerifyEmailPage from "./components/auth/VerifyEmailPage";
-import VerifyPendingPage from "./components/auth/VerifyPendingPage";
-import WonBidsDashboard from "./components/dashboard/InspectorDashboard/WonBidsDashboard"
-import Services from "./components/Services";
-import Contact from "./components/Contact";
-import AboutSection from "./components/AboutSection";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from "./components/LandingPage";
+
+const Login = lazy(() => import("../src/components/auth/Login"));
+const Signup = lazy(() => import("../src/components/auth/Signup"));
+const CustomerSignup = lazy(() => import("../src/components/auth/CustomerSignup"));
+const InspectorSignup = lazy(() => import("../src/components/auth/InspectorSignup"));
+const CompanySignup = lazy(() => import("../src/components/auth/CompanySignup"));
+const QuickInspection = lazy(() => import("./components/QuickInspection"));
+const LocationDetail = lazy(() => import("./components/LocationDetail"));
+const QuickInspectionForm = lazy(() => import("./components/QuickInspectionForm"));
+const InspectorDashboard = lazy(() => import("./components/dashboard/InspectorDashboard/InspectorDashboard"));
+const RaiseEnquiry = lazy(() => import("./components/dashboard/CustomerDashboard/RaiseEnquiry"));
+const BiddingRoom = lazy(() => import("./components/dashboard/CustomerDashboard/BiddingRoom"));
+const Dashboard = lazy(() => import("./components/dashboard/CustomerDashboard/Dashboard"));
+const ChatWithUs = lazy(() => import("./components/dashboard/CustomerDashboard/ChatWithUs"));
+const DetailAnalysis = lazy(()=>import("./components/dashboard/CustomerDashboard/DetailAnalysis"))
+const LiveChat = lazy(()=>import("./components/dashboard/CustomerDashboard/LiveChat"))
+const MyAccount = lazy(()=>import("./components/dashboard/CustomerDashboard/MyAccount"))
+const MyHistory = lazy(()=>import("./components/dashboard/CustomerDashboard/MyHistory"))
+const Payments = lazy(()=>import("./components/dashboard/CustomerDashboard/Payments"))
+const CustomerLayout = lazy(()=>import("./components/dashboard/CustomerDashboard/CustomerLayout"))
+const InspectionDetailsPage = lazy(()=>import("./components/dashboard/CustomerDashboard/InspectionDetailsPage"))
+const InspectorLayout = lazy(()=>import("./components/dashboard/InspectorDashboard/InspectorLayout"))
+const InspectorBidRoom = lazy(()=>import("./components/dashboard/InspectorDashboard/InspectorBidRoom"))
+const InspectorChatWithUs = lazy(()=>import("./components/dashboard/InspectorDashboard/InspectorChatWithUs"))
+const InspectorAnalysis = lazy(()=>import("./components/dashboard/InspectorDashboard/InspectorAnalysis"))
+const InspectorLiveChat = lazy(()=>import("./components/dashboard/InspectorDashboard/InspectorLiveChat"))
+const InspectorMyAccount = lazy(()=>import("./components/dashboard/InspectorDashboard/InspectorMyAccount"))
+const InspectorMyHistory = lazy(()=>import("./components/dashboard/InspectorDashboard/InspectorMyHistory"))
+const InspectorPayment = lazy(()=>import("./components/dashboard/InspectorDashboard/InspectorPayment"));
+const CompanyLayout = lazy(()=>import("./components/dashboard/CompanyDashboard/CompanyLayout"))
+const CompanyDashboard = lazy(()=>import("./components/dashboard/CompanyDashboard/CompanyDashboard"))
+const CompanyBidRoom = lazy(()=>import("./components/dashboard/CompanyDashboard/CompanyBidRoom"))
+const CompanyChatWithUs = lazy(()=>import("./components/dashboard/CompanyDashboard/CompanyChatWithUs"))
+const CompanyAnalysis = lazy(()=>import("./components/dashboard/CompanyDashboard/CompanyAnalysis"))
+const CompanyLiveChat = lazy(()=>import("./components/dashboard/CompanyDashboard/CompanyLiveChat"))
+const CompanyAccount = lazy(()=>import("./components/dashboard/CompanyDashboard/CompanyAccount"))
+const CompanyHistory = lazy(()=>import("./components/dashboard/CompanyDashboard/CompanyHistory"))
+const CompanyPayment = lazy(()=>import("./components/dashboard/CompanyDashboard/CompanyPayment"))
+const CustomerEnquiryDetailPage = lazy(()=>import("./components/dashboard/CustomerDashboard/CustomerEnquiryDetailPage"))
+const QuickRequestsPage = lazy(()=>import("./components/dashboard/CustomerDashboard/QuickRequestPage"))
+const QuickRequestDetailPage = lazy(()=>import("./components/dashboard/CustomerDashboard/QuickRequestDetailPage"))
+const VerifyEmailPage = lazy(()=>import("./components/auth/VerifyEmailPage"))
+const VerifyPendingPage = lazy(()=>import("./components/auth/VerifyPendingPage"))
+const WonBidsDashboard = lazy(()=>import("./components/dashboard/InspectorDashboard/WonBidsDashboard"))
+const Services = lazy(()=>import("./components/Services"))
+const Contact = lazy(()=>import("./components/Contact"))
+import ShimmerUI from "./components/ShimmerUI";
+import About from "./components/About";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 
 function App() {
   return (
     <Router>
         <ToastContainer position="top-right" autoClose={3000} />
+        <Suspense fallback={<ShimmerUI/>}>
       <Routes>    
-        <Route path="*" element={<Navigate to="/"  />} />  
         <Route path="/" element={ <LandingPage/> }/>
         <Route path="/login" element={ <Login/> }/>
         <Route path="/signup" element={ <Signup/> }/>
         <Route path="/services" element={ <Services/> }/>
-        <Route path="/about" element={ <AboutSection/> }/>
+        <Route path="/about" element={ <About/> }/>
         <Route path="/contact" element={ <Contact/> }/>
+        <Route path="/privacy-policy" element={ <PrivacyPolicy/> }/>
 
         <Route path="/auth/verify-email" element={<VerifyEmailPage />} />
         <Route path="/verify-pending" element={<VerifyPendingPage />} />
@@ -111,8 +116,8 @@ function App() {
         <Route path="/quickInspection" element={ <QuickInspection />} />
         <Route path="/quickInspection/:regionName" element={ <LocationDetail />} />
         <Route path="/quickInspection/form" element={ <QuickInspectionForm />} />
-        
       </Routes>
+      </Suspense>
     </Router>
   );
 }

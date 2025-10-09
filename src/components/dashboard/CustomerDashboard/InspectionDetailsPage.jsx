@@ -1,17 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import {
-  FaMapMarkerAlt,
-  FaUserTie,
-  FaChartBar,
-  FaCheckCircle,
-} from "react-icons/fa";
+import { FaUserTie, FaChartBar, FaCheckCircle } from "react-icons/fa";
 import { BASE_URL } from "../../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addInspectionBids,
-  addInspectionStats,
-} from "../../../redux/slice/enquiryBidSlice";
+import { addInspectionBids, addInspectionStats } from "../../../redux/slice/enquiryBidSlice";
 import { toast } from "react-toastify";
 
 export default function InspectionDetailsPage() {
@@ -44,20 +36,14 @@ export default function InspectionDetailsPage() {
 
   const handleConfirmBid = async (bidId, enquiryId, amount) => {
     try {
-      const orderRes = await fetch(
-        `${BASE_URL}/payment/createOrder/${enquiryId}`,
-        {
-          method: "POST",
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ amount }),
-        }
-      );
+      const orderRes = await fetch(`${BASE_URL}/payment/createOrder/${enquiryId}`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount }),
+      });
       const orderData = await orderRes.json();
-      console.log("orderData", orderData);
-
       if (!orderData.success) {
-        console.error(orderData.message);
         toast.error(orderData.message || "Failed to create payment order");
         return;
       }
@@ -77,7 +63,7 @@ export default function InspectionDetailsPage() {
           contact: customerDetails.mobileNumber,
         },
         theme: {
-          color: "#0f172a",
+          color: "#000000",
         },
         handler: async function (response) {
           try {
@@ -95,8 +81,6 @@ export default function InspectionDetailsPage() {
             });
 
             const verifyData = await verifyRes.json();
-            console.log("verifyData", verifyData);
-            
             if (verifyData.success) {
               toast.success("Bid confirmed successfully!");
               setConfirmedBidId(bidId);
@@ -117,61 +101,53 @@ export default function InspectionDetailsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-900 text-white px-6 py-10">
+    <div className="min-h-screen bg-white text-black px-6 py-10">
       <div className="max-w-6xl mx-auto space-y-10">
+        {/* Header */}
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-blue-400 mb-2">
+          <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-black via-gray-800 to-black mb-2">
             Inspection Bids Overview
           </h1>
-          <p className="text-gray-400 text-sm">
+          <p className="text-gray-600 text-sm">
             Review inspector bids and confirm the best fit for your inspection
           </p>
         </div>
 
+        {/* Stats Summary */}
         {stats && (
-          <div className="bg-gray-900 p-6 rounded-xl border border-gray-700 shadow-lg">
-            <h2 className="text-2xl font-semibold text-green-400 mb-4 flex items-center gap-2">
+          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-md">
+            <h2 className="text-2xl font-semibold text-green-700 mb-4 flex items-center gap-2">
               <FaChartBar /> Bidding Summary
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm text-gray-300">
-              <div className="bg-gray-800 p-4 rounded-lg hover:scale-105 transition">
-                <p className="text-lg font-bold text-white">
-                  {stats.totalBids}
-                </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm text-gray-700">
+              <div className="bg-gray-50 p-4 rounded-lg hover:shadow transition">
+                <p className="text-lg font-bold text-black">{stats.totalBids}</p>
                 <p>Total Bids</p>
               </div>
-              <div className="bg-gray-800 p-4 rounded-lg hover:scale-105 transition">
-                <p className="text-lg font-bold text-white">
-                  ₹{stats.lowestBid}
-                </p>
+              <div className="bg-gray-50 p-4 rounded-lg hover:shadow transition">
+                <p className="text-lg font-bold text-black">₹{stats.lowestBid}</p>
                 <p>Lowest Bid</p>
               </div>
-              <div className="bg-gray-800 p-4 rounded-lg hover:scale-105 transition">
-                <p className="text-lg font-bold text-white">
-                  ₹{stats.highestBid}
-                </p>
+              <div className="bg-gray-50 p-4 rounded-lg hover:shadow transition">
+                <p className="text-lg font-bold text-black">₹{stats.highestBid}</p>
                 <p>Highest Bid</p>
               </div>
-              <div className="bg-gray-800 p-4 rounded-lg hover:scale-105 transition">
-                <p className="text-lg font-bold text-white">
-                  ₹{Math.round(stats.averageBid)}
-                </p>
+              <div className="bg-gray-50 p-4 rounded-lg hover:shadow transition">
+                <p className="text-lg font-bold text-black">₹{Math.round(stats.averageBid)}</p>
                 <p>Average Bid</p>
               </div>
             </div>
           </div>
         )}
 
+        {/* Bids Section */}
         <div>
-          <h2 className="text-2xl font-semibold text-yellow-400 mb-4">
-            🧑‍🔬 Inspector Bids
-          </h2>
+          <h2 className="text-2xl font-semibold text-yellow-700 mb-4">🧑‍🔬 Inspector Bids</h2>
           {bids.length === 0 ? (
-            <div className="bg-gray-900 p-6 rounded-xl border border-gray-700 text-center text-gray-400">
+            <div className="bg-white p-6 rounded-xl border border-gray-200 text-center text-gray-500 shadow-sm">
               <p className="text-lg font-semibold mb-2">No bids yet</p>
               <p className="text-sm">
-                Once inspectors submit their bids, you'll be able to review and
-                confirm them here.
+                Once inspectors submit their bids, you'll be able to review and confirm them here.
               </p>
             </div>
           ) : (
@@ -184,43 +160,36 @@ export default function InspectionDetailsPage() {
                 return (
                   <div
                     key={bid._id}
-                    className={`bg-gray-900 p-6 rounded-xl border ${
-                      isConfirmed ? "border-green-500" : "border-gray-700"
-                    } shadow-lg hover:shadow-yellow-500/30 transition`}
+                    className={`bg-white p-6 rounded-xl border ${
+                      isConfirmed ? "border-green-500" : "border-gray-200"
+                    } shadow-md hover:shadow-lg transition`}
                   >
                     <div className="flex justify-between items-center mb-2">
-                      <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                        <FaUserTie className="text-yellow-400" />
+                      <h3 className="text-lg font-bold flex items-center gap-2">
+                        <FaUserTie className="text-yellow-600" />
                         {bid.inspector.name}
                       </h3>
                       <span
                         className={`px-3 py-1 text-xs font-semibold rounded-full ${
                           isWon
-                            ? "bg-green-600 text-white"
+                            ? "bg-green-100 text-green-800"
                             : isLost
-                            ? "bg-red-600 text-white"
-                            : "bg-gray-700 text-gray-300"
+                            ? "bg-red-100 text-red-800"
+                            : "bg-gray-100 text-gray-800"
                         }`}
                       >
                         {bid.status.toUpperCase()}
                       </span>
                     </div>
-                    <div className="text-sm text-gray-300 space-y-1 mb-4">
-                      <p>
-                        <strong>Bid Amount:</strong> ₹{bid.customerViewAmount}/-
-                      </p>
-                      <p>
-                        <strong>Submitted:</strong>{" "}
-                        {new Date(bid.createdAt).toLocaleString()}
-                      </p>
-                      <p>
-                        <strong>Enquiry ID:</strong> {bid.enquiry}
-                      </p>
+                    <div className="text-sm text-gray-700 space-y-1 mb-4">
+                      <p><strong>Bid Amount:</strong> ₹{bid.customerViewAmount}/-</p>
+                      <p><strong>Submitted:</strong> {new Date(bid.createdAt).toLocaleString()}</p>
+                      <p><strong>Enquiry ID:</strong> {bid.enquiry}</p>
                     </div>
                     {isConfirmed ? (
                       <button
                         disabled
-                        className="bg-green-700 text-white px-4 py-2 rounded font-semibold text-sm w-full cursor-not-allowed"
+                        className="bg-green-600 text-white px-4 py-2 rounded font-semibold text-sm w-full cursor-not-allowed"
                       >
                         <FaCheckCircle className="inline mr-2" />
                         Confirmed
@@ -228,7 +197,7 @@ export default function InspectionDetailsPage() {
                     ) : confirmedBidId ? (
                       <button
                         disabled
-                        className="bg-gray-700 text-gray-400 px-4 py-2 rounded font-semibold text-sm w-full cursor-not-allowed"
+                        className="bg-gray-200 text-gray-500 px-4 py-2 rounded font-semibold text-sm w-full cursor-not-allowed"
                       >
                         <FaCheckCircle className="inline mr-2" />
                         Not Selected
@@ -236,11 +205,7 @@ export default function InspectionDetailsPage() {
                     ) : (
                       <button
                         onClick={() =>
-                          handleConfirmBid(
-                            bid._id,
-                            bid.enquiry,
-                            bid.customerViewAmount
-                          )
+                          handleConfirmBid(bid._id, bid.enquiry, bid.customerViewAmount)
                         }
                         className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold text-sm w-full cursor-pointer"
                       >

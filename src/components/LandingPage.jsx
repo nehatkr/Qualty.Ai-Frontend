@@ -9,7 +9,7 @@ const LandingPage = () => {
     <div className="min-h-screen bg-white">
       <Header/>
       <HeroSection/>
-      <ServicesSection/>
+      <ServicesSection/> 
       <AboutSection/>
       <NewFooter/>
     </div>

@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'luci
 import { ref, push, serverTimestamp } from 'firebase/database';
 import { database } from '../firebase';
 import emailjs from '@emailjs/browser';
+import NewHeader from "./NewHeader";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -443,6 +444,8 @@ const Contact = () => {
   };
 
   return (
+    <div>
+    <NewHeader/>
     <section style={contactStyles.contact} id="contact">
       <div style={contactStyles.backgroundEffect}></div>
       
@@ -728,7 +731,9 @@ const Contact = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 
 export default Contact;
+

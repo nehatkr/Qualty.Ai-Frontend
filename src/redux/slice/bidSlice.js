@@ -6,7 +6,6 @@ const bidSlice = createSlice({
         bid:null
     },
     reducers:{
-          
         addPlaceBid:(state,action)=> {
             state.bid = action.payload
         },

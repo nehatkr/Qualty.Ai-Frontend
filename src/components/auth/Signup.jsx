@@ -19,7 +19,7 @@ const Signup = () => {
   //   <div className="min-h-screen bg-gray-900 flex items-center justify-center py-12 px-4">
   //     <div className="max-w-2xl w-full space-y-8">
   //       <div>
-  //         <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
+  //         <h2 className="mt-6 text-center text-3xl font-semibold text-white">
   //           Choose Your Role
   //         </h2>
   //         <p className="mt-2 text-center text-sm text-gray-400">
@@ -110,7 +110,7 @@ const Signup = () => {
     <div className="max-w-2xl w-full space-y-8">
       {/* Header */}
       <div>
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-black">
+        <h2 className="mt-6 text-center text-3xl font-semibold text-black">
           Choose Your Role
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
@@ -118,9 +118,7 @@ const Signup = () => {
         </p>
       </div>
 
-      {/* Role Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Customer Card */}
         <div
           onClick={(e) => handleCardClick("/signup/customer", e)}
           className="cursor-pointer bg-white p-6 rounded-lg border-2 border-gray-300 hover:border-black transition-all duration-200 hover:shadow-lg flex flex-col h-full"

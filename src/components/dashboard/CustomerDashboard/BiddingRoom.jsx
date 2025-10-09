@@ -8,7 +8,7 @@ const BiddingRoom = () => {
   useEffect(()=>{
       getMyQueries()
   },[])
-  
+    
   const getMyQueries=async()=>{
       const response=await fetch(`${BASE_URL}/customer/my-enquiries`,{
           method:"GET",   

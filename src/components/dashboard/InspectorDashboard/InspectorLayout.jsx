@@ -22,9 +22,10 @@ import { toast } from "react-toastify";
 import { removeUser } from "../../../redux/slice/userSlice";
 
 const navItems = [
+  { label: "Home", icon: <FaTachometerAlt />, path: "/" },
   { label: "Dashboard", icon: <FaTachometerAlt />, path: "/inspector/dashboard" },
   { label: "Bidding Room", icon: <FaGavel />, path: "/inspector/bidding" },
-    { label: "Pending Inspections", icon: <FaClipboardCheck />, path: "/inspector/pending-inspections" },
+    // { label: "Pending Inspections", icon: <FaClipboardCheck />, path: "/inspector/pending-inspections" },
   { label: "Bid History", icon: <FaHistory />, path: "/inspector/history" },
   { label: "Payments", icon: <FaMoneyBillWave />, path: "/inspector/payments" },
   { label: "Detail Analysis", icon: <FaChartLine />, path: "/inspector/analysis" },
