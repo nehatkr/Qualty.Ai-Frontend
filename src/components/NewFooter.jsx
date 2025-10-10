@@ -55,52 +55,26 @@ export default function NewFooter() {
         </div>
 
         <div>
-          <h3 className="text-sm sm:text-base font-semibold mb-4">
-            Social Media
-          </h3>
-          <div className="flex gap-4 text-gray-400">
-            <a
-              href="https://www.linkedin.com/company/qualty-ai-inspection"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition"
-            >
-              <FaLinkedin className="text-xl" />
-            </a>
-            <a
-              href="https://www.instagram.com/qualty.ai?igsh=d2ppcmRzY2U0dzl5&utm_source=qr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition"
-            >
-              <FaInstagram className="text-xl" />
-            </a>
-            <a
-              href="https://www.youtube.com/@qualty_ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition"
-            >
-              <FaYoutube className="text-xl" />
-            </a>
-            <a
-              href="https://qualtyai.substack.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition"
-            >
-              <SiSubstack className="text-xl" />
-            </a>
-            <a
-              href="https://twitter.com/qualty_ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition"
-            >
-              <FaTwitter className="text-xl" />
-            </a>
-          </div>
-        </div>
+  <h3 className="text-sm sm:text-base font-semibold mb-4">Social Media</h3>
+  <div className="flex flex-wrap gap-4 sm:gap-6">
+    <a href="https://www.linkedin.com/company/qualty-ai-inspection" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition">
+      <FaLinkedin className="text-xl" />
+    </a>
+    <a href="https://www.instagram.com/qualty.ai?igsh=d2ppcmRzY2U0dzl5&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition">
+      <FaInstagram className="text-xl" />
+    </a>
+    <a href="https://www.youtube.com/@qualty_ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition">
+      <FaYoutube className="text-xl" />
+    </a>
+    <a href="https://qualtyai.substack.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition">
+      <SiSubstack className="text-xl" />
+    </a>
+    <a href="https://twitter.com/qualty_ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition">
+      <FaTwitter className="text-xl" />
+    </a>
+  </div>
+</div>
+
       </div>
 
       {/* Footer Bottom */}
