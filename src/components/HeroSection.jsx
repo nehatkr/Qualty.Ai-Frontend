@@ -1,6 +1,6 @@
 import { ArrowRight, Play } from "lucide-react";
-import HomeVideo from "../assets/HomeVideo.mp4";
-import Scene from "../assets/Scene.mp4";
+import HomeVideo2 from "../assets/HomeVideo2.mp4";
+import HomeScene from "../assets/HomeScene.mp4";
 import { useNavigate } from "react-router";
 
 const stats = [
@@ -17,7 +17,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video
           className="w-full h-full object-cover opacity-50"
-          src={HomeVideo}
+          src={HomeVideo2}
           autoPlay
           muted
           loop
@@ -31,7 +31,7 @@ export default function HeroSection() {
           <h1 className="text-2xl sm:text-4xl font-bold mb-6 leading-tight">
             Global <span className="text-white">Quality Inspections</span> for Global Trade
           </h1>
-          <p className="text-gray-200 mb-6 text-md">
+          <p className="text-white mb-6 text-md font-semibold">
             Qualty.ai is a marketplace for global quality inspections bringing together global traders and inspectors worldwide.
           </p>
 
@@ -49,7 +49,7 @@ export default function HeroSection() {
         <div className="w-full max-w-md rounded-xl overflow-hidden shadow-lg">
           <video
             className="w-full h-full object-cover"
-            src={Scene}
+            src={HomeScene}
             autoPlay
             muted
             loop
