@@ -35,10 +35,10 @@ export default function ServicesSection() {
   return (
     <section className="bg-black text-white py-16 px-6 sm:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border border-gray-700 rounded-3xl p-8 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] space-y-16">
+        <div className="bg-gradient-to-br from-black via-black to-gray-900 border border-gray-900 rounded-3xl p-8 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] space-y-16">
           
           <div className="text-center">
-            <span className="inline-block bg-white text-black text-base sm:text-lg font-semibold px-4 py-1 rounded-full mb-4 shadow-md">
+            <span className="inline-block bg-white text-black text-base sm:text-lg font-semibold px-4 py-2 rounded-full mb-14 shadow-md">
               Our Services
             </span>
             <h2 className="text-xl sm:text-2xl font-bold mb-4">
@@ -56,7 +56,7 @@ export default function ServicesSection() {
             {featuredServices.map((service, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border border-gray-700 rounded-2xl p-6 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
+                className="bg-gradient-to-br from-black via-black to-gray-900 border border-gray-900 rounded-2xl p-6 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
               >
                 <div className="flex items-center mb-4 text-white">
                   {service.icon}

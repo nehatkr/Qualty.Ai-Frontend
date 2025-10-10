@@ -1,4 +1,5 @@
-import { FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaLinkedin, FaInstagram, FaYoutube, FaTwitter } from "react-icons/fa";
+import { SiSubstack } from "react-icons/si";
 import { Link } from "react-router-dom";
 
 export default function NewFooter() {
@@ -8,67 +9,106 @@ export default function NewFooter() {
         <div>
           <h3 className="text-sm sm:text-base font-semibold mb-4">Register</h3>
           <ul className="space-y-2 text-gray-400">
-            <li><Link to="/login" className="hover:text-white">Customer</Link></li>
-            <li><Link to="/login" className="hover:text-white">Inspector</Link></li>
+            <li>
+              <Link to="/login" className="hover:text-white">
+                Customer
+              </Link>
+            </li>
+            <li>
+              <Link to="/login" className="hover:text-white">
+                Inspector
+              </Link>
+            </li>
           </ul>
         </div>
 
         <div>
           <h3 className="text-sm sm:text-base font-semibold mb-4">Support</h3>
           <ul className="space-y-2 text-gray-400">
-            <li><Link to="/contact" className="hover:text-white">Contact Us</Link></li>
-            <li><Link to="/contact" className="hover:text-white">Help Center</Link></li>
+            <li>
+              <Link to="/contact" className="hover:text-white">
+                Contact Us
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="hover:text-white">
+                Help Center
+              </Link>
+            </li>
           </ul>
         </div>
 
         <div>
           <h3 className="text-sm sm:text-base font-semibold mb-4">Legal</h3>
           <ul className="space-y-2 text-gray-400">
-            <li><Link to="/privacy-policy" className="hover:text-white">Terms of Service</Link></li>
-            <li><Link to="/privacy-policy" className="hover:text-white">Privacy Policy</Link></li>
+            <li>
+              <Link to="/privacy-policy" className="hover:text-white">
+                Terms of Service
+              </Link>
+            </li>
+            <li>
+              <Link to="/privacy-policy" className="hover:text-white">
+                Privacy Policy
+              </Link>
+            </li>
           </ul>
         </div>
 
         <div>
-          <h3 className="text-sm sm:text-base font-semibold mb-4">Social Media</h3>
-          <ul className="space-y-3 text-gray-400">
-            <li>
-              <a
-                href="https://www.linkedin.com/company/qualty-ai-inspection"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-white"
-              >
-                <FaLinkedin className="text-base" /> LinkedIn
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.instagram.com/qualty.ai?igsh=d2ppcmRzY2U0dzl5&utm_source=qr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-white"
-              >
-                <FaInstagram className="text-base" /> Instagram
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-white"
-              >
-                <FaYoutube className="text-base" /> YouTube
-              </a>
-            </li>
-          </ul>
+          <h3 className="text-sm sm:text-base font-semibold mb-4">
+            Social Media
+          </h3>
+          <div className="flex gap-4 text-gray-400">
+            <a
+              href="https://www.linkedin.com/company/qualty-ai-inspection"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition"
+            >
+              <FaLinkedin className="text-xl" />
+            </a>
+            <a
+              href="https://www.instagram.com/qualty.ai?igsh=d2ppcmRzY2U0dzl5&utm_source=qr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition"
+            >
+              <FaInstagram className="text-xl" />
+            </a>
+            <a
+              href="https://www.youtube.com/@qualty_ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition"
+            >
+              <FaYoutube className="text-xl" />
+            </a>
+            <a
+              href="https://qualtyai.substack.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition"
+            >
+              <SiSubstack className="text-xl" />
+            </a>
+            <a
+              href="https://twitter.com/qualty_ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition"
+            >
+              <FaTwitter className="text-xl" />
+            </a>
+          </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center pt-6">
+      {/* Footer Bottom */}
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center pt-4">
         <p className="text-xs sm:text-sm text-gray-500 text-center sm:text-left">
-          &copy; {new Date().getFullYear()} Qualty.ai. (in association with CargoFirst QAHO Corporation Pvt. Ltd.) All rights reserved. | CIN: U51909KA2022PTC161277
+          &copy; {new Date().getFullYear()} Qualty.ai. (in association with
+          CargoFirst QAHO Corporation Pvt. Ltd.) All rights reserved. | CIN:
+          U51909KA2022PTC161277
         </p>
       </div>
     </footer>

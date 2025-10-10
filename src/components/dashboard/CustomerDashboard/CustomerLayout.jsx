@@ -20,7 +20,6 @@ import { toast } from "react-toastify";
 import { removeUser } from "../../../redux/slice/userSlice";
 
 const navItems = [
-  { label: "Home", icon: <FaUser />, path: "/" },
   { label: "Dashboard", icon: <FaTachometerAlt />, path: "/customer/dashboard" },
   { label: "Bidding Room", icon: <FaGavel />, path: "/customer/bidding" },
   { label: "Raise Enquiry", icon: <FaQuestionCircle />, path: "/customer/enquiry" },
@@ -29,6 +28,7 @@ const navItems = [
   { label: "Detail Analysis", icon: <FaChartLine />, path: "/customer/analysis" },
   { label: "My History", icon: <FaHistory />, path: "/customer/history" },
   { label: "My Account", icon: <FaUser />, path: "/customer/account" },
+  { label: "Home", icon: <FaUser />, path: "/" },
 ];
 
 const CustomerLayout = () => {

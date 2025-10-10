@@ -36,7 +36,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 text-white transition-all duration-300 font-sans ${
+      className={`fixed top-0 left-0 w-full z-50 text-white transition-all duration-300 font-serif ${
         showHeader ? "translate-y-0" : "-translate-y-full"
       }`}
     >
@@ -48,7 +48,7 @@ const Header = () => {
           <img
             src={QualtyLogo}
             alt="Qualty.AI Logo"
-            className="h-15 w-15 rounded-full shadow-sm"
+            className="h-20 w-20 rounded-full mx-15"
           />
         </div>
 

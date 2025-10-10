@@ -51,15 +51,15 @@ export default function QuickInspection() {
           Quick Services
         </h2>
 
-        <div className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border border-gray-700 rounded-2xl p-6 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]">
-          <h3 className="text-xl sm:text-2xl font-semibold mb-6  border-gray-700 pb-2 text-start">
+        <div className="bg-gradient-to-br from-black via-black to-gray-900 border border-gray-900 rounded-2xl p-6 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+          <h3 className="text-xl sm:text-2xl font-semibold mb-6  border-gray-900 pb-2 text-start">
             Inspection Regions
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
   {visibleRegions.map(([regionName]) => (
     <Link key={regionName} to={`/quickInspection/${encodeURIComponent(regionName)}`}>
-      <div className="group bg-gradient-to-br from-gray-900 via-black to-gray-900 border border-gray-700 rounded-xl p-4 flex flex-col items-center shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:scale-[1.03] cursor-pointer">
+      <div className="group bg-gradient-to-br from-black via-black to-gray-900 border border-gray-900 rounded-xl p-4 flex flex-col items-center shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:scale-[1.03] cursor-pointer">
         <img
           src={regionImages[regionName] || "/fallback.jpg"}
           alt={regionName}
