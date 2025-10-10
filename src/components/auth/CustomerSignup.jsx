@@ -4,6 +4,7 @@ import { BASE_URL } from "../../utils/constants";
 import { useNavigate } from 'react-router-dom'
 import { toast } from "react-toastify";
 import { Eye, EyeOff, User, FileText, ShieldCheck } from "lucide-react";
+import NewHeader from "../NewHeader";
 
 const CustomerSignup = () => {
   const [formData, setFormData] = useState({
@@ -118,7 +119,8 @@ const CustomerSignup = () => {
 
 
 return (
-  <div className="min-h-screen bg-white text-black flex items-center justify-center py-12 px-4">
+  <div className="min-h-screen bg-white text-black flex items-center justify-center py-25 px-4">
+    <NewHeader/>
     <div className="max-w-2xl w-full bg-gray-50 shadow-xl rounded-2xl p-8 border border-gray-200">
       {/* Header Icon */}
       <div className="flex justify-center mb-6">

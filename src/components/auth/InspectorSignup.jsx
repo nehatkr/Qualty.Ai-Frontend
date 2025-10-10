@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BASE_URL } from "../../utils/constants";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import NewHeader from "../NewHeader";
 
 const allowedCommodities = [
   "Textiles & Garments",
@@ -184,7 +185,8 @@ export default function InspectorSignup() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black flex items-center justify-center p-6">
+    <div className="min-h-screen bg-white text-black flex items-center justify-center p-6 py-25">
+      <NewHeader/>
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-2xl bg-white border border-gray-200 p-8 rounded-xl shadow-xl space-y-6"

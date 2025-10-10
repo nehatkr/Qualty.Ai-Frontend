@@ -3,34 +3,34 @@ import { Link } from "react-router-dom";
 
 export default function NewFooter() {
   return (
-    <footer className="bg-black text-white py-10 px-6 sm:px-12 lg:px-20">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 border-b border-gray-700 pb-10">
+    <footer className="bg-black text-white py-10 px-6 sm:px-12 lg:px-20 text-xs sm:text-sm">
+      <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 border-b border-gray-700 pb-10">
         <div>
-          <h3 className="text-xl font-semibold mb-4">About</h3>
+          <h3 className="text-sm sm:text-base font-semibold mb-4">Register</h3>
           <ul className="space-y-2 text-gray-400">
-            <li><Link to="/about" className="hover:text-white">Company</Link></li>
-            <li><Link to="/team" className="hover:text-white">Team</Link></li>
+            <li><Link to="/login" className="hover:text-white">Customer</Link></li>
+            <li><Link to="/login" className="hover:text-white">Inspector</Link></li>
           </ul>
         </div>
 
         <div>
-          <h3 className="text-xl font-semibold mb-4">Support</h3>
+          <h3 className="text-sm sm:text-base font-semibold mb-4">Support</h3>
           <ul className="space-y-2 text-gray-400">
             <li><Link to="/contact" className="hover:text-white">Contact Us</Link></li>
-            <li><Link to="/help" className="hover:text-white">Help Center</Link></li>
+            <li><Link to="/contact" className="hover:text-white">Help Center</Link></li>
           </ul>
         </div>
 
         <div>
-          <h3 className="text-xl font-semibold mb-4">Legal</h3>
+          <h3 className="text-sm sm:text-base font-semibold mb-4">Legal</h3>
           <ul className="space-y-2 text-gray-400">
-            <li><Link to="/terms" className="hover:text-white">Terms of Service</Link></li>
+            <li><Link to="/privacy-policy" className="hover:text-white">Terms of Service</Link></li>
             <li><Link to="/privacy-policy" className="hover:text-white">Privacy Policy</Link></li>
           </ul>
         </div>
 
-         <div>
-          <h3 className="text-xl font-semibold mb-4">Social Media</h3>
+        <div>
+          <h3 className="text-sm sm:text-base font-semibold mb-4">Social Media</h3>
           <ul className="space-y-3 text-gray-400">
             <li>
               <a
@@ -39,7 +39,7 @@ export default function NewFooter() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 hover:text-white"
               >
-                <FaLinkedin className="text-xl" /> LinkedIn
+                <FaLinkedin className="text-base" /> LinkedIn
               </a>
             </li>
             <li>
@@ -49,7 +49,7 @@ export default function NewFooter() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 hover:text-white"
               >
-                <FaInstagram className="text-xl" /> Instagram
+                <FaInstagram className="text-base" /> Instagram
               </a>
             </li>
             <li>
@@ -59,28 +59,17 @@ export default function NewFooter() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 hover:text-white"
               >
-                <FaYoutube className="text-xl" /> YouTube
+                <FaYoutube className="text-base" /> YouTube
               </a>
             </li>
           </ul>
         </div>
-
-
       </div>
 
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center pt-6">
-        <p className="text-sm text-gray-500">&copy; {new Date().getFullYear()} Qualty.ai. (in association with CargoFirst QAHO Corporation Pvt. Ltd.) All rights reserved. | CIN: U51909KA2022PTC161277</p>
-        <div className="flex space-x-4 mt-4 sm:mt-0">
-          <a href="https://www.linkedin.com/company/qualty-ai-inspection/ " target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white text-xl">
-            <FaLinkedin />
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white text-xl">
-            <FaInstagram />
-          </a>
-          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white text-xl">
-            <FaYoutube />
-          </a>
-        </div>
+        <p className="text-xs sm:text-sm text-gray-500 text-center sm:text-left">
+          &copy; {new Date().getFullYear()} Qualty.ai. (in association with CargoFirst QAHO Corporation Pvt. Ltd.) All rights reserved. | CIN: U51909KA2022PTC161277
+        </p>
       </div>
     </footer>
   );

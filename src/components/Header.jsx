@@ -125,7 +125,7 @@ const Header = () => {
           ) : (
             <button
               onClick={() => {
-                handleAuthClick();
+                navigate("/login")
                 setIsMenuOpen(false);
               }}
               className="px-4 py-2 bg-white text-black cursor-pointer rounded-md text-sm font-medium shadow hover:bg-gray-200 transition-transform hover:scale-105"

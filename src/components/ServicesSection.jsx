@@ -33,52 +33,60 @@ export default function ServicesSection() {
   const navigate = useNavigate();
 
   return (
-    <section className="bg-black text-white py-10 px-6 sm:px-12 lg:px-20">
-      <div className="max-w-7xl mx-auto text-center mb-12">
-        <span className="inline-block bg-white text-black text-2xl font-semibold px-3 py-1 rounded-full mb-4">
-          Our Services
-        </span>
-        <h2 className="text-4xl font-bold mb-4">
-          Comprehensive Quality{" "}
-          <span className="text-white">Inspection Services</span>
-        </h2>
-        <p className="text-white text-lg max-w-3xl mx-auto">
-          We offer a complete suite of inspection services to ensure your cargo
-          meets the highest standards across global markets.
-        </p>
-      </div>
-
-      <div>
-        <QuickInspection/>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto ">
-        {featuredServices.map((service, index) => (
-          <div
-            key={index}
-            className="bg-black border border-gray-100 rounded-xl p-6 text-white transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
-          >
-            <div className="flex items-center mb-4 text-white">
-              {service.icon}
-            </div>
-            <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-            <p className="mb-4 text-gray-50">{service.description}</p>
-            <ul className="list-disc list-inside text-gray-50 space-y-1">
-              {service.features.map((feature, idx) => (
-                <li key={idx}>{feature}</li>
-              ))}
-            </ul>
+    <section className="bg-black text-white py-16 px-6 sm:px-12 lg:px-20">
+      <div className="max-w-7xl mx-auto">
+        <div className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border border-gray-700 rounded-3xl p-8 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] space-y-16">
+          
+          <div className="text-center">
+            <span className="inline-block bg-white text-black text-base sm:text-lg font-semibold px-4 py-1 rounded-full mb-4 shadow-md">
+              Our Services
+            </span>
+            <h2 className="text-xl sm:text-2xl font-bold mb-4">
+              Comprehensive Quality <span className="text-white">Inspection Services</span>
+            </h2>
+            <p className="text-gray-300 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
+              We offer a complete suite of inspection services to ensure your cargo
+              meets the highest standards across global markets.
+            </p>
           </div>
-        ))}
-      </div>
 
-      <div className="text-center mt-12">
-        <button
-          onClick={() => navigate("/services")}
-          className="cursor-pointer inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-semibold rounded transition hover:scale-[1.02]"
-        >
-          View All Services <ChevronRight size={18} />
-        </button>
+          <QuickInspection />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {featuredServices.map((service, index) => (
+              <div
+                key={index}
+                className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border border-gray-700 rounded-2xl p-6 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
+              >
+                <div className="flex items-center mb-4 text-white">
+                  {service.icon}
+                </div>
+                <h3 className="text-lg sm:text-xl font-semibold tracking-wide mb-2">
+                  {service.title}
+                </h3>
+                <p className="mb-4 text-xs sm:text-sm text-gray-300 leading-relaxed">
+                  {service.description}
+                </p>
+                <ul className="list-disc list-inside text-gray-400 space-y-1 pl-2">
+                  {service.features.map((feature, idx) => (
+                    <li key={idx} className="text-xs sm:text-sm leading-snug">
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <button
+              onClick={() => navigate("/services")}
+              className="cursor-pointer text-sm sm:text-base inline-flex items-center gap-2 px-4 py-2 md:px-6 md:py-3 bg-white text-black font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03]"
+            >
+              View All Services <ChevronRight size={18} />
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   );

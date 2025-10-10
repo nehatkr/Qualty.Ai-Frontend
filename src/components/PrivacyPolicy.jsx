@@ -3,8 +3,8 @@ import NewHeader from "./NewHeader";
 
 const SectionLayout = ({ title, children }) => (
   <section className="space-y-4 pt-4 border-t border-gray-300">
-    <h2 className="text-3xl font-semibold text-black">{title}</h2>
-    <div className="space-y-4 text-gray-800">{children}</div>
+    <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-black">{title}</h2>
+    <div className="space-y-4 text-gray-800 text-sm sm:text-base">{children}</div>
   </section>
 );
 
@@ -14,20 +14,20 @@ const EmailModal = ({ isOpen, onClose, email }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white p-8 rounded-xl shadow-2xl max-w-sm w-full text-center transition-all duration-300">
-        <h3 className="text-2xl font-bold text-black mb-4">Contact Us</h3>
-        <p className="text-gray-700 mb-6">
+        <h3 className="text-xl sm:text-2xl font-bold text-black mb-4">Contact Us</h3>
+        <p className="text-sm sm:text-base text-gray-700 mb-6">
           For questions or concerns about your privacy, please send an email to:
         </p>
         <a
           href={`mailto:${email}`}
-          className="text-lg font-bold text-black border-2 border-black py-2 px-4 rounded-lg block hover:bg-black hover:text-white transition duration-300 cursor-pointer"
+          className="text-sm sm:text-base font-bold text-black border-2 border-black py-2 px-4 rounded-lg block hover:bg-black hover:text-white transition duration-300 cursor-pointer"
           onClick={onClose}
         >
           {email}
         </a>
         <button
           onClick={onClose}
-          className="mt-6 text-gray-600 hover:text-black transition duration-300 text-sm underline cursor-pointer"
+          className="mt-6 text-sm text-gray-600 hover:text-black transition duration-300 underline cursor-pointer"
         >
           Close
         </button>
@@ -45,18 +45,18 @@ export default function PrivacyPolicy() {
   };
 
   return (
-    <div className="bg-white text-black min-h-screen py-20 px-4 sm:px-8 lg:px-16">
-        <NewHeader/>
+    <div className="bg-white text-black min-h-screen py-20 px-4 sm:px-8 lg:px-16 text-sm sm:text-base">
+      <NewHeader />
       <EmailModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         email={contactEmail}
       />
 
-      <div className="max-w-4xl mx-auto p-8 sm:p-12 bg-white rounded-xl shadow-xl border border-gray-300">
+      <div className="max-w-4xl mx-auto p-6 sm:p-12 bg-white rounded-xl shadow-xl border border-gray-300">
         <header className="text-center mb-12">
-          <h1 className="text-5xl font-semibold">Privacy Policy</h1>
-          <p className="text-lg text-gray-600 mt-2">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold">Privacy Policy</h1>
+          <p className="text-sm sm:text-lg text-gray-600 mt-2">
             Personal Data Protection Policy of Qualty.ai
           </p>
         </header>
@@ -174,7 +174,7 @@ export default function PrivacyPolicy() {
             </p>
             <button
               onClick={handleEmailClick}
-              className="text-black font-bold text-lg mt-2 bg-white hover:bg-black hover:text-white transition duration-300 p-3 rounded-lg border border-black cursor-pointer"
+              className="text-black font-bold text-sm sm:text-base mt-2 bg-white hover:bg-black hover:text-white transition duration-300 p-3 rounded-lg border border-black cursor-pointer"
               aria-label={`Contact us at ${contactEmail}`}
             >
               Click to Reveal Contact Email
