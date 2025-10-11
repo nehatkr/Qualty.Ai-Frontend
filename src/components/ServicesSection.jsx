@@ -33,15 +33,15 @@ export default function ServicesSection() {
   const navigate = useNavigate();
 
   return (
-    <section className="bg-black text-white py-16 px-6 sm:px-12 lg:px-20">
+    <section className="bg-black text-white py-5 md:py-16 px-6 sm:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-gradient-to-br from-black via-black to-gray-900 border border-gray-900 rounded-3xl p-8 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] space-y-16">
+        <div className="bg-gradient-to-br from-black via-black to-gray-900 border border-gray-900  p-8 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] space-y-16">
           
           <div className="text-center">
-            <span className="inline-block bg-white text-black text-base sm:text-lg font-semibold px-4 py-2 rounded-full mb-14 shadow-md">
+            <span className="inline-block bg-white text-black text-base sm:text-lg font-normal px-4 py-2  mb-14 shadow-md">
               Our Services
             </span>
-            <h2 className="text-xl sm:text-2xl font-bold mb-4">
+            <h2 className="text-xl sm:text-2xl font-normal mb-4">
               Comprehensive Quality <span className="text-white">Inspection Services</span>
             </h2>
             <p className="text-gray-300 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
@@ -56,12 +56,12 @@ export default function ServicesSection() {
             {featuredServices.map((service, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-black via-black to-gray-900 border border-gray-900 rounded-2xl p-6 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
+                className="bg-gradient-to-br from-black via-black to-gray-900 border border-gray-900 p-6 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
               >
                 <div className="flex items-center mb-4 text-white">
                   {service.icon}
                 </div>
-                <h3 className="text-lg sm:text-xl font-semibold tracking-wide mb-2">
+                <h3 className="text-lg sm:text-xl font-normal tracking-wide mb-2">
                   {service.title}
                 </h3>
                 <p className="mb-4 text-xs sm:text-sm text-gray-300 leading-relaxed">
@@ -81,7 +81,7 @@ export default function ServicesSection() {
           <div className="text-center">
             <button
               onClick={() => navigate("/services")}
-              className="cursor-pointer text-sm sm:text-base inline-flex items-center gap-2 px-4 py-2 md:px-6 md:py-3 bg-white text-black font-semibold rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03]"
+              className="cursor-pointer text-sm sm:text-base inline-flex items-center gap-2 px-4 py-2 md:px-6 md:py-3 bg-white text-black font-normal  shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03]"
             >
               View All Services <ChevronRight size={18} />
             </button>

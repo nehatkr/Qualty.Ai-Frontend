@@ -8,8 +8,8 @@ import {
   Eye,
   Globe2,
 } from "lucide-react";
+import HomeScene from "../assets/HomeScene.mp4";
 import Scene1 from "../assets/Scene1.mp4";
-import Scene2 from "../assets/Scene2.mp4";
 import CountUpOnView from "./CountUpOnView";
 import NewHeader from "./NewHeader";
 
@@ -62,8 +62,8 @@ export default function About() {
       <section className="bg-black text-white py-20 px-6 sm:px-12 lg:px-20 text-sm sm:text-base">
         <div className="max-w-7xl mx-auto space-y-16">
           {/* About Intro Card */}
-          <div className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border border-gray-700 rounded-2xl p-8 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]">
-            <span className="inline-block bg-white text-black text-base sm:text-xl font-semibold px-4 py-1 rounded-full mb-6 shadow-md">
+          <div className=" border-gray-700  p-8 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+            <span className="inline-block bg-white text-black text-base sm:text-xl font-normal px-4 py-1  mb-6 shadow-md">
               About
             </span>
             <div className="flex flex-col md:flex-row gap-8 items-center">
@@ -84,12 +84,12 @@ export default function About() {
               </div>
               <div className="w-full md:w-1/2 flex justify-center">
                 <video
-                  className="rounded-2xl shadow-xl w-full max-w-3xl transition-transform duration-300 hover:scale-[1.03]"
+                  className=" shadow-xl w-full max-w-3xl transition-transform duration-300 hover:scale-[1.03]"
                   autoPlay
                   loop
                   muted
                   playsInline
-                  src={Scene2}
+                  src={HomeScene}
                 />
               </div>
             </div>
@@ -100,7 +100,7 @@ export default function About() {
             {achievements.map((item, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border border-gray-700 rounded-2xl p-6 text-center shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
+                className=" border-gray-700  p-6 text-center shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
               >
                 <div className="text-white mb-3 flex justify-center">{item.icon}</div>
                 <CountUpOnView end={item.number} />
@@ -112,9 +112,9 @@ export default function About() {
           </div>
 
           {/* Secondary Video */}
-          <div className="rounded-2xl overflow-hidden shadow-xl transition-transform duration-300 hover:scale-[1.03]">
+          <div className=" overflow-hidden shadow-xl transition-transform duration-300 hover:scale-[1.03]">
             <video
-              className="w-full rounded-2xl"
+              className="w-full "
               autoPlay
               loop
               muted
@@ -124,8 +124,8 @@ export default function About() {
           </div>
 
           {/* Value Proposition */}
-          <div className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border border-gray-700 rounded-2xl p-8 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md text-center transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]">
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4">
+          <div className=" border-gray-700  p-8 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md text-center transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+            <h3 className="text-xl sm:text-2xl md:text-3xl mb-4">
               What You Get With Qualty.AI
             </h3>
             <p className="text-gray-300 max-w-3xl mx-auto text-xs sm:text-sm leading-relaxed">
@@ -140,12 +140,12 @@ export default function About() {
             {values.map((value, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border border-gray-700 rounded-2xl p-6 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
+                className=" border border-gray-700  p-6 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
               >
                 <div className="mb-4 text-md flex items-center justify-center">
                   {value.icon}
                 </div>
-                <h4 className="text-base sm:text-lg font-semibold mb-2 text-white text-center">
+                <h4 className="text-base sm:text-lg font-normal mb-2 text-white text-center">
                   {value.title}
                 </h4>
                 <p className="text-gray-400 text-xs sm:text-sm text-center leading-relaxed">

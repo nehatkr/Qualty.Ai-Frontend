@@ -36,7 +36,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 text-white transition-all duration-300 font-serif ${
+      className={`fixed top-0 left-0 w-full z-50 text-white transition-all duration-300 font-sans ${
         showHeader ? "translate-y-0" : "-translate-y-full"
       }`}
     >
@@ -48,7 +48,7 @@ const Header = () => {
           <img
             src={QualtyLogo}
             alt="Qualty.AI Logo"
-            className="h-20 w-20 rounded-full mx-15"
+            className="h-15 w-15 sm:h-20 sm:w-20  sm:mx-15"
           />
         </div>
 
@@ -57,7 +57,7 @@ const Header = () => {
             <Link
               key={label}
               to={href}
-              className="relative text-md font-normal text-white hover:text-black hover:bg-white px-4 py-1 rounded-lg transition duration-300"
+              className="relative text-md font-normal text-white hover:text-black hover:bg-white px-4 py-1  transition duration-300"
             >
               {label}
               <span className="absolute bottom-[-4px] left-0 w-full h-[2px] bg-white scale-x-0 hover:scale-x-100 origin-left transition-transform duration-300" />
@@ -67,14 +67,14 @@ const Header = () => {
           {user ? (
             <button
               onClick={() => navigate(`/${user.role}/dashboard`)}
-              className="px-4 py-2 bg-white text-black cursor-pointer rounded-md text-sm font-semibold shadow hover:bg-gray-200 transition-transform hover:scale-105"
+              className="px-4 py-2 bg-white text-black cursor-pointer  text-sm font-normal shadow hover:bg-gray-200 transition-transform hover:scale-105"
             >
               Dashboard
             </button>
           ) : (
             <button
               onClick={() => navigate("/login")}
-              className="px-4 py-2 bg-white text-black cursor-pointer rounded-md text-sm font-semibold shadow hover:bg-gray-200 transition-transform hover:scale-105"
+              className="px-4 py-2 bg-white text-black cursor-pointer  text-sm font-normal shadow hover:bg-gray-200 transition-transform hover:scale-105"
             >
               Login
             </button>
@@ -82,7 +82,7 @@ const Header = () => {
         </nav>
 
         <button
-          className="md:hidden p-2 rounded-md bg-gray-900 hover:bg-gray-800 transition-all"
+          className="md:hidden p-2  bg-gray-900 hover:bg-gray-800 transition-all"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? (
@@ -118,7 +118,7 @@ const Header = () => {
                 navigate(`/${user.role}/dashboard`);
                 setIsMenuOpen(false);
               }}
-              className="px-4 py-2 bg-white text-black cursor-pointer rounded-md text-sm font-medium shadow hover:bg-gray-200 transition-transform hover:scale-105"
+              className="px-4 py-2 bg-white text-black cursor-pointer  text-sm font-medium shadow hover:bg-gray-200 transition-transform hover:scale-105"
             >
               Dashboard
             </button>
@@ -128,7 +128,7 @@ const Header = () => {
                 navigate("/login")
                 setIsMenuOpen(false);
               }}
-              className="px-4 py-2 bg-white text-black cursor-pointer rounded-md text-sm font-medium shadow hover:bg-gray-200 transition-transform hover:scale-105"
+              className="px-4 py-2 bg-white text-black cursor-pointer  text-sm font-medium shadow hover:bg-gray-200 transition-transform hover:scale-105"
             >
               Login
             </button>

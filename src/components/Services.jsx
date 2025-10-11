@@ -139,7 +139,7 @@ export default function Service() {
       <NewHeader />
       <section className="py-16 px-6 sm:px-12 lg:px-20 mt-20">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl font-bold text-center mb-6">
+          <h2 className="text-2xl font-normal text-center mb-6">
             Comprehensive Quality{" "}
             <span className="text-white">Inspection Services</span>
           </h2>
@@ -156,14 +156,14 @@ export default function Service() {
                 className="bg-neutral-900 border border-gray-700 rounded-xl p-6 shadow-md hover:shadow-white/10 transition-all duration-500 transform hover:-translate-y-2"
               >
                 <div className="flex items-center gap-3 mb-4 text-white text-2xl">{service.icon}</div>
-                <h3 className="ttext-xl sm:text-2xl font-semibold mb-2 text-white">{service.title}</h3>
+                <h3 className="ttext-xl sm:text-2xl font-normal mb-2 text-white">{service.title}</h3>
                 <p className="text-gray-300 mb-4 text-sm sm:text-lg">{service.description}</p>
                 <ul className="list-disc list-inside text-gray-400 space-y-1 mb-4">
                   {service.features.map((feature, idx) => (
                     <li key={idx} className="text-sm sm:text-lg">{feature}</li>
                   ))}
                 </ul>
-                <h4 className="text-lg font-semibold mb-2 text-white">Why Choose This Service?</h4>
+                <h4 className="text-lg font-normal mb-2 text-white">Why Choose This Service?</h4>
                 <ul className="text-sm sm:text-lg list-disc list-inside text-gray-400 space-y-1">
                   {service.whyFeatures.map((why, idx) => (
                     <li key={idx}>{why}</li>
@@ -177,12 +177,12 @@ export default function Service() {
             {featuredServices.map((service, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border border-gray-700 rounded-2xl p-6 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
+                className=" border border-gray-700 p-6 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
               >
                 <div className="flex items-center gap-3 mb-4 text-white text-2xl">
                   {service.icon}
                 </div>
-                <h3 className="text-lg sm:text-xl font-semibold tracking-wide mb-2 text-white">
+                <h3 className="text-lg sm:text-xl font-normal tracking-wide mb-2 text-white">
                   {service.title}
                 </h3>
                 <p className="text-gray-300 mb-4 text-xs sm:text-sm leading-relaxed">
@@ -195,7 +195,7 @@ export default function Service() {
                     </li>
                   ))}
                 </ul>
-                <h4 className="text-sm sm:text-base font-semibold mb-2 text-white">
+                <h4 className="text-sm sm:text-base font-normal mb-2 text-white">
                   Why Choose This Service?
                 </h4>
                 <ul className="list-disc list-inside text-gray-400 space-y-1 pl-2">
@@ -213,7 +213,7 @@ export default function Service() {
             <div className="text-center mb-10">
               <button
                 onClick={() => setShowAll(true)}
-                className="text-sm sm:text-lg cursor-pointer inline-flex items-center gap-2 px-3 py-2 md:px-5 md:py-3 bg-white text-black font-semibold rounded hover:bg-gray-200 transition"
+                className="text-sm sm:text-lg cursor-pointer inline-flex items-center gap-2 px-3 py-2 md:px-5 md:py-3 bg-white text-black font-normal hover:bg-gray-200 transition"
               >
                 View All Services <ChevronDown size={18} />
               </button>
@@ -221,31 +221,12 @@ export default function Service() {
           )}
 
           {showAll && (
-            // <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            //   {additionalServices.map((service, index) => (
-            //     <div
-            //       key={index}
-            //       className="bg-neutral-900 border border-gray-700 rounded-xl p-6 shadow-md hover:shadow-white/10 transition-all duration-500 transform hover:-translate-y-2"
-            //     >
-            //       <div className="flex items-center gap-3 mb-4 text-white text-xl">
-            //         {typeof service.icon === "string" ? <span>{service.icon}</span> : service.icon}
-            //       </div>
-            //       <h3 className="text-xl font-semibold mb-2 text-white">{service.title}</h3>
-            //       <p className="text-gray-300 mb-4 text-sm sm:text-lg">{service.description}</p>
-            //       <ul className="list-disc list-inside text-gray-400 space-y-1">
-            //         {service.features.map((feature, idx) => (
-            //           <li key={idx} className="text-sm sm:text-lg">{feature}</li>
-            //         ))}
-            //       </ul>
-            //     </div>
-            //   ))}
-            // </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
               {additionalServices.map((service, index) => (
                 <div
                   key={index}
-                  className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border border-gray-700 rounded-2xl p-6 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
+                  className=" border border-gray-700 p-6 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
                 >
                   <div className="flex items-center gap-3 mb-4 text-white text-xl">
                     {typeof service.icon === "string" ? (
@@ -254,7 +235,7 @@ export default function Service() {
                       service.icon
                     )}
                   </div>
-                  <h3 className="text-lg sm:text-xl font-semibold tracking-wide mb-2 text-white">
+                  <h3 className="text-lg sm:text-xl font-normal tracking-wide mb-2 text-white">
                     {service.title}
                   </h3>
                   <p className="text-gray-300 mb-4 text-xs sm:text-sm leading-relaxed">
@@ -276,7 +257,7 @@ export default function Service() {
             <div className="text-center">
               <button
                 onClick={() => setShowAll(false)}
-                className="text-sm sm:text-lg cursor-pointer inline-flex items-center gap-2 px-3 py-2 md:px-5 md:py-3 bg-white text-black font-semibold rounded hover:bg-gray-200 transition"
+                className="text-sm sm:text-lg cursor-pointer inline-flex items-center gap-2 px-3 py-2 md:px-5 md:py-3 bg-white text-black font-normal  hover:bg-gray-200 transition"
               >
                 Show Less <ChevronUp size={18} />
               </button>
@@ -284,8 +265,8 @@ export default function Service() {
           )}
 
           <div className="mt-20 text-center">
-            <div className="bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white rounded-2xl p-8 max-w-3xl mx-auto shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] border border-gray-700 backdrop-blur-md transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,255,255,0.2)]">
-              <h3 className="text-xl sm:text-2xl font-bold mb-4 tracking-wide">
+            <div className=" text-white p-8 max-w-3xl mx-auto shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] border border-gray-700 backdrop-blur-md transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,255,255,0.2)]">
+              <h3 className="text-xl sm:text-2xl font-normal mb-4 tracking-wide">
                 Ready to Get Started?
               </h3>
               <p className="text-gray-300 mb-6 text-sm sm:text-base leading-relaxed">
@@ -295,7 +276,7 @@ export default function Service() {
               </p>
               <button
                 onClick={() => navigate("/login")}
-                className="px-4 py-2 cursor-pointer sm:px-6 sm:py-3 text-sm sm:text-base font-semibold bg-white text-black rounded-full shadow-md hover:shadow-lg hover:bg-gray-100 transition-all duration-300 hover:scale-[1.02]"
+                className="px-4 py-2 cursor-pointer sm:px-6 sm:py-3 text-sm sm:text-base font-normal bg-white text-black shadow-md hover:shadow-lg hover:bg-gray-100 transition-all duration-300 hover:scale-[1.02]"
               >
                 Request Inspection Quote
               </button>

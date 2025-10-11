@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 html {
-  @apply font-serif;
+  @apply font-sans;
 }  
 
 @keyframes fade-in {

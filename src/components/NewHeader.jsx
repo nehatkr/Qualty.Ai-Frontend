@@ -47,9 +47,9 @@ const NewHeader = () => {
             <img
               src={QualtyLogo}
               alt="Qualty.AI Logo"
-              className="h-16 w-16 rounded-full shadow-md"
+              className="h-16 w-16  shadow-md"
             />
-            <span className="text-white font-semibold text-lg hidden sm:inline-block">
+            <span className="text-white font-normal text-lg hidden sm:inline-block">
               Qualty.AI
             </span>
           </div>
@@ -59,7 +59,7 @@ const NewHeader = () => {
               <Link
                 key={label}
                 to={href}
-                className="text-sm sm:text-base font-medium text-white hover:text-gray-300 transition-colors px-3 py-1 rounded-md"
+                className="text-sm sm:text-base font-normal text-white hover:text-gray-300 transition-colors px-3 py-1"
               >
                 {label}
               </Link>
@@ -68,14 +68,14 @@ const NewHeader = () => {
             {user ? (
               <button
                 onClick={() => navigate(`/${user.role}/dashboard`)}
-                className="px-4 py-2 bg-white text-black rounded-full text-sm font-semibold shadow hover:bg-gray-200 transition-transform hover:scale-105"
+                className="px-4 py-2 bg-white text-black  text-sm font-normal shadow hover:bg-gray-200 transition-transform hover:scale-105"
               >
                 Dashboard
               </button>
             ) : (
               <button
                 onClick={() => navigate("/login")}
-                className="px-4 py-2 bg-white text-black rounded-full text-sm font-semibold shadow hover:bg-gray-200 transition-transform hover:scale-105"
+                className="px-4 py-2 bg-white text-black  text-sm font-normal shadow hover:bg-gray-200 transition-transform hover:scale-105"
               >
                 Login
               </button>
@@ -83,7 +83,7 @@ const NewHeader = () => {
           </nav>
 
           <button
-            className="md:hidden p-2 rounded-md bg-gray-800 hover:bg-gray-700 transition"
+            className="md:hidden p-2 bg-gray-800 hover:bg-gray-700 transition"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={24} color="white" /> : <Menu size={24} color="white" />}
@@ -114,7 +114,7 @@ const NewHeader = () => {
                   navigate(`/${user.role}/dashboard`);
                   setIsMenuOpen(false);
                 }}
-                className="px-4 py-2 bg-white text-black rounded-full text-sm font-medium shadow hover:bg-gray-200 transition-transform hover:scale-105"
+                className="px-4 py-2 bg-white text-black  text-sm font-normal shadow hover:bg-gray-200 transition-transform hover:scale-105"
               >
                 Dashboard
               </button>
@@ -124,7 +124,7 @@ const NewHeader = () => {
                   navigate("/login");
                   setIsMenuOpen(false);
                 }}
-                className="px-4 py-2 bg-white text-black rounded-full text-sm font-medium shadow hover:bg-gray-200 transition-transform hover:scale-105"
+                className="px-4 py-2 bg-white text-black  text-sm font-normal shadow hover:bg-gray-200 transition-transform hover:scale-105"
               >
                 Login
               </button>

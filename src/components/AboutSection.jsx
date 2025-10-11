@@ -60,11 +60,11 @@ export default function AboutSection() {
       <section className="bg-black text-white py-20 px-6 sm:px-12 lg:px-20 text-sm sm:text-base">
         <div className="max-w-7xl mx-auto space-y-16">
           {/* About Title Card */}
-          <div className="bg-gradient-to-br from-black via-black to-gray-900 border border-gray-900 rounded-2xl p-8 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md text-center transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]">
-            <span className="inline-block bg-white text-black text-base sm:text-xl font-semibold px-4 py-1 rounded-full mb-4 shadow-md">
+          <div className=" border border-gray-900  p-8 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md text-center transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+            <span className="inline-block bg-white text-black text-base sm:text-xl font-semibold px-4 py-1  mb-4 shadow-md">
               About
             </span>
-            <h2 className="text-xl sm:text-2xl font-bold mb-4">
+            <h2 className="text-xl sm:text-2xl font-normal mb-4">
               Qualty.AI — Global Inspection Marketplace
             </h2>
             <p className="text-gray-300 max-w-3xl mx-auto mb-4 leading-relaxed">
@@ -76,9 +76,9 @@ export default function AboutSection() {
           </div>
 
           {/* Video Section */}
-          <div className="rounded-2xl overflow-hidden shadow-xl transition-transform duration-300 hover:scale-[1.03]">
+          <div className=" overflow-hidden shadow-xl transition-transform duration-300 hover:scale-[1.03]">
             <video
-              className="w-full rounded-2xl"
+              className="w-full "
               autoPlay
               loop
               muted
@@ -92,7 +92,7 @@ export default function AboutSection() {
             {achievements.map((item, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-black via-black to-gray-900 border border-gray-900 rounded-2xl p-6 text-center shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
+                className=" border border-gray-900 p-6 text-center shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
               >
                 <div className="text-white mb-3 flex justify-center">{item.icon}</div>
                 <CountUpOnView end={item.number} />
@@ -104,9 +104,9 @@ export default function AboutSection() {
           </div>
 
           {/* Secondary Video */}
-          <div className="rounded-2xl overflow-hidden shadow-xl transition-transform duration-300 hover:scale-[1.03]">
+          <div className=" overflow-hidden shadow-xl transition-transform duration-300 hover:scale-[1.03]">
             <video
-              className="w-full rounded-2xl"
+              className="w-full "
               autoPlay
               loop
               muted
@@ -116,8 +116,8 @@ export default function AboutSection() {
           </div>
 
           {/* Value Proposition Card */}
-          <div className="bg-gradient-to-br from-black via-black to-gray-900 border border-gray-900 rounded-2xl p-8 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md text-center transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]">
-            <h3 className="text-xl sm:text-3xl font-bold mb-4">
+          <div className=" border border-gray-900  p-8 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md text-center transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+            <h3 className="text-xl sm:text-3xl font-normal mb-4">
               What You Get With Qualty.AI
             </h3>
             <p className="text-gray-300 max-w-3xl mx-auto text-xs sm:text-sm leading-relaxed">
@@ -130,10 +130,10 @@ export default function AboutSection() {
             {values.map((value, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-black via-black to-gray-900 border border-gray-900 rounded-2xl p-6 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
+                className="border border-gray-900 p-6 shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
               >
                 <div className="mb-4 flex items-center justify-center">{value.icon}</div>
-                <h4 className="text-base sm:text-lg font-semibold mb-2 text-white text-center">
+                <h4 className="text-base sm:text-lg font-normal mb-2 text-white text-center">
                   {value.title}
                 </h4>
                 <p className="text-gray-400 text-xs sm:text-sm text-center leading-relaxed">

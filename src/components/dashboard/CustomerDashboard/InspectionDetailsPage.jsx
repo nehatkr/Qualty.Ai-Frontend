@@ -81,7 +81,7 @@ export default function InspectionDetailsPage() {
             });
 
             const verifyData = await verifyRes.json();
-            if (verifyData.success) {
+            if (verifyData?.success) {
               toast.success("Bid confirmed successfully!");
               setConfirmedBidId(bidId);
             } else {
@@ -207,7 +207,7 @@ export default function InspectionDetailsPage() {
                         onClick={() =>
                           handleConfirmBid(bid._id, bid.enquiry, bid.customerViewAmount)
                         }
-                        className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold text-sm w-full cursor-pointer"
+                        className="bg-black hover:bg-gray-800 text-white px-4 py-2 rounded font-semibold text-sm w-full cursor-pointer"
                       >
                         <FaCheckCircle className="inline mr-2" />
                         Confirm This Bid
