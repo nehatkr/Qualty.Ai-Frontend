@@ -56,7 +56,7 @@ export default function QuickInspection() {
             Inspection Regions
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
   {visibleRegions.map(([regionName]) => (
     <Link key={regionName} to={`/quickInspection/${encodeURIComponent(regionName)}`}>
       <div className="group border border-gray-900  p-4 flex flex-col items-center shadow-[inset_0_0_0.5px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:scale-[1.03] cursor-pointer">
