@@ -16,7 +16,7 @@ export default function HeroSection() {
   return (
    <section className="bg-black text-white relative overflow-hidden min-h-[500px] sm:min-h-[600px] md:min-h-screen" id="home">
 
-    <div className="absolute inset-0 z-0 overflow-hidden opacity-70 h-full">
+    <div className="absolute inset-0 z-0 overflow-hidden opacity-40 h-full">
   <video
     className="w-full h-full object-fill sm:object-cover"
     src={HomeVideo}
@@ -30,7 +30,7 @@ export default function HeroSection() {
 
 
       <div className="relative font-sans z-10 max-w-7xl mx-auto px-6 py-12 md:py-35 flex flex-col lg:flex-row items-center justify-between gap-12">
-        <div className="max-w-xl py-45">
+        <div className="max-w-xl py-20 sm:py-45">
           <h1 className="text-sm sm:text-lg font-bold font-sans sm:mb-6 leading-tight">
             Global <span className="text-white">Quality Inspections</span> for Global Trade
           </h1>
