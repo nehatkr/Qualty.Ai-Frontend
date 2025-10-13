@@ -1,108 +1,3 @@
-// import React, { useState } from "react";
-// import { BASE_URL } from "../../../utils/constants";
-// import {useDispatch} from "react-redux"
-// import {addPlaceBid} from "../../../redux/slice/bidSlice"
-// import { toast } from "react-toastify";
-
-// const BidCard = ({ bid }) => {
-//   const [amount, setAmount] = useState("");
-//   const dispatch = useDispatch()
-
-//   const {
-//     _id: id,
-//     inspectionLocation: location,
-//     urgencyLevel: urgency,
-//     inspectionBudget: budget,
-//     commodityCategory: commodity,
-//     subCommodity,
-//     volume,
-//     inspectionDate,
-//     inspectionTypes,
-//     contact,
-//     additionalServices,
-//     certifications,
-//     description,
-//   } = bid;
-
-//   const handleBid = async (id) => {
-//     const bidAmount = Number(amount);
-//     if (!bidAmount || bidAmount <= 0) return alert("Enter a valid bid amount");
-
-//     try {
-//       const response = await fetch(`${BASE_URL}/inspector/bid/${id}`, {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         credentials: "include",
-//         body: JSON.stringify({ amount:bidAmount }),
-//       });
-
-//       const data = await response.json();
-//       if (data.success) {
-//         dispatch(addPlaceBid(data.bid))
-//         toast.success(data.message)
-//       } else {
-//         toast.success(data.message)
-//       }
-//     } catch (err) {
-//       console.error("Bid error:", err);
-//     }
-//   };
-
-//   return (
-//     <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 m-5 flex justify-around shadow-lg hover:shadow-blue-500/50">
-//       <div className="mb-2 space-y-1">
-//         <p className="text-md font-semibold text-gray-400">
-//           Commodity: <span className="text-gray-100">{commodity}</span>{" "}
-//         </p>
-//         <p className="text-md font-semibold text-gray-400">
-//           SubCommodity: <span className="text-gray-100">{subCommodity}</span>
-//         </p>
-//         <p className="text-md font-semibold text-gray-400">
-//           Location: <span className="text-gray-100">{location}</span>
-//         </p>
-//         <p className="text-md font-semibold text-gray-400">
-//           Urgency:{" "}
-//           <span
-//             className={`font-semibold ${
-//               urgency === "High" ? "text-red-500" : "text-yellow-400"
-//             }`}
-//           >
-//             {urgency}
-//           </span>
-//         </p>
-//         <p className="text-md font-semibold text-gray-400">
-//           Budget:{" "}
-//           <span className="font-semibold text-green-400">₹{budget}/-</span>
-//         </p>
-//       </div>
-
-//       <div className="flex items-center gap-2">
-//         <input
-//           type="number"
-//           value={amount}
-//           onChange={(e) => setAmount(e.target.value)}
-//           placeholder="₹ Enter bid amount"
-//           className="bg-gray-700 text-white px-3 py-2 rounded w-full outline-none"
-//         />
-//         <button
-//           onClick={()=>handleBid(id)}
-//           className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-white font-semibold cursor-pointer"
-//         >
-//           Bid
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
-
-
-// export default BidCard;
-
-
-
-
 import React, { useState } from "react";
 import { BASE_URL } from "../../../utils/constants";
 import { useDispatch } from "react-redux";
@@ -148,53 +43,60 @@ const BidCard = ({ bid, bidPlaced, onBidPlaced }) => {
       toast.error("Something went wrong");
     }
   };
-
+  
   return (
-    <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 m-5 flex justify-between items-center shadow-lg hover:shadow-blue-500/50">
-      <div className="space-y-1">
-        <p className="text-md font-semibold text-gray-400">
-          Commodity: <span className="text-gray-100">{commodity}</span>
-        </p>
-        <p className="text-md font-semibold text-gray-400">
-          SubCommodity: <span className="text-gray-100">{subCommodity}</span>
-        </p>
-        <p className="text-md font-semibold text-gray-400">
-          Location: <span className="text-gray-100">{location}</span>
-        </p>
-        <p className="text-md font-semibold text-gray-400">
-          Urgency:{" "}
-          <span className={`font-semibold ${urgency === "High" ? "text-red-500" : "text-yellow-400"}`}>
-            {urgency}
-          </span>
-        </p>
-        <p className="text-md font-semibold text-gray-400">
-          Budget: <span className="font-semibold text-green-400">₹{budget}/-</span>
-        </p>
-      </div>
-
-      <div className="flex flex-col items-end gap-2">
-        {bidPlaced ? (
-          <div className="text-green-400 font-semibold text-sm">✅ Bid Placed</div>
-        ) : (
-          <>
-            <input
-              type="number"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              placeholder="₹ Enter bid amount"
-              className="bg-gray-700 text-white px-3 py-2 rounded w-full outline-none"
-            />
-            <button
-              onClick={handleBid}
-              className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-white font-semibold cursor-pointer"
-            >
-              Bid
-            </button>
-          </>
-        )}
-      </div>
+  <div className="bg-white border border-gray-200 rounded-xl p-5 m-5 flex flex-col md:flex-row justify-between items-start md:items-center shadow-sm hover:shadow-md transition-all duration-300">
+    {/* Left Section */}
+    <div className="space-y-2 text-sm text-gray-700">
+      <p>
+        <span className="font-medium text-gray-500">Commodity:</span>{" "}
+        <span className="text-black">{commodity}</span>
+      </p>
+      <p>
+        <span className="font-medium text-gray-500">SubCommodity:</span>{" "}
+        <span className="text-black">{subCommodity}</span>
+      </p>
+      <p>
+        <span className="font-medium text-gray-500">Location:</span>{" "}
+        <span className="text-black">{location}</span>
+      </p>
+      <p>
+        <span className="font-medium text-gray-500">Urgency:</span>{" "}
+        <span className={`font-semibold ${urgency === "High" ? "text-red-500" : "text-yellow-500"}`}>
+          {urgency}
+        </span>
+      </p>
+      <p>
+        <span className="font-medium text-gray-500">Budget:</span>{" "}
+        <span className="text-green-600 font-semibold">₹{budget}/-</span>
+      </p>
     </div>
-  );
+
+    {/* Right Section */}
+    <div className="mt-4 md:mt-0 flex flex-col items-end gap-2 w-full md:w-auto">
+      {bidPlaced ? (
+        <div className="text-green-600 font-semibold text-sm">✅ Bid Placed</div>
+      ) : (
+        <>
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder="₹ Enter bid amount"
+            className="border border-gray-300 px-3 py-2 rounded-md w-full md:w-48 text-sm text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black"
+          />
+          <button
+            onClick={handleBid}
+            className="bg-black hover:bg-gray-900 text-white px-4 py-2 rounded-md text-sm font-medium transition-all duration-200"
+          >
+            Place Bid
+          </button>
+        </>
+      )}
+    </div>
+  </div>
+);
+
 };
 
 export default BidCard;

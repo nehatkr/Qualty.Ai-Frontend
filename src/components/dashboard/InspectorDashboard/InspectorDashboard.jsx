@@ -25,7 +25,7 @@ const InspectorDashboard = () => {
     loadEnquiries();
   }, []);
   return (
-    <div className="min-h-screen bg-gray-950 py-10">
+    <div className="min-h-screen bg-white py-10">
      {enquiryData && <LiveBids bids={enquiryData} />}
     </div>
   );

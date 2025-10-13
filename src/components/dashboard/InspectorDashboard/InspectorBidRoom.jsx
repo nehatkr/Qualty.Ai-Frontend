@@ -8,11 +8,9 @@ import { useState } from "react";
 const InspectorBidRoom = () => {
   useFetchEnquiries();
   const dispatch = useDispatch();
-  const enquiries = useSelector((state) => state.enquiry.raisedEnquiry);
+  const enquiries = useSelector((state) => state.enquiry.raisedEnquiry);    
   const isArray = Array.isArray(enquiries);
-
   const [bidAmounts, setBidAmounts] = useState({});
-  const [disabledBids, setDisabledBids] = useState({});
 
   const handleAmountChange = (id, value) => {
     setBidAmounts((prev) => ({ ...prev, [id]: value }));
@@ -46,123 +44,102 @@ const InspectorBidRoom = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 py-10 px-6">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-white mb-6">
-          All Live Enquiries
-        </h1>
-        <p className="text-gray-400 mb-8">
-          Total Enquiries:{" "}
-          <span className="text-blue-400 font-semibold">
-            {isArray ? enquiries.length : 0}
-          </span>
-        </p>
+    <div className="min-h-screen bg-white px-6 py-10">
+      <div className="max-w-7xl mx-auto space-y-10">
+        <div className="flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl font-bold text-black">Bidding Room</h1>
+            <p className="text-sm text-gray-500 mt-1">
+              {isArray ? enquiries.length : 0} inspection opportunities available
+            </p>
+          </div>
+        </div>
 
         {!isArray ? (
-          <p className="text-gray-500 text-center">Loading enquiries...</p>
+          <p className="text-center text-gray-500">Loading enquiries...</p>
         ) : enquiries.length === 0 ? (
-          <p className="text-gray-500 text-center">
-            No live enquiries available
-          </p>
+          <p className="text-center text-gray-500">No live enquiries available</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {enquiries.map((enquiry) => (
               <div
                 key={enquiry._id}
-                className="bg-gray-900 border border-gray-700 rounded-xl p-5 shadow-lg hover:shadow-blue-500/50 transition-shadow"
+                className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all"
               >
-                <h2 className="text-xl font-bold text-white mb-2">
-                  {enquiry.commodityCategory}
-                </h2>
-                <p className="text-sm text-gray-400 mb-1">
-                  Sub-Commodity:{" "}
-                  <span className="text-gray-100 font-semibold">
-                    {enquiry.subCommodity}
-                  </span>
-                </p>
-                <p className="text-sm text-gray-400 mb-1">
-                  Location:{" "}
-                  <span className="text-gray-100 font-semibold">
-                    {enquiry.inspectionLocation}
-                  </span>
-                </p>
-                <p className="text-sm text-gray-400 mb-1">
-                  Urgency:{" "}
+                <div className="flex justify-between items-center mb-2">
+                  <h2 className="text-lg font-semibold text-black">
+                    {enquiry.commodityCategory}
+                  </h2>
                   <span
-                    className={`font-semibold ${
+                    className={`text-xs font-medium px-2 py-1 rounded-full ${
                       enquiry.urgencyLevel === "High"
-                        ? "text-red-500"
+                        ? "bg-red-100 text-red-600"
                         : enquiry.urgencyLevel === "Medium"
-                        ? "text-yellow-400"
-                        : "text-green-400"
+                        ? "bg-yellow-100 text-yellow-600"
+                        : "bg-green-100 text-green-600"
                     }`}
                   >
                     {enquiry.urgencyLevel}
                   </span>
+                </div>
+
+                <p className="text-sm text-gray-600 mb-1">
+                  <strong>Location:</strong>{" "}
+                  <span className="text-black">{enquiry.inspectionLocation}</span>
                 </p>
-                <p className="text-sm text-gray-400 mb-1">
-                  Budget:{" "}
-                  <span className="text-green-400 font-semibold">
+                <p className="text-sm text-gray-600 mb-1">
+                  <strong>Customer:</strong>{" "}
+                  <span className="text-black">{enquiry.contact?.contactPersonName}</span>
+                </p>
+                <p className="text-sm text-gray-600 mb-1">
+                  <strong>Inspection Needs:</strong>{" "}
+                  <span className="text-black">
+                    {enquiry.inspectionTypes?.physical && "Physical, "}
+                    {enquiry.inspectionTypes?.chemical && "Chemical"}
+                  </span>
+                </p>
+                <p className="text-sm text-gray-600 mb-1">
+                  <strong>Budget:</strong>{" "}
+                  <span className="text-green-600 font-semibold">
                     ₹ {enquiry.inspectionBudget}
                   </span>
                 </p>
-                <p className="text-sm text-gray-400 mb-1">
-                  Volume:{" "}
-                  <span className="text-gray-100 font-semibold">
-                    {enquiry.volume}
-                  </span>{" "}
-                  | Dates:{" "}
-                  <span className="text-gray-100 font-semibold">
-                    {new Date(enquiry.inspectionDate.from).toLocaleDateString()}{" "}
-                    - {new Date(enquiry.inspectionDate.to).toLocaleDateString()}
-                  </span>
+                <p className="text-sm text-gray-600 mb-1">
+                  <strong>Deadline:</strong>{" "}
+                  <span className="text-black">
+    {enquiry.inspectionDate?.to
+      ? new Date(enquiry.inspectionDate.to).toLocaleDateString()
+      : "Not specified"}
+  </span>
                 </p>
-                <p className="text-sm text-gray-400 mb-1">
-                  Types:{" "}
-                  {enquiry.inspectionTypes?.physical && <span>Physical </span>}
-                  {enquiry.inspectionTypes?.chemical && <span>Chemical</span>}
+                <p className="text-sm text-gray-600 mb-2">
+                  <strong>Volume:</strong>{" "}
+                  <span className="text-black">{enquiry.volume}</span>
                 </p>
-                <p className="text-sm text-gray-400 mb-1">
-                  Contact: {enquiry.contact?.email},{" "}
-                  {enquiry.contact?.phoneNumber}
-                </p>
-                {enquiry.additionalServices?.length > 0 && (
-                  <p className="text-sm text-gray-400 mb-1">
-                    Services: {enquiry.additionalServices.join(", ")}
-                  </p>
-                )}
-                {enquiry.certifications?.length > 0 && (
-                  <p className="text-sm text-gray-400 mb-1">
-                    Certifications: {enquiry.certifications.join(", ")}
-                  </p>
-                )}
-                {enquiry.description && (
-                  <p className="text-sm text-gray-400 mb-2">
-                    Note: {enquiry.description}
-                  </p>
-                )}
 
-                <div className="mt-4 flex gap-2">
+                <div className="mt-4 flex gap-2 font-normal text-sm">
                   <input
                     type="number"
                     value={bidAmounts[enquiry._id] || ""}
                     onChange={(e) =>
                       handleAmountChange(enquiry._id, e.target.value)
                     }
-                    placeholder="Enter bid amount"
-                    className="bg-gray-800 text-white px-3 py-2 rounded w-full outline-none border border-gray-600"
-                    disabled={disabledBids[enquiry._id]}
+                    placeholder="Your bid (₹)"
+                    className="no-spinner bg-white border border-gray-300 text-black px-3 py-2 rounded-md w-full outline-none focus:ring-2 focus:ring-black text-sm"
+                    disabled={enquiry.hasPlacedBid}
+
                   />
                   <button
                     onClick={() => handleBid(enquiry._id)}
-                    disabled={disabledBids[enquiry._id]}
-                    className={`px-4 py-2 rounded text-white font-semibold cursor-pointer ${
-                      disabledBids[enquiry._id]
-                        ? "bg-gray-600 cursor-not-allowed"
-                        : "bg-green-600 hover:bg-green-700"
+                      disabled={enquiry.hasPlacedBid}
+                    className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                      enquiry.hasPlacedBid
+                        ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                        : "bg-black text-white hover:bg-gray-900"
                     }`}
                   >
-                    {disabledBids[enquiry._id] ? "Bid Placed" : "Bid"}
+                   {enquiry.hasPlacedBid ? "Bid Placed" : "Place Bid"}
+
                   </button>
                 </div>
               </div>
@@ -175,4 +152,5 @@ const InspectorBidRoom = () => {
 };
 
 export default InspectorBidRoom;
+
 
