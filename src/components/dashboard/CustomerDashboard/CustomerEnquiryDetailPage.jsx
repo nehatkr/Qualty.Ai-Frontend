@@ -82,8 +82,7 @@ export default function CustomerEnquiryDetailPage() {
           <div className="glass-card hover:shadow-purple-200/40">
             <h2 className="section-title">💳 Payment Info</h2>
             <div className="info-grid">
-              <p><strong>Payment ID:</strong> {payment._id}</p>
-              <p><strong>Razorpay Order ID:</strong> {payment.razorpayOrderId}</p>
+              <p><strong>Order ID:</strong> {payment.razorpayOrderId}</p>
               <p><strong>Razorpay Payment ID:</strong> {payment.razorpayPaymentId}</p>
               <p><strong>Amount Paid:</strong> ₹{payment.amount}</p>
               <p><strong>Status:</strong> {payment.status}</p>
@@ -98,7 +97,7 @@ export default function CustomerEnquiryDetailPage() {
             </p>
           </div>
         )}
-      </div>
+      </div> 
 
       <style jsx>{`
         .animate-fade-in {

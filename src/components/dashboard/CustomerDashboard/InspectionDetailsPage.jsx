@@ -3,7 +3,10 @@ import { useEffect, useState } from "react";
 import { FaUserTie, FaChartBar, FaCheckCircle } from "react-icons/fa";
 import { BASE_URL } from "../../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { addInspectionBids, addInspectionStats } from "../../../redux/slice/enquiryBidSlice";
+import {
+  addInspectionBids,
+  addInspectionStats,
+} from "../../../redux/slice/enquiryBidSlice";
 import { toast } from "react-toastify";
 
 export default function InspectionDetailsPage() {
@@ -11,6 +14,8 @@ export default function InspectionDetailsPage() {
   const dispatch = useDispatch();
   const { bids, stats } = useSelector((store) => store.enquiryBid);
   const [confirmedBidId, setConfirmedBidId] = useState(null);
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [isFinalPaid, setIsFinalPaid] = useState(false);
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -24,6 +29,12 @@ export default function InspectionDetailsPage() {
           dispatch(addInspectionStats(data.stats));
           const confirmed = data.bids.find((b) => b.status === "won");
           if (confirmed) setConfirmedBidId(confirmed._id);
+          if (
+            data.enquiry?.status === "completed" ||
+            data.enquiry?.currentPhase === "completed"
+          ) {
+            setIsFinalPaid(true);
+          }
         } else {
           toast.error(data.message);
         }
@@ -35,14 +46,24 @@ export default function InspectionDetailsPage() {
   }, [id]);
 
   const handleConfirmBid = async (bidId, enquiryId, amount) => {
+    console.log("amount", amount);
+
     try {
-      const orderRes = await fetch(`${BASE_URL}/payment/createOrder/${enquiryId}`, {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount }),
-      });
+      const initialAmount = amount * 0.3;
+      console.log("Sending initialAmount:", initialAmount);
+
+      const orderRes = await fetch(
+        `${BASE_URL}/payment/createInitialOrder/${enquiryId}`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount: initialAmount }),
+        }
+      );
       const orderData = await orderRes.json();
+      console.log("order", orderData);
+
       if (!orderData.success) {
         toast.error(orderData.message || "Failed to create payment order");
         return;
@@ -67,6 +88,7 @@ export default function InspectionDetailsPage() {
         },
         handler: async function (response) {
           try {
+            setIsVerifying(true);
             const verifyRes = await fetch(`${BASE_URL}/payment/verify`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -88,8 +110,17 @@ export default function InspectionDetailsPage() {
               toast.error("Payment verification failed");
             }
           } catch (err) {
+            console.log(err);
+
             toast.error("Error verifying payment");
+          } finally {
+            setIsVerifying(false);
           }
+        },
+        modal: {
+          ondismiss: function () {
+            setIsVerifying(false);
+          },
         },
       };
 
@@ -100,10 +131,94 @@ export default function InspectionDetailsPage() {
     }
   };
 
+  const handleFinalPayment = async (enquiryId) => {
+    try {
+      setIsVerifying(true);
+      const orderRes = await fetch(
+        `${BASE_URL}/payment/createFinalOrder/${enquiryId}`,
+        {
+          method: "POST",
+          credentials: "include",
+        }
+      );
+
+      const orderData = await orderRes.json();
+      if (!orderData.success) {
+        toast.error(
+          orderData.message || "Failed to create final payment order"
+        );
+        setIsVerifying(false);
+        return;
+      }
+
+      const { order, customerDetails, paymentId, keyId } = orderData;
+
+      const options = {
+        key: keyId,
+        amount: order.amount,
+        currency: order.currency,
+        name: "Qualty.ai",
+        description: "Final Inspection Payment",
+        order_id: order.id,
+        prefill: {
+          name: customerDetails.name,
+          email: customerDetails.email,
+          contact: customerDetails.mobileNumber,
+        },
+        theme: { color: "#000000" },
+        handler: async function (response) {
+          try {
+            const verifyRes = await fetch(`${BASE_URL}/payment/verifyFinal`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              credentials: "include",
+              body: JSON.stringify({
+                paymentId,
+                razorpayPaymentId: response.razorpay_payment_id,
+                razorpayOrderId: response.razorpay_order_id,
+                razorpaySignature: response.razorpay_signature,
+              }),
+            });
+
+            const verifyData = await verifyRes.json();
+            if (verifyData?.success) {
+              toast.success("Final payment completed.");
+              setIsFinalPaid(true);
+            } else {
+              toast.error("Final payment verification failed");
+            }
+          } catch (err) {
+            toast.error("Error verifying final payment");
+          } finally {
+            setIsVerifying(false);
+          }
+        },
+        modal: {
+          ondismiss: function () {
+            setIsVerifying(false);
+          },
+        },
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } catch (err) {
+      toast.error("Error initiating final payment");
+      setIsVerifying(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white text-black px-6 py-10">
       <div className="max-w-6xl mx-auto space-y-10">
-        {/* Header */}
+        {isVerifying && (
+          <div className="fixed inset-0 bg-white bg-opacity-80 flex items-center justify-center z-50">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-black mx-auto mb-4"></div>
+              <p className="text-black font-medium">Verifying payment...</p>
+            </div>
+          </div>
+        )}
         <div className="text-center">
           <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-black via-gray-800 to-black mb-2">
             Inspection Bids Overview
@@ -113,7 +228,6 @@ export default function InspectionDetailsPage() {
           </p>
         </div>
 
-        {/* Stats Summary */}
         {stats && (
           <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-md">
             <h2 className="text-2xl font-semibold text-green-700 mb-4 flex items-center gap-2">
@@ -121,33 +235,43 @@ export default function InspectionDetailsPage() {
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm text-gray-700">
               <div className="bg-gray-50 p-4 rounded-lg hover:shadow transition">
-                <p className="text-lg font-bold text-black">{stats.totalBids}</p>
+                <p className="text-lg font-bold text-black">
+                  {stats.totalBids}
+                </p>
                 <p>Total Bids</p>
               </div>
               <div className="bg-gray-50 p-4 rounded-lg hover:shadow transition">
-                <p className="text-lg font-bold text-black">₹{stats.lowestBid}</p>
+                <p className="text-lg font-bold text-black">
+                  ₹{stats.lowestBid}
+                </p>
                 <p>Lowest Bid</p>
               </div>
               <div className="bg-gray-50 p-4 rounded-lg hover:shadow transition">
-                <p className="text-lg font-bold text-black">₹{stats.highestBid}</p>
+                <p className="text-lg font-bold text-black">
+                  ₹{stats.highestBid}
+                </p>
                 <p>Highest Bid</p>
               </div>
               <div className="bg-gray-50 p-4 rounded-lg hover:shadow transition">
-                <p className="text-lg font-bold text-black">₹{Math.round(stats.averageBid)}</p>
+                <p className="text-lg font-bold text-black">
+                  ₹{Math.round(stats.averageBid)}
+                </p>
                 <p>Average Bid</p>
               </div>
             </div>
           </div>
         )}
 
-        {/* Bids Section */}
         <div>
-          <h2 className="text-2xl font-semibold text-yellow-700 mb-4">🧑‍🔬 Inspector Bids</h2>
+          <h2 className="text-2xl font-semibold text-yellow-700 mb-4">
+            🧑‍🔬 Inspector Bids
+          </h2>
           {bids.length === 0 ? (
             <div className="bg-white p-6 rounded-xl border border-gray-200 text-center text-gray-500 shadow-sm">
               <p className="text-lg font-semibold mb-2">No bids yet</p>
               <p className="text-sm">
-                Once inspectors submit their bids, you'll be able to review and confirm them here.
+                Once inspectors submit their bids, you'll be able to review and
+                confirm them here.
               </p>
             </div>
           ) : (
@@ -163,7 +287,7 @@ export default function InspectionDetailsPage() {
                     className={`bg-white p-6 rounded-xl border ${
                       isConfirmed ? "border-green-500" : "border-gray-200"
                     } shadow-md hover:shadow-lg transition`}
-                  >
+                  > 
                     <div className="flex justify-between items-center mb-2">
                       <h3 className="text-lg font-bold flex items-center gap-2">
                         <FaUserTie className="text-yellow-600" />
@@ -182,18 +306,42 @@ export default function InspectionDetailsPage() {
                       </span>
                     </div>
                     <div className="text-sm text-gray-700 space-y-1 mb-4">
-                      <p><strong>Bid Amount:</strong> ₹{bid.customerViewAmount}/-</p>
-                      <p><strong>Submitted:</strong> {new Date(bid.createdAt).toLocaleString()}</p>
-                      <p><strong>Enquiry ID:</strong> {bid.enquiry}</p>
+                      <p>
+                        <strong>Bid Amount:</strong> ₹{bid.customerViewAmount}/-
+                      </p>
+                      <p>
+                        <strong>Submitted:</strong>{" "}
+                        {new Date(bid.createdAt).toLocaleString()}
+                      </p>
+                      <p>
+                        <strong>Enquiry ID:</strong> {bid.enquiry}
+                      </p>
                     </div>
                     {isConfirmed ? (
-                      <button
-                        disabled
-                        className="bg-green-600 text-white px-4 py-2 rounded font-semibold text-sm w-full cursor-not-allowed"
-                      >
-                        <FaCheckCircle className="inline mr-2" />
-                        Confirmed
-                      </button>
+                      <div>
+                        <button
+                          disabled
+                          className="bg-green-600 text-white px-4 py-2 rounded font-semibold text-sm w-full cursor-not-allowed"
+                        >
+                          <FaCheckCircle className="inline mr-2" />
+                          Confirmed
+                        </button>
+                        {isFinalPaid ? (
+                          <button
+                            disabled
+                            className="mt-3 bg-gray-200 text-gray-500 px-4 py-2 rounded font-semibold text-sm w-full cursor-not-allowed"
+                          >
+                            Balance Paid
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => handleFinalPayment(bid.enquiry)}
+                            className="mt-3 bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded font-semibold text-sm w-full cursor-pointer"
+                          >
+                            Pay Balance
+                          </button>
+                        )}
+                      </div>
                     ) : confirmedBidId ? (
                       <button
                         disabled
@@ -205,7 +353,11 @@ export default function InspectionDetailsPage() {
                     ) : (
                       <button
                         onClick={() =>
-                          handleConfirmBid(bid._id, bid.enquiry, bid.customerViewAmount)
+                          handleConfirmBid(
+                            bid._id,
+                            bid.enquiry,
+                            bid.customerViewAmount
+                          )
                         }
                         className="bg-black hover:bg-gray-800 text-white px-4 py-2 rounded font-semibold text-sm w-full cursor-pointer"
                       >

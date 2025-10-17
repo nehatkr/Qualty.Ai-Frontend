@@ -21,10 +21,10 @@ import { removeUser } from "../../../redux/slice/userSlice";
 
 const navItems = [
   { label: "Dashboard", icon: <FaTachometerAlt />, path: "/customer/dashboard" },
-  { label: "Bidding Room", icon: <FaGavel />, path: "/customer/bidding" },
   { label: "Raise Enquiry", icon: <FaQuestionCircle />, path: "/customer/enquiry" },
+  { label: "Bidding Room", icon: <FaGavel />, path: "/customer/bidding" },
+  { label: "Inspection Chat Room", icon: <FaHeadset />, path: "/customer/inspectorList" },
   { label: "Payments", icon: <FaMoneyBillWave />, path: "/customer/payments" },
-  { label: "Inspection Chat Room", icon: <FaHeadset />, path: "/customer/live-chat" },
   { label: "Detail Analysis", icon: <FaChartLine />, path: "/customer/analysis" },
   { label: "My History", icon: <FaHistory />, path: "/customer/history" },
   { label: "My Account", icon: <FaUser />, path: "/customer/account" },

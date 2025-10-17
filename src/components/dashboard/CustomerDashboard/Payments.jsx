@@ -27,7 +27,6 @@ export default function CustomerPaymentHistoryPage() {
   return (
     <div className="min-h-screen bg-white text-black px-6 py-10">
       <div className="max-w-5xl mx-auto space-y-10 animate-fade-in">
-        {/* Header */}
         <div className="text-center">
           <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-black via-gray-800 to-black mb-2">
             Payment History
@@ -37,7 +36,6 @@ export default function CustomerPaymentHistoryPage() {
           </p>
         </div>
 
-        {/* Empty State */}
         {payments.length === 0 ? (
           <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 text-center text-gray-500 shadow-sm animate-fade-in-slow">
             <p className="text-lg font-semibold mb-2">No payments found</p>
@@ -58,9 +56,10 @@ export default function CustomerPaymentHistoryPage() {
                   </span>
                 </div>
                 <div className="text-sm text-gray-700 space-y-2">
+                  <p><strong>Enquiry:</strong> {p.enquiry?.commodityCategory} — {p.enquiry?.inspectionLocation}</p>
+                  <p><strong>Enquiry ID:</strong> {p.enquiry?._id}</p>
                   <p><strong>Payment ID:</strong> {p._id}</p>
                   <p><strong>Order ID:</strong> {p.razorpayOrderId}</p>
-                  <p><strong>Enquiry:</strong> {p.enquiry?.commodityCategory} — {p.enquiry?.inspectionLocation}</p>
                   <p><strong>Date:</strong> {new Date(p.updatedAt).toLocaleString()}</p>
                 </div>
               </div>

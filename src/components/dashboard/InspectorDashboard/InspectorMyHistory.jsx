@@ -133,10 +133,10 @@ const InspectorHistory = () => {
                 {/* <p><strong>Customer View:</strong> ₹{customerViewAmount}</p> */}
                 <p>
                   <strong>Status:</strong>{" "}
-                  <span className={`font-semibold ${
-                    status === "accepted"
-                      ? "text-green-600"
-                      : "text-yellow-500"
+                  <span className={` ${
+                    status === "won"
+                      ? "text-green-600 font-bold text-xl "
+                      : "text-yellow-500 font-semibold"
                   }`}>
                     {status}
                   </span>

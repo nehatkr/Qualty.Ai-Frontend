@@ -52,6 +52,7 @@ const Contact = lazy(()=>import("./components/Contact"))
 import ShimmerUI from "./components/ShimmerUI";
 import About from "./components/About";
 import PrivacyPolicy from "./components/PrivacyPolicy";
+import InspectorList from "./components/dashboard/CustomerDashboard/InspectorList";
 
 function App() {
   return (
@@ -79,7 +80,8 @@ function App() {
           <Route path="bidding" element={<BiddingRoom />} />
           <Route path="chat" element={<ChatWithUs />} />
           <Route path="analysis" element={<DetailAnalysis />} />
-          <Route path="live-chat" element={<LiveChat />} />
+          <Route path="inspectorList" element={<InspectorList />} />
+          <Route path="chat/:inspectorid" element={<LiveChat />} />
           <Route path="account" element={<MyAccount />} />
           <Route path="history" element={<MyHistory />} />
           <Route path="payments" element={<Payments />} />

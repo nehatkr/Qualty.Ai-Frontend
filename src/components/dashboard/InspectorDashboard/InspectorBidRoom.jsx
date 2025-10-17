@@ -8,7 +8,7 @@ import { useState } from "react";
 const InspectorBidRoom = () => {
   useFetchEnquiries();
   const dispatch = useDispatch();
-  const enquiries = useSelector((state) => state.enquiry.raisedEnquiry);    
+  const enquiries = useSelector((state) => state.enquiry.raisedEnquiry);      
   const isArray = Array.isArray(enquiries);
   const [bidAmounts, setBidAmounts] = useState({});
 
@@ -29,13 +29,12 @@ const InspectorBidRoom = () => {
       });
 
       const data = await response.json();
-      if (data.success) {
+      if (response.ok && data.success) {
         dispatch(addPlaceBid(data.bid));
         toast.success(data.message);
         setBidAmounts((prev) => ({ ...prev, [id]: "" }));
-        setDisabledBids((prev) => ({ ...prev, [id]: true }));
       } else {
-        toast.error(data.message);
+        toast.error(data.message || "BId failed");
       }
     } catch (err) {
       console.error("Bid error:", err);
@@ -125,17 +124,17 @@ const InspectorBidRoom = () => {
                       handleAmountChange(enquiry._id, e.target.value)
                     }
                     placeholder="Your bid (₹)"
-                    className="no-spinner bg-white border border-gray-300 text-black px-3 py-2 rounded-md w-full outline-none focus:ring-2 focus:ring-black text-sm"
+                    className="no-spinner bg-white border border-gray-300 text-black px-2 py-1 rounded-md w-full outline-none focus:ring-2 focus:ring-black text-sm"
                     disabled={enquiry.hasPlacedBid}
 
                   />
                   <button
                     onClick={() => handleBid(enquiry._id)}
                       disabled={enquiry.hasPlacedBid}
-                    className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                    className={`px-3 py-1 rounded-md text-sm font-semibold transition-all duration-200 ${
                       enquiry.hasPlacedBid
                         ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                        : "bg-black text-white hover:bg-gray-900"
+                        : "bg-black text-white cursor-pointer hover:bg-gray-700"
                     }`}
                   >
                    {enquiry.hasPlacedBid ? "Bid Placed" : "Place Bid"}
