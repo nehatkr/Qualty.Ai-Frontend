@@ -42,7 +42,7 @@ export default function HeroSection() {
             <button onClick={()=>navigate("/login")} className="px-3 py-2 sm:px-5 sm:py-3 text-sm sm:text-md bg-white text-black font-semibold cursor-pointer  hover:bg-gray-200 transition shadow hover:shadow-lg flex items-center gap-2">
               Get Started Today <ArrowRight size={20} />
             </button>
-            <Link to="https://www.youtube.com/@qualty_ai">
+            <Link to="https://youtu.be/utBbNCSVjhw?si=iXRIsK1Drf-aDwG1">
             <button  className="px-3 py-2 sm:px-5 sm:py-3 text-sm sm:text-md border cursor-pointer border-white text-white  hover:bg-white hover:text-black hover:font-semibold transition flex items-center gap-2">
               <Play size={20} />
               Watch Demo
