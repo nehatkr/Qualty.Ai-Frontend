@@ -53,6 +53,8 @@ import ShimmerUI from "./components/ShimmerUI";
 import About from "./components/About";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import InspectorList from "./components/dashboard/CustomerDashboard/InspectorList";
+import Chat from "./components/dashboard/chat/Chat";
+import CustomerList from "./components/dashboard/InspectorDashboard/CustomerList";
 
 function App() {
   return (
@@ -81,7 +83,7 @@ function App() {
           <Route path="chat" element={<ChatWithUs />} />
           <Route path="analysis" element={<DetailAnalysis />} />
           <Route path="inspectorList" element={<InspectorList />} />
-          <Route path="chat/:inspectorid" element={<LiveChat />} />
+          <Route path="chat/:targetId/:orderId" element={<Chat />} />
           <Route path="account" element={<MyAccount />} />
           <Route path="history" element={<MyHistory />} />
           <Route path="payments" element={<Payments />} />
@@ -95,9 +97,9 @@ function App() {
         <Route path="/inspector" element={ <InspectorLayout/> }>
          <Route path="dashboard" element={<InspectorDashboard />} />
           <Route path="bidding" element={<InspectorBidRoom />} />
-          <Route path="chat" element={<InspectorChatWithUs />} />
+          <Route path="CustomerList" element={<CustomerList />} />
+          <Route path="chat/:targetId/:orderId" element={<Chat />} />
           <Route path="analysis" element={<InspectorAnalysis />} />
-          <Route path="live-chat" element={<InspectorLiveChat />} />
           <Route path="account" element={<InspectorMyAccount />} />
           <Route path="history" element={<InspectorMyHistory />} />
           <Route path="payments" element={<InspectorPayment />} />

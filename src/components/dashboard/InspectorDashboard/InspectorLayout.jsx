@@ -29,7 +29,7 @@ const navItems = [
   // { label: "Payments", icon: <FaMoneyBillWave />, path: "/inspector/payments" },
   { label: "Detail Analysis", icon: <FaChartLine />, path: "/inspector/analysis" },
   { label: "My Account", icon: <FaUser />, path: "/inspector/account" },
-  { label: "Chat with Customer", icon: <FaComments />, path: "/inspector/chat" },
+  { label: "Chat with Customer", icon: <FaComments />, path: "/inspector/CustomerList" },
   { label: "Home", icon: <FaTachometerAlt />, path: "/" },
 ];
 
@@ -77,7 +77,6 @@ if (!user) {
 
   return (
   <div className="min-h-screen bg-white flex">
-    {/* Sidebar */}
     <aside
       className={`fixed inset-y-0 left-0 z-50 bg-white border-r border-gray-200 shadow-md transform ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
@@ -126,7 +125,6 @@ if (!user) {
       </div>
     </aside>
 
-    {/* Main Content */}
     <div className="flex-1">
       <nav className="bg-white border-b border-gray-200 text-black p-4 flex justify-between items-center">
         <div className="flex items-center">
@@ -145,7 +143,6 @@ if (!user) {
       </main>
     </div>
 
-    {/* Overlay for mobile sidebar */}
     {sidebarOpen && (
       <div
         className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
@@ -153,7 +150,6 @@ if (!user) {
       ></div>
     )}
 
-    {/* Logout Confirmation Modal */}
     {showLogoutConfirm && (
       <div className="fixed inset-0 bg-black bg-opacity-40 z-50 flex items-center justify-center">
         <div className="bg-white border border-gray-200 rounded-xl p-6 w-full max-w-sm text-center shadow-xl animate-fade-in">
@@ -181,7 +177,6 @@ if (!user) {
       </div>
     )}
 
-    {/* Animation Styles */}
     <style jsx>{`
       @keyframes fade-in {
         from {
