@@ -15,6 +15,7 @@ export default function ContactPage() {
   });
 
   const [errors, setErrors] = useState({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -30,31 +31,73 @@ export default function ContactPage() {
     e.preventDefault();
     const newErrors = {};
 
-    if (!validateEmail(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
-    }
-
     if (!formData.fullName.trim()) {
       newErrors.fullName = "Full name is required";
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email address is required";
+    } else if (!validateEmail(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
     }
 
     if (!formData.message.trim()) {
       newErrors.message = "Message cannot be empty";
     }
 
+    if (!formData.companyName.trim()) {
+      newErrors.companyName = "Company name is required";
+    }
+
+    if (!formData.role) {
+      newErrors.role = "Please select your role";
+    }
+
+    if (!formData.location.trim()) {
+      newErrors.location = "Inspection location is required";
+    }
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
+      setIsSubmitted(false);
       return;
     }
 
     setErrors({});
     console.log("Form submitted:", formData);
-    alert("Your message has been sent!");
+    setIsSubmitted(true);
   };
+
+  const SuccessNotification = () => (
+    <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
+      <div className="bg-neutral-800 p-6 rounded-lg shadow-2xl max-w-sm w-full border border-green-500">
+        <div className="flex justify-between items-start">
+          <h3 className="text-xl font-bold text-green-400">Success!</h3>
+          <button
+            onClick={() => setIsSubmitted(false)}
+            className="text-gray-400 hover:text-white transition"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+        <p className="mt-4 text-gray-200">
+          Your message has been sent successfully. We will get back to you
+          shortly!
+        </p>
+        <button
+          onClick={() => setIsSubmitted(false)}
+          className="mt-6 w-full bg-green-600 text-white py-2 rounded-lg font-medium hover:bg-green-700 transition"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  );
 
   return (
     <>
       <NewHeader />
+      {isSubmitted && <SuccessNotification />}
       <div className="pt-22 bg-black text-white px-8 md:px-16 pb-8 md:pb-12">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-7xl font-extrabold leading-tight">
