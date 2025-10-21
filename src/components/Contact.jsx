@@ -55,8 +55,7 @@ export default function ContactPage() {
   return (
     <>
       <NewHeader />
-
-      <div className="pt-16 bg-black text-white px-8 md:px-16 pb-8 md:pb-12">
+      <div className="pt-22 bg-black text-white px-8 md:px-16 pb-8 md:pb-12">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl md:text-7xl font-extrabold leading-tight">
             Ready to Start Your Quality Inspection Journey?
