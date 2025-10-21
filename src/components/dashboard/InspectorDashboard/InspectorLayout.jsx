@@ -61,13 +61,9 @@ const InspectorLayout = () => {
     navigate("/");
   };
   
-  useEffect(() => {
-  if (!user) {
-    navigate("/");
-  }
-}, [user, navigate]);
 
 if (!user) {
+   navigate("/");
   return <div className="text-center py-10 text-gray-400">Loading user details...</div>;
 }
 
