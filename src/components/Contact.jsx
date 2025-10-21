@@ -156,7 +156,6 @@ const Contact = () => {
       background: '#000000',
       position: 'relative',
       overflow: 'hidden',
-      fontFamily:'Jost, sans-serif'
     },
     backgroundEffect: {
       position: 'absolute',
@@ -184,12 +183,11 @@ const Contact = () => {
       color: '#FFFFFF',
       padding: isMobile ? '0.8rem 1.5rem' : '1rem 2rem',
       borderRadius: '25px',
-      fontWeight: '700',
+      fontWeight: '500',
       fontSize: isMobile ? '1rem' : '1.2rem',
       marginBottom: '2rem',
       border: '1px solid rgba(255, 255, 255, 0.2)',
       backdropFilter: 'blur(10px)',
-      fontFamily: 'Jost, sans-serif'
     },
     title: {
       fontSize: isMobile ? '2.2rem' : '5rem',
@@ -197,7 +195,6 @@ const Contact = () => {
       marginBottom: '2rem',
       color: '#FFFFFF',
       lineHeight: '1.1',
-      fontFamily:'Jost, sans-serif',
       letterSpacing: '-0.03em'
     },
     description: {
@@ -206,8 +203,7 @@ const Contact = () => {
       maxWidth: '800px',
       margin: '0 auto',
       lineHeight: '1.6',
-      fontWeight: '500',
-      fontFamily: 'Jost, sans-serif'
+      fontWeight: '400',
     },
     contactGrid: {
       display: isMobile ? 'flex' : 'grid',
@@ -229,10 +225,9 @@ const Contact = () => {
     },
     infoTitle: {
       fontSize: isMobile ? '1.8rem' : '2.5rem',
-      fontWeight: '800',
+      fontWeight: '500',
       marginBottom: isMobile ? '1.5rem' : '2.5rem',
       color: '#FFFFFF',
-      fontFamily: 'Jost, sans-serif',
       letterSpacing: '-0.02em'
     },
     contactItem: {
@@ -260,25 +255,22 @@ const Contact = () => {
       flex: 1
     },
     contactTitle: {
-      fontWeight: '700',
+      fontWeight: '500',
       marginBottom: '0.5rem',
       color: '#FFFFFF',
       fontSize: isMobile ? '1.1rem' : '1.3rem',
-      fontFamily:'Jost, sans-serif'
     },
     contactText: {
       color: 'rgba(255, 255, 255, 0.8)',
       fontSize: isMobile ? '0.9rem' : '1.1rem',
       lineHeight: '1.4',
       marginBottom: '0.5rem',
-      fontWeight: '500',
-      fontFamily: 'Jost, sans-serif'
+      fontWeight: '400',
     },
     contactDescription: {
       color: 'rgba(255, 255, 255, 0.6)',
       fontSize: isMobile ? '0.8rem' : '1rem',
-      fontWeight: '500',
-      fontFamily:'Jost, sans-serif'
+      fontWeight: '400',
     },
     contactForm: {
       background: 'rgba(255, 255, 255, 0.05)',
@@ -291,10 +283,9 @@ const Contact = () => {
     },
     formTitle: {
       fontSize: isMobile ? '1.8rem' : '2.5rem',
-      fontWeight: '800',
+      fontWeight: '600',
       marginBottom: isMobile ? '1.5rem' : '2.5rem',
       color: '#FFFFFF',
-      fontFamily: 'Jost, sans-serif',
       letterSpacing: '-0.02em'
     },
     formGroup: {
@@ -307,37 +298,34 @@ const Contact = () => {
     },
     label: {
       display: 'block',
-      fontWeight: '700',
+      fontWeight: '500',
       marginBottom: isMobile ? '0.5rem' : '0.75rem',
       color: '#FFFFFF',
       fontSize: isMobile ? '0.8rem' : '1.1rem',
-      fontFamily: 'Jost, sans-serif'
     },
     input: {
       width: '100%',
-      padding: isMobile ? '0.5rem 0.8rem' : '0.75rem 1.25rem',
+      padding: isMobile ? '0.5rem 0.8rem' : '0.6rem 1rem',
       border: '2px solid rgba(255, 255, 255, 0.2)',
-      borderRadius: isMobile ? '8px' : '12px',
-      fontSize: isMobile ? '0.8rem' : '1.1rem',
+      borderRadius: isMobile ? '8px' : '10px',
+      fontSize: isMobile ? '0.8rem' : '1rem',
       transition: 'all 0.3s ease',
-      fontFamily: 'Jost, sans-serif',
       backgroundColor: 'rgba(255, 255, 255, 0.05)',
       color: '#FFFFFF',
-      height: isMobile ? '40px' : '52px',
+      height: isMobile ? '36px' : '44px',
       boxSizing: 'border-box',
-      fontWeight: '500'
+      fontWeight: '400'
     },
     select: {
       width: '100%',
-      padding: isMobile ? '0.5rem 0.8rem' : '0.75rem 1.25rem',
+      padding: isMobile ? '0.5rem 0.8rem' : '0.6rem 1rem',
       border: '2px solid rgba(255, 255, 255, 0.2)',
-      borderRadius: isMobile ? '8px' : '12px',
-      fontSize: isMobile ? '0.8rem' : '1.1rem',
+      borderRadius: isMobile ? '8px' : '10px',
+      fontSize: isMobile ? '0.8rem' : '1rem',
       transition: 'all 0.3s ease',
-      fontFamily:'Jost, sans-serif',
       backgroundColor: 'rgba(255, 255, 255, 0.05)',
       color: '#FFFFFF',
-      height: isMobile ? '40px' : '52px',
+      height: isMobile ? '36px' : '44px',
       boxSizing: 'border-box',
       cursor: 'pointer',
       appearance: 'none',
@@ -345,23 +333,22 @@ const Contact = () => {
       backgroundPosition: 'right 1rem center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: '1rem',
-      paddingRight: isMobile ? '2.5rem' : '3rem',
-      fontWeight: '500'
+      paddingRight: isMobile ? '2rem' : '2.5rem',
+      fontWeight: '400'
     },
     textarea: {
       width: '100%',
-      padding: isMobile ? '0.8rem 1rem' : '1rem 1.25rem',
+      padding: isMobile ? '0.7rem 0.9rem' : '0.8rem 1rem',
       border: '2px solid rgba(255, 255, 255, 0.2)',
       borderRadius: isMobile ? '10px' : '12px',
-      fontSize: isMobile ? '0.9rem' : '1.1rem',
+      fontSize: isMobile ? '0.9rem' : '1rem',
       transition: 'all 0.3s ease',
-      fontFamily: 'Jost, sans-serif',
       resize: 'vertical',
-      minHeight: isMobile ? '100px' : '120px',
+      minHeight: isMobile ? '80px' : '100px',
       backgroundColor: 'rgba(255, 255, 255, 0.05)',
       color: '#FFFFFF',
       boxSizing: 'border-box',
-      fontWeight: '500'
+      fontWeight: '400'
     },
     submitBtn: {
       background: isLoading ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.1)',
@@ -370,7 +357,7 @@ const Contact = () => {
       border: '1px solid rgba(255, 255, 255, 0.2)',
       borderRadius: isMobile ? '25px' : '30px',
       fontSize: isMobile ? '1rem' : '1.2rem',
-      fontWeight: '700',
+      fontWeight: '500',
       cursor: isLoading ? 'not-allowed' : 'pointer',
       transition: 'all 0.3s ease',
       width: '100%',
@@ -379,7 +366,6 @@ const Contact = () => {
       justifyContent: 'center',
       gap: '0.75rem',
       backdropFilter: 'blur(10px)',
-      fontFamily:'Jost, sans-serif',
       opacity: isLoading ? 0.7 : 1
     },
     errorMessage: {
@@ -393,7 +379,6 @@ const Contact = () => {
       display: 'flex',
       alignItems: 'center',
       gap: '0.5rem',
-      fontFamily:'Jost, sans-serif'
     },
     successMessage: {
       color: '#51cf66',
@@ -406,7 +391,6 @@ const Contact = () => {
       display: 'flex',
       alignItems: 'center',
       gap: '0.5rem',
-      fontFamily: 'Jost, sans-serif'
     }
   };
 
@@ -414,7 +398,6 @@ const Contact = () => {
   useEffect(() => {
     if (!document.querySelector('#contact-animations')) {
       const keyframes = `
-        @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800;900&family=Jost:wght@400;500;600;700;800;900&display=swap');
         
         @keyframes pulse {
           0%, 100% { transform: scale(1) rotate(0deg); }
