@@ -18,7 +18,7 @@ export default function HeroSection() {
 
     <div className="absolute inset-0 z-0 overflow-hidden opacity-40 h-full">
   <video
-    className="w-full h-full object-fill sm:object-cover"
+    className="w-full h-full object-cover"
     src={HomeVideo}
     autoPlay
     muted
