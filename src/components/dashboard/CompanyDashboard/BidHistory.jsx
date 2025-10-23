@@ -35,11 +35,11 @@ export default function BidHistory() {
   );
 
   return (
-    <div className="bg-gray-900/80 backdrop-blur-md border border-gray-700 rounded-xl p-6 shadow-xl w-full max-w-6xl mx-auto">
+    <div className="bg-black backdrop-blur-md border border-gray-700 rounded-xl p-6 shadow-xl w-full max-w-6xl mx-auto">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
         <h2 className="text-xl font-semibold text-white">Bid History</h2>
-        <div className="flex items-center bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 w-full md:w-64">
+        <div className="flex items-center bg-white border border-gray-700 rounded-lg px-3 py-2 w-full md:w-64">
           <Search size={16} className="text-gray-400 mr-2" />
           <input
             type="text"
@@ -52,7 +52,7 @@ export default function BidHistory() {
       </div>
 
       {/* Bid Count */}
-      <p className="text-sm text-gray-400 mb-4">
+      <p className="text-sm text-black mb-4">
         Showing {filteredBids.length} of {allBids.length} bids
       </p>
 
@@ -61,26 +61,26 @@ export default function BidHistory() {
         {filteredBids.map((bid) => (
           <div
             key={bid.id}
-            className="bg-gray-800/60 border border-gray-700 rounded-lg p-5 shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
+            className="bg-white border border-gray-700 rounded-lg p-5 shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
           >
             {/* Left Section */}
             <div className="flex-1">
               <h3 className="text-lg font-bold text-white">{bid.title}</h3>
-              <p className="text-sm text-gray-400">Client: {bid.client}</p>
-              <p className="text-sm text-gray-400">Location: {bid.location}</p>
+              <p className="text-sm text-black">Client: {bid.client}</p>
+              <p className="text-sm text-black">Location: {bid.location}</p>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 text-sm text-gray-300">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 text-sm text-gray-900">
                 <div>
                   <p className="font-medium">Quote</p>
-                  <p className="text-green-400 font-semibold">{bid.quote}</p>
+                  <p className="text-gray-600 font-semibold">{bid.quote}</p>
                 </div>
                 <div>
                   <p className="font-medium">My Bid</p>
-                  <p className="text-blue-400 font-semibold">{bid.myBid}</p>
+                  <p className="text-gray-600 font-semibold">{bid.myBid}</p>
                 </div>
                 <div>
                   <p className="font-medium">Status</p>
-                  <span className="inline-block bg-blue-700 text-white text-xs px-2 py-1 rounded-full mt-1">
+                  <span className="inline-block bg-black text-white text-xs px-2 py-1 rounded-full mt-1">
                     {bid.status}
                   </span>
                 </div>
@@ -93,7 +93,7 @@ export default function BidHistory() {
 
             {/* Right Section */}
             <div>
-              <button className="flex items-center gap-2 bg-blue-800 hover:bg-blue-700 text-white text-xs px-4 py-2 rounded-lg transition">
+              <button className="flex items-center gap-2 bg-black hover:bg-gray-900 text-white text-xs px-4 py-2 rounded-lg transition">
                 <Eye size={16} />
                 View Details
               </button>

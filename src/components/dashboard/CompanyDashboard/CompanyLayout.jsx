@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import useFetchUser from "../../../hooks/useFetchUser";
 import {
-FaBars, FaTimes,
+  FaBars,
+  FaTimes,
   FaTachometerAlt,
   FaGavel,
   FaComments,
@@ -22,59 +23,62 @@ const navItems = [
   { label: "Bidding Room", icon: <FaGavel />, path: "/company/bidding" },
   { label: "Bid History", icon: <FaHistory />, path: "/company/history" },
   { label: "Payments", icon: <FaMoneyBillWave />, path: "/company/payments" },
-  { label: "Detail Analysis", icon: <FaChartLine />, path: "/company/analysis" },
+  {
+    label: "Detail Analysis",
+    icon: <FaChartLine />,
+    path: "/company/analysis",
+  },
   { label: "My Account", icon: <FaUser />, path: "/company/account" },
   { label: "Chat with Us", icon: <FaComments />, path: "/company/chat" },
 ];
 
 const CompanyLayout = () => {
-  useFetchUser();
+  // useFetchUser();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-// const user = useSelector((state)=>state?.user?.user)
+  // const user = useSelector((state)=>state?.user?.user)
 
   const handleLogout = async () => {
     const confirmLogout = window.confirm("Are you sure you want to logout?");
     if (confirmLogout) {
       try {
         const response = await fetch(`${BASE_URL}/auth/logout`, {
-                method: "POST",
-                credentials: "include",
-              });
-              const data = await response.json()        
+          method: "POST",
+          credentials: "include",
+        });
+        const data = await response.json();
       } catch (error) {
-        console.error("Error during logout:", error);       
+        console.error("Error during logout:", error);
       }
       navigate("/");
-     }
-   };
+    }
+  };
 
   const currentTab = navItems.find((item) =>
     location.pathname.includes(item.path)
   )?.label;
 
-  if (!user) {
-    navigate("/")
-    return <div className="text-center py-10 text-gray-400">Loading user details...</div>;
-  }
+  // if (!user) {
+  //   navigate("/")
+  //   return <div className="text-center py-10 text-gray-400">Loading user details...</div>;
+  // }
 
   return (
-    <div className="min-h-screen bg-gray-900 flex">
+    <div className="min-h-screen bg-white flex">
       <aside
-        className={`fixed inset-y-0 left-0 z-50 bg-gray-900 border-r border-gray-700 shadow-lg transform ${
+        className={`fixed inset-y-0 left-0 z-50 bg-white border-r border-gray shadow-lg transform ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}
       >
-        <div className="p-6 border-b border-gray-700">
+        <div className="p-6">
           <div className="flex gap-2 items-center">
-
-          <FaUserCircle  className="text-white text-2xl" />
-          {/* <h2 className="text-xl font-bold text-white">{user.name}</h2> */}
+            <FaUserCircle className="text-black text-2xl" />
+            {/* <h2 className="text-xl font-bold text-white">{user.name}</h2> */}
           </div>
           <button
             onClick={() => setSidebarOpen(false)}
-            className="lg:hidden absolute top-4 right-4 text-gray-400 hover:text-white"
+            className="lg:hidden absolute top-4 right-4 text-black hover:text-gray-300"
           >
             <FaTimes />
           </button>
@@ -90,8 +94,8 @@ const CompanyLayout = () => {
               }}
               className={`w-full flex items-center gap-3 px-4 py-2 cursor-pointer rounded-lg transition-all ${
                 location.pathname.includes(item.path)
-                  ? "bg-gray-700 text-white"
-                  : "text-gray-300 hover:bg-gray-800 hover:text-white"
+                  ? "bg-black text-white"
+                  : "text-gray-600 hover:bg-gray-200 hover:text-black"
               }`}
             >
               <span className="text-lg">{item.icon}</span>
@@ -100,7 +104,7 @@ const CompanyLayout = () => {
           ))}
         </nav>
 
-        <div className="p-4 border-t border-gray-700">
+        <div className="p-4">
           <button
             onClick={handleLogout}
             className="w-full cursor-pointer flex items-center gap-3 px-4 py-2 rounded-lg text-left text-red-500 hover:bg-red-100 hover:text-red-700"
@@ -111,7 +115,7 @@ const CompanyLayout = () => {
       </aside>
 
       <div className="flex-1 ">
-        <nav className="bg-gray-900 border-b border-gray-700 text-white p-4 flex justify-between items-center">
+        <nav className="bg-gray-900 border-b border-gray-700 text-black p-4 flex justify-between items-center">
           <div className="flex items-center">
             <button
               onClick={() => setSidebarOpen(true)}
@@ -119,7 +123,9 @@ const CompanyLayout = () => {
             >
               <FaBars />
             </button>
-            <h1 className="text-xl font-semibold">{currentTab || "Dashboard"}</h1>
+            <h1 className="text-xl font-semibold">
+              {currentTab || "Dashboard"}
+            </h1>
           </div>
         </nav>
 
