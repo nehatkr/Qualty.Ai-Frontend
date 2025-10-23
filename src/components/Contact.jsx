@@ -1,6 +1,8 @@
 import NewHeader from "./NewHeader";
-import { BASE_URL_TEST } from "../utils/constants";
+import { BASE_URL } from "../utils/constants";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { Mail, Phone, MapPin, Clock, X, Loader2, CheckCircle, Send, AlertTriangle } from "lucide-react";
 
 
@@ -19,6 +21,9 @@ export default function ContactPage() {
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false); 
   const [isLoading, setIsLoading] = useState(false);
+
+    const navigate = useNavigate();
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -43,7 +48,7 @@ export default function ContactPage() {
       newErrors.email = "Please enter a valid email address*";
     }
     if (!formData.message.trim()) newErrors.message = "Message cannot be empty*";
-    if (!formData.contactNumber.trim()) newErrors.message = "Message cannot be empty*";
+    if (!formData.contactNumber.trim()) newErrors.contactNumber = "Contact Number is required*";
     if (!formData.companyName.trim()) newErrors.companyName = "Company name is required*";
     if (!formData.role) newErrors.role = "Please select your role*";
     if (!formData.location.trim()) newErrors.location = "Inspection location is required*";
@@ -57,7 +62,7 @@ export default function ContactPage() {
     setIsLoading(true);
  try {
         
-        const response = await fetch(`${BASE_URL_TEST}/contact`, {
+        const response = await fetch(`${BASE_URL}/contact/us`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData),
@@ -71,48 +76,21 @@ export default function ContactPage() {
         }
 
         setIsSubmitted(true); 
+         toast.success("Your message has been sent successfully. We will get back to you shortly!", { autoClose: 3000 });
+      
+      setTimeout(() => {
+        navigate("/");
+      }, 5000);
 
     } catch (err) {
       setErrors("An error occurred. Please try again.");
+      toast.error("Failed to send message. Please try again.");
     } finally {
         setIsLoading(false);
     }
   };
 
 
-
-  const SuccessNotification = () => (
-    <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
-      <div className="bg-neutral-800 p-6 rounded-lg shadow-2xl max-w-sm w-full border border-green-500">
-        <div className="flex justify-between items-start">
-          <h3 className="text-xl font-bold text-green-400 flex items-center">
-            <CheckCircle className="w-5 h-5 mr-2" /> Success!
-          </h3>
-          <button
-            onClick={() => setIsSubmitted(false)}
-            className="text-gray-400 hover:text-white transition"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-        <p className="mt-4 text-gray-200">
-          Your message has been sent successfully. We will get back to you shortly!
-        </p>
-        <button
-          onClick={() => {
-            setIsSubmitted(false);
-            setFormData({ 
-                fullName: "", email: "", contactNumber: "", companyName: "",
-                location: "", role: "", message: "", additionalDetails: "",
-            });
-          }}
-          className="mt-6 w-full bg-green-600 text-white py-2 rounded-lg font-medium hover:bg-green-700 transition"
-        >
-          Close & Start New Inquiry
-        </button>
-      </div>
-    </div>
-  );
 
   const renderFormContent = () => {
     return (
@@ -265,9 +243,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <NewHeader />
-      {isSubmitted && <SuccessNotification />}
-      
+      <NewHeader />      
       <div className="pt-22 bg-black text-white px-8 md:px-16 pb-8 md:pb-12">
         <div className="max-w-5xl mx-auto text-center">
           <h1 className="text-3xl md:text-5xl font-semibold leading-tight">
