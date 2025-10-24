@@ -67,11 +67,11 @@ const CompanyLayout = () => {
   return (
     <div className="min-h-screen bg-white flex">
       <aside
-        className={`fixed inset-y-0 left-0 z-50 bg-white border-r border-gray shadow-lg transform ${
+        className={`fixed inset-y-0 left-0 z-50 bg-white border-r border-gray-200 shadow-lg transform ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}
       >
-        <div className="p-6">
+        <div className="p-6 border-b border-gray-200">
           <div className="flex gap-2 items-center">
             <FaUserCircle className="text-black text-2xl" />
             {/* <h2 className="text-xl font-bold text-white">{user.name}</h2> */}
@@ -104,7 +104,7 @@ const CompanyLayout = () => {
           ))}
         </nav>
 
-        <div className="p-4">
+        <div className="p-4 border-t border-gray-200">
           <button
             onClick={handleLogout}
             className="w-full cursor-pointer flex items-center gap-3 px-4 py-2 rounded-lg text-left text-red-500 hover:bg-red-100 hover:text-red-700"
@@ -115,7 +115,7 @@ const CompanyLayout = () => {
       </aside>
 
       <div className="flex-1 ">
-        <nav className="bg-gray-900 border-b border-gray-700 text-black p-4 flex justify-between items-center">
+        <nav className="bg-white border-b border-gray-200 text-black p-4 flex justify-between items-center">
           <div className="flex items-center">
             <button
               onClick={() => setSidebarOpen(true)}
@@ -129,14 +129,14 @@ const CompanyLayout = () => {
           </div>
         </nav>
 
-        <main className="p-6 bg-gray-900 min-h-screen">
+        <main className="p-6 bg-white min-h-screen">
           <Outlet />
         </main>
       </div>
 
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-75 z-40 lg:hidden"
+          className="fixed inset-0 bg-white bg-opacity-75 z-40 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         ></div>
       )}
