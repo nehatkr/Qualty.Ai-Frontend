@@ -69,7 +69,7 @@ const Signup = () => {
         </div>
 
         {/* Company Card (optional) */}
-        {/* <div
+        <div
           onClick={(e) => handleCardClick("/signup/company", e)}
           className="cursor-pointer bg-white p-6 rounded-lg border-2 border-gray-300 hover:border-orange-600 transition-all duration-200 hover:shadow-lg flex flex-col h-full"
         >
@@ -85,7 +85,7 @@ const Signup = () => {
               Sign up as Company
             </button>
           </div>
-        </div> */}
+        </div>
       </div>
 
       {/* Footer */}
