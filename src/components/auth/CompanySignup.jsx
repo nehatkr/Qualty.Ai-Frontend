@@ -110,8 +110,10 @@ const useInspectionForm = (initialState) => {
       newErrors.website = "Website URL cannot exceed 200 characters.";
     }
 
-    if (data.companyAddressLine1 && data.companyAddressLine1.length > 10) {
+    if (data.companyAddressLine1 && data.companyAddressLine1.length < 10) {
       newErrors.companyAddressLine1 = `Address must be a minimum of 10 characters for complete registration details. Current: ${data.companyAddressLine1.length}`;
+    }else if (data.companyAddressLine1.length > 350) {
+        newErrors.companyAddressLine1 = `Address cannot exceed 350 characters. Current: ${data.companyAddressLine1.length}`;
     }
 
     const currentYear = new Date().getFullYear();
@@ -681,6 +683,7 @@ export default function App() {
                   error={errors.companyAddressLine1}
                   placeholder="Address"
                   icon={MapPin}
+                  maxLength={350}
                 />
               </div>
               <InputField
